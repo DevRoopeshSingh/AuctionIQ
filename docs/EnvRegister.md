@@ -8,6 +8,7 @@ Architecture §4.6 lists the required variables but does not define owners or ro
 |---|---|---|---|---|
 | `DATABASE_URL` | Prisma PostgreSQL connection URL; separate per environment/project | Dev | Rotate the database credential at least every 90 days and immediately after exposure or credential reissue | Secret; server/CI only |
 | `SUPABASE_URL` | Supabase project endpoint; separate per environment | Dev | Not a credential; update when the project or endpoint changes | Public configuration |
+| `NEXT_PUBLIC_SUPABASE_URL` | Browser-visible Supabase project endpoint | Dev | Not a credential; update when the project or endpoint changes | Public configuration |
 | `SUPABASE_ANON_KEY` | Supabase client key; separate per environment | Dev | Not treated as a secret; replace when Supabase reissues the project key or after an incident | Public/client safe; server may also read |
 | `SUPABASE_SERVICE_ROLE_KEY` | Supabase privileged server-side access | Dev | Rotate at least every 90 days and immediately after exposure or access changes | Secret; server only, never `NEXT_PUBLIC_` |
 | `RAZORPAY_KEY_ID` | Razorpay API key identifier | Founder + Dev | Review with each key rotation; update all environments when a key pair changes | Server configuration; no live value during M0 |
@@ -17,6 +18,11 @@ Architecture §4.6 lists the required variables but does not define owners or ro
 | `NEXT_PUBLIC_APP_URL` | Canonical app URL used by browser-visible links | Dev | Update when local/staging/production domains change; no secret rotation | Public configuration |
 | `CRON_SECRET` | Authorizes scheduled-job endpoints | Dev | Rotate at least every 90 days and immediately after exposure | Secret; server/hosting only |
 | `SENTRY_DSN` | Optional Sentry event-ingest endpoint for the Next.js project | Dev | Not a credential; replace if the Sentry project/DSN is reissued or abused | Public ingest configuration; no live DSN during M0 |
+| `NEXT_PUBLIC_SENTRY_DSN` | Browser-visible Sentry event-ingest endpoint used by the error boundary | Dev | Not a credential; update if Sentry reissues the project DSN | Public ingest configuration; A20 pending |
+| `SENTRY_AUTH_TOKEN` | Server-side Sentry setup/release token | Dev | Rotate at least every 90 days and immediately after exposure or access changes | Secret; server/CI only; A20 pending |
+| `VERCEL_STAGING_TOKEN` | GitHub Actions authentication for staging deploy | Founder + Dev | Rotate at least every 90 days and immediately after exposure or access changes | Secret; GitHub Actions only; A18 pending |
+| `VERCEL_STAGING_ORG_ID` | Vercel team identifier for staging project | Founder + Dev | Update if the Vercel team changes; not a credential | GitHub Actions configuration |
+| `VERCEL_STAGING_PROJECT_ID` | Vercel staging project identifier | Founder + Dev | Update if the staging project is recreated; not a credential | GitHub Actions configuration |
 
 ## Provider provisioning instructions
 

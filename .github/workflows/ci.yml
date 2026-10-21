@@ -5,6 +5,13 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Skip deployment and show the staging action that would run"
+        type: boolean
+        required: true
+        default: true
 
 permissions:
   contents: read
@@ -42,3 +49,61 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+  # requires A18 — Vercel staging secrets; deploy remains gated until all are configured.
+  staging-deploy:
+    name: staging deploy (requires A18 — Vercel staging secrets)
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_STAGING_TOKEN: ${{ secrets.VERCEL_STAGING_TOKEN }}
+      VERCEL_STAGING_ORG_ID: ${{ secrets.VERCEL_STAGING_ORG_ID }}
+      VERCEL_STAGING_PROJECT_ID: ${{ secrets.VERCEL_STAGING_PROJECT_ID }}
+    steps:
+      - name: Check staging credentials
+        id: gate
+        shell: bash
+        run: |
+          if [[ -n "$VERCEL_STAGING_TOKEN" && -n "$VERCEL_STAGING_ORG_ID" && -n "$VERCEL_STAGING_PROJECT_ID" ]]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "A18 pending — staging deployment skipped because VERCEL_STAGING_* secrets are not configured."
+          fi
+
+      - name: Manual dispatch dry-run
+        if: github.event_name == 'workflow_dispatch' && inputs.dry_run
+        run: echo "Dry run only; no Vercel deployment requested."
+
+      - name: Set up pnpm for staging deploy
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.12.3
+
+      - name: Check out repository for staging deploy
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js for staging deploy
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies for staging deploy
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build staging deployment
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        run: pnpm build
+
+      - name: Deploy to Vercel staging
+        if: steps.gate.outputs.configured == 'true' && (github.event_name != 'workflow_dispatch' || inputs.dry_run == false)
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_STAGING_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_STAGING_PROJECT_ID }}
+        run: pnpm dlx vercel deploy --yes --token "$VERCEL_STAGING_TOKEN" --scope "$VERCEL_STAGING_ORG_ID"

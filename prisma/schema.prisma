@@ -1,5 +1,781 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
 datasource db {
   provider = "postgresql"
 }
 
-// M0: intentionally empty; approved Prisma models are introduced in M1.
+enum user_role {
+  user
+  admin
+}
+
+enum subscription_tier {
+  essential
+  premium
+}
+
+enum subscription_status {
+  pending
+  active
+  past_due
+  cancelled
+  expired
+}
+
+enum payment_status {
+  created
+  authorized
+  captured
+  failed
+  refunded
+}
+
+enum property_type {
+  residential_flat
+  residential_house
+  commercial
+  plot
+  other
+}
+
+enum listing_status {
+  draft
+  pending_verification
+  teaser
+  member_available
+  auction_approaching
+  auction_completed
+  withdrawn_postponed
+  recheck_required
+}
+
+enum possession_status {
+  vacant
+  occupied
+  third_party
+  unknown
+}
+
+enum evidence_label {
+  verified_source
+  advocate_reviewed
+  first_hand
+  third_party
+  pending_verification
+  unknown
+}
+
+enum risk_indicator {
+  price_attractiveness
+  document_completeness
+  possession
+  dues
+  inspection
+  legal_questions
+  data_freshness
+}
+
+enum contribution_type {
+  inspection_experience
+  document_question
+  reported_dues
+  building_condition
+  valuation
+  auction_process
+  advocate_question
+  other
+}
+
+enum inspection_status {
+  requested
+  confirmed
+  completed
+  cancelled
+  declined
+}
+
+enum simulation_difficulty {
+  beginner
+  intermediate
+  advanced
+}
+
+enum report_status {
+  open
+  resolved
+  dismissed
+}
+
+enum source_type {
+  sarfaesi_notice
+  drt_order
+  bank_website
+  auction_portal
+  public_notice
+  direct_intake
+  other
+}
+
+enum notification_type {
+  account_created
+  email_verified
+  password_reset
+  payment_succeeded
+  payment_failed
+  subscription_renewing_soon
+  subscription_cancelled
+  subscription_expired
+  new_matching_listing
+  auction_date_changed
+  emd_deadline_approaching
+  new_document_available
+  forum_reply
+  forum_followed_thread
+  inspection_status_changed
+  inspection_reminder
+  enquiry_response
+  advocate_enquiry_status
+  report_outcome
+  listing_recheck_flagged
+}
+
+/// Schema.md §5.2 — profiles
+model profiles {
+  id                         String                      @id @db.Uuid
+  full_name                  String                      @db.Text
+  phone                      String?                     @db.Text
+  role                       user_role                   @default(user)
+  gstin                      String?                     @db.Text
+  created_at                 DateTime                    @default(now()) @db.Timestamptz(6)
+  updated_at                 DateTime                    @default(now()) @db.Timestamptz(6)
+  deleted_at                 DateTime?                   @db.Timestamptz(6)
+  subscriptions              subscriptions[]
+  payments                   payments[]
+  created_properties         properties[]                @relation("property_created_by")
+  verified_properties        properties[]                @relation("property_verified_by")
+  second_reviewed_properties properties[]                @relation("property_second_reviewer")
+  uploaded_documents         property_documents[]        @relation("document_uploaded_by")
+  status_changes             property_status_history[]   @relation("status_changed_by")
+  risk_updates               property_risk_indicators[]  @relation("risk_updated_by")
+  forum_posts                forum_posts[]               @relation("forum_author")
+  forum_votes                forum_votes[]
+  forum_follows              forum_follows[]
+  forum_reports              forum_reports[]             @relation("forum_reporter")
+  resolved_forum_reports     forum_reports[]             @relation("forum_resolved_by")
+  watchlists                 watchlists[]
+  inspections                inspections[]
+  advocate_enquiries         advocate_enquiries[]
+  notifications              notifications[]
+  simulation_sessions        simulation_sessions[]
+  cost_calculations          cost_calculations[]
+  created_articles           articles[]                  @relation("article_created_by")
+  created_quizzes            quizzes[]                   @relation("quiz_created_by")
+  quiz_attempts              quiz_attempts[]
+  user_badges                user_badges[]
+  learning_progress          learning_progress[]
+  property_enquiries         property_enquiries[]        @relation("enquiry_user")
+  assigned_enquiries         property_enquiries[]        @relation("enquiry_admin")
+  enquiry_messages           property_enquiry_messages[] @relation("enquiry_message_author")
+  invoices                   invoices[]
+  requested_refunds          refunds[]                   @relation("refund_requested_by")
+  approved_refunds           refunds[]                   @relation("refund_approved_by")
+  audit_logs                 audit_logs[]
+  refunds                    refunds[]
+
+  @@map("profiles")
+}
+
+/// Schema.md §5.2 — subscriptions
+model subscriptions {
+  id                       String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id                  String              @db.Uuid
+  tier                     subscription_tier
+  status                   subscription_status
+  razorpay_subscription_id String              @unique @db.Text
+  current_period_start     DateTime            @db.Timestamptz(6)
+  current_period_end       DateTime            @db.Timestamptz(6)
+  auto_renew               Boolean             @default(true)
+  cancelled_at             DateTime?           @db.Timestamptz(6)
+  created_at               DateTime            @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime            @default(now()) @db.Timestamptz(6)
+  user                     profiles            @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  payments                 payments[]
+  invoices                 invoices[]
+
+  @@index([user_id, status])
+  @@map("subscriptions")
+}
+
+/// Schema.md §5.2 — payments
+model payments {
+  id                  String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id             String         @db.Uuid
+  subscription_id     String?        @db.Uuid
+  razorpay_payment_id String         @unique @db.Text
+  razorpay_order_id   String?        @db.Text
+  amount_inr          BigInt
+  gst_amount_inr      BigInt
+  currency            String         @default("INR") @db.Text
+  status              payment_status
+  invoice_number      String?        @unique @db.Text
+  method              String?        @db.Text
+  created_at          DateTime       @default(now()) @db.Timestamptz(6)
+  user                profiles       @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  subscription        subscriptions? @relation(fields: [subscription_id], references: [id], onDelete: Restrict)
+  invoices            invoices[]
+  refunds             refunds[]
+
+  @@map("payments")
+}
+
+/// Schema.md §5.2 — properties
+model properties {
+  id                       String                     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  reference_code           String                     @unique @db.Text
+  title                    String                     @db.Text
+  property_type            property_type
+  configuration            String?                    @db.Text
+  description              String?                    @db.Text
+  carpet_area_sqft         Decimal?                   @db.Decimal(10, 2)
+  built_up_area_sqft       Decimal?                   @db.Decimal(10, 2)
+  reserve_price_inr        BigInt
+  emd_amount_inr           BigInt?
+  emd_deadline             DateTime?                  @db.Timestamptz(6)
+  auction_date             DateTime?                  @db.Date
+  auction_time             DateTime?                  @db.Time(6)
+  auction_authority        String?                    @db.Text
+  official_source_ref      String?                    @db.Text
+  source_type              source_type?
+  source_reference         String?                    @db.Text
+  source_captured_at       DateTime?                  @db.Timestamptz(6)
+  verified_by              String?                    @db.Uuid
+  last_verified_at         DateTime?                  @db.Timestamptz(6)
+  recheck_due_at           DateTime?                  @db.Timestamptz(6)
+  second_reviewer_id       String?                    @db.Uuid
+  general_location         String                     @db.Text
+  exact_location           String?                    @db.Text
+  building_name            String?                    @db.Text
+  society_name             String?                    @db.Text
+  possession_status        possession_status          @default(unknown)
+  possession_source        String?                    @db.Text
+  reported_dues_inr        BigInt?
+  dues_verification_status evidence_label             @default(unknown)
+  inspection_available     Boolean                    @default(false)
+  listing_status           listing_status             @default(draft)
+  published_at             DateTime?                  @db.Timestamptz(6)
+  created_by               String                     @db.Uuid
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  deleted_at               DateTime?                  @db.Timestamptz(6)
+  creator                  profiles                   @relation("property_created_by", fields: [created_by], references: [id], onDelete: Restrict)
+  verifier                 profiles?                  @relation("property_verified_by", fields: [verified_by], references: [id], onDelete: Restrict)
+  second_reviewer          profiles?                  @relation("property_second_reviewer", fields: [second_reviewer_id], references: [id], onDelete: Restrict)
+  photos                   property_photos[]
+  documents                property_documents[]
+  status_history           property_status_history[]
+  risk_indicators          property_risk_indicators[]
+  forum_posts              forum_posts[]
+  forum_follows            forum_follows[]
+  watchlists               watchlists[]
+  inspections              inspections[]
+  advocate_enquiries       advocate_enquiries[]
+  property_enquiries       property_enquiries[]
+  cost_calculations        cost_calculations[]
+
+  @@index([listing_status, auction_date])
+  @@index([general_location])
+  @@index([recheck_due_at])
+  @@map("properties")
+}
+
+/// Schema.md §5.2 — property_photos
+model property_photos {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id  String     @db.Uuid
+  storage_path String     @db.Text
+  caption      String?    @db.Text
+  sort_order   Int        @default(0)
+  is_public    Boolean    @default(true)
+  created_at   DateTime   @default(now()) @db.Timestamptz(6)
+  property     properties @relation(fields: [property_id], references: [id], onDelete: Cascade)
+
+  @@index([property_id, sort_order])
+  @@map("property_photos")
+}
+
+/// Schema.md §5.2 — property_documents
+model property_documents {
+  id                   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id          String     @db.Uuid
+  doc_type             String     @db.Text
+  storage_path         String     @db.Text
+  is_member_accessible Boolean    @default(true)
+  uploaded_by          String     @db.Uuid
+  created_at           DateTime   @default(now()) @db.Timestamptz(6)
+  property             properties @relation(fields: [property_id], references: [id], onDelete: Cascade)
+  uploader             profiles   @relation("document_uploaded_by", fields: [uploaded_by], references: [id], onDelete: Restrict)
+
+  @@index([property_id])
+  @@map("property_documents")
+}
+
+/// Schema.md §5.2 — property_status_history
+model property_status_history {
+  id          String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id String         @db.Uuid
+  from_status listing_status
+  to_status   listing_status
+  changed_by  String         @db.Uuid
+  note        String?        @db.Text
+  created_at  DateTime       @default(now()) @db.Timestamptz(6)
+  property    properties     @relation(fields: [property_id], references: [id], onDelete: Cascade)
+  changer     profiles       @relation("status_changed_by", fields: [changed_by], references: [id], onDelete: Restrict)
+
+  @@map("property_status_history")
+}
+
+/// Schema.md §5.2 — property_risk_indicators
+model property_risk_indicators {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id    String         @db.Uuid
+  indicator      risk_indicator
+  evidence_label evidence_label
+  value_text     String?        @db.Text
+  note           String?        @db.Text
+  updated_by     String         @db.Uuid
+  updated_at     DateTime       @default(now()) @db.Timestamptz(6)
+  property       properties     @relation(fields: [property_id], references: [id], onDelete: Cascade)
+  updater        profiles       @relation("risk_updated_by", fields: [updated_by], references: [id], onDelete: Restrict)
+
+  @@unique([property_id, indicator])
+  @@map("property_risk_indicators")
+}
+
+/// Schema.md §5.2 — forum_posts
+model forum_posts {
+  id                String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id       String            @db.Uuid
+  author_id         String            @db.Uuid
+  parent_id         String?           @db.Uuid
+  contribution_type contribution_type
+  body              String            @db.Text
+  is_helpful_answer Boolean           @default(false)
+  upvote_count      Int               @default(0)
+  created_at        DateTime          @default(now()) @db.Timestamptz(6)
+  edited_at         DateTime?         @db.Timestamptz(6)
+  deleted_at        DateTime?         @db.Timestamptz(6)
+  property          properties        @relation(fields: [property_id], references: [id], onDelete: Cascade)
+  author            profiles          @relation("forum_author", fields: [author_id], references: [id], onDelete: Restrict)
+  parent            forum_posts?      @relation("forum_post_parent", fields: [parent_id], references: [id], onDelete: Cascade)
+  replies           forum_posts[]     @relation("forum_post_parent")
+  votes             forum_votes[]
+  reports           forum_reports[]
+
+  @@index([property_id, created_at])
+  @@index([author_id])
+  @@map("forum_posts")
+}
+
+/// Schema.md §5.2 — forum_votes
+model forum_votes {
+  id         String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id    String      @db.Uuid
+  user_id    String      @db.Uuid
+  created_at DateTime    @default(now()) @db.Timestamptz(6)
+  post       forum_posts @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  user       profiles    @relation(fields: [user_id], references: [id], onDelete: Restrict)
+
+  @@unique([post_id, user_id])
+  @@map("forum_votes")
+}
+
+/// Schema.md §5.2 — forum_follows
+model forum_follows {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String     @db.Uuid
+  property_id String     @db.Uuid
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  user        profiles   @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  property    properties @relation(fields: [property_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, property_id])
+  @@map("forum_follows")
+}
+
+/// Schema.md §5.2 — forum_reports
+model forum_reports {
+  id              String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  post_id         String        @db.Uuid
+  reporter_id     String        @db.Uuid
+  reason          String        @db.Text
+  status          report_status @default(open)
+  resolved_by     String?       @db.Uuid
+  resolved_at     DateTime?     @db.Timestamptz(6)
+  resolution_note String?       @db.Text
+  created_at      DateTime      @default(now()) @db.Timestamptz(6)
+  post            forum_posts   @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  reporter        profiles      @relation("forum_reporter", fields: [reporter_id], references: [id], onDelete: Restrict)
+  resolver        profiles?     @relation("forum_resolved_by", fields: [resolved_by], references: [id], onDelete: Restrict)
+
+  @@index([status, created_at])
+  @@map("forum_reports")
+}
+
+/// Schema.md §5.2 — watchlists
+model watchlists {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String     @db.Uuid
+  property_id String     @db.Uuid
+  created_at  DateTime   @default(now()) @db.Timestamptz(6)
+  user        profiles   @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  property    properties @relation(fields: [property_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, property_id])
+  @@map("watchlists")
+}
+
+/// Schema.md §5.2 — inspections
+model inspections {
+  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id     String            @db.Uuid
+  user_id         String            @db.Uuid
+  preferred_dates Json              @db.JsonB
+  status          inspection_status @default(requested)
+  confirmed_date  DateTime?         @db.Timestamptz(6)
+  notes           String?           @db.Text
+  admin_note      String?           @db.Text
+  consent_at      DateTime          @db.Timestamptz(6)
+  created_at      DateTime          @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime          @default(now()) @db.Timestamptz(6)
+  property        properties        @relation(fields: [property_id], references: [id], onDelete: Restrict)
+  user            profiles          @relation(fields: [user_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, created_at])
+  @@index([property_id])
+  @@index([status])
+  @@map("inspections")
+}
+
+/// Schema.md §5.2 — advocate_enquiries
+model advocate_enquiries {
+  id             String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id        String     @db.Uuid
+  property_id    String     @db.Uuid
+  question       String     @db.Text
+  status         String     @default("received") @db.Text
+  fee_disclosure Json       @db.JsonB
+  consent_at     DateTime   @db.Timestamptz(6)
+  created_at     DateTime   @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime   @default(now()) @db.Timestamptz(6)
+  user           profiles   @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  property       properties @relation(fields: [property_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, created_at])
+  @@index([status])
+  @@map("advocate_enquiries")
+}
+
+/// Schema.md §5.2 — notifications
+model notifications {
+  id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String            @db.Uuid
+  type       notification_type
+  title      String            @db.Text
+  body       String            @db.Text
+  link       String?           @db.Text
+  read_at    DateTime?         @db.Timestamptz(6)
+  created_at DateTime          @default(now()) @db.Timestamptz(6)
+  user       profiles          @relation(fields: [user_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, read_at])
+  @@index([user_id, created_at])
+  @@map("notifications")
+}
+
+/// Schema.md §5.2 — simulation_sessions
+model simulation_sessions {
+  id            String                @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id       String?               @db.Uuid
+  session_id    String?               @db.Text
+  scenario_key  String                @db.Text
+  difficulty    simulation_difficulty
+  budget_inr    BigInt
+  outcome       String                @db.Text
+  final_bid_inr BigInt?
+  report        Json                  @default("{}") @db.JsonB
+  created_at    DateTime              @default(now()) @db.Timestamptz(6)
+  user          profiles?             @relation(fields: [user_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, created_at])
+  @@index([session_id])
+  @@map("simulation_sessions")
+}
+
+/// Schema.md §5.2 — cost_calculations
+model cost_calculations {
+  id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id     String?     @db.Uuid
+  property_id String?     @db.Uuid
+  inputs      Json        @db.JsonB
+  outputs     Json        @db.JsonB
+  created_at  DateTime    @default(now()) @db.Timestamptz(6)
+  user        profiles?   @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  property    properties? @relation(fields: [property_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, created_at])
+  @@map("cost_calculations")
+}
+
+/// Schema.md §5.2 — articles
+model articles {
+  id                     String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug                   String              @unique @db.Text
+  title                  String              @db.Text
+  summary                String              @db.Text
+  body_markdown          String              @db.Text
+  hero_image_path        String?             @db.Text
+  category               String              @db.Text
+  difficulty_level       String?             @db.Text
+  estimated_read_minutes Int                 @default(5)
+  published_at           DateTime?           @db.Timestamptz(6)
+  created_by             String              @db.Uuid
+  created_at             DateTime            @default(now()) @db.Timestamptz(6)
+  updated_at             DateTime            @default(now()) @db.Timestamptz(6)
+  deleted_at             DateTime?           @db.Timestamptz(6)
+  creator                profiles            @relation("article_created_by", fields: [created_by], references: [id], onDelete: Restrict)
+  quizzes                quizzes[]
+  learning_progress      learning_progress[]
+
+  @@index([slug])
+  @@index([published_at])
+  @@map("articles")
+}
+
+/// Schema.md §5.2 — quizzes
+model quizzes {
+  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  slug               String              @unique @db.Text
+  title              String              @db.Text
+  description        String              @db.Text
+  passing_score      Int                 @default(70)
+  related_article_id String?             @db.Uuid
+  is_published       Boolean             @default(false)
+  created_by         String              @db.Uuid
+  created_at         DateTime            @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime            @default(now()) @db.Timestamptz(6)
+  deleted_at         DateTime?           @db.Timestamptz(6)
+  related_article    articles?           @relation(fields: [related_article_id], references: [id], onDelete: Restrict)
+  creator            profiles            @relation("quiz_created_by", fields: [created_by], references: [id], onDelete: Restrict)
+  questions          quiz_questions[]
+  attempts           quiz_attempts[]
+  learning_progress  learning_progress[]
+
+  @@map("quizzes")
+}
+
+/// Schema.md §5.2 — quiz_questions
+model quiz_questions {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quiz_id            String   @db.Uuid
+  question_text      String   @db.Text
+  options            Json     @db.JsonB
+  correct_option_key String   @db.Text
+  explanation        String?  @db.Text
+  sort_order         Int      @default(0)
+  created_at         DateTime @default(now()) @db.Timestamptz(6)
+  quiz               quizzes  @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
+
+  @@index([quiz_id, sort_order])
+  @@map("quiz_questions")
+}
+
+/// Schema.md §5.2 — quiz_attempts
+model quiz_attempts {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quiz_id      String    @db.Uuid
+  user_id      String?   @db.Uuid
+  session_id   String?   @db.Text
+  score        Int
+  passed       Boolean
+  answers      Json      @db.JsonB
+  started_at   DateTime  @db.Timestamptz(6)
+  completed_at DateTime  @db.Timestamptz(6)
+  quiz         quizzes   @relation(fields: [quiz_id], references: [id], onDelete: Restrict)
+  user         profiles? @relation(fields: [user_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, quiz_id])
+  @@index([session_id])
+  @@map("quiz_attempts")
+}
+
+/// Schema.md §5.2 — badges
+model badges {
+  id          String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code        String        @unique @db.Text
+  name        String        @db.Text
+  description String        @db.Text
+  icon_key    String        @db.Text
+  criteria    Json          @db.JsonB
+  is_active   Boolean       @default(true)
+  created_at  DateTime      @default(now()) @db.Timestamptz(6)
+  user_badges user_badges[]
+
+  @@map("badges")
+}
+
+/// Schema.md §5.2 — user_badges
+model user_badges {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String   @db.Uuid
+  badge_id   String   @db.Uuid
+  awarded_at DateTime @default(now()) @db.Timestamptz(6)
+  user       profiles @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  badge      badges   @relation(fields: [badge_id], references: [id], onDelete: Restrict)
+
+  @@unique([user_id, badge_id])
+  @@index([user_id, awarded_at])
+  @@map("user_badges")
+}
+
+/// Schema.md §5.2 — learning_progress
+model learning_progress {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id        String    @db.Uuid
+  article_id     String?   @db.Uuid
+  quiz_id        String?   @db.Uuid
+  progress_pct   Int       @default(0)
+  last_viewed_at DateTime  @default(now()) @db.Timestamptz(6)
+  completed_at   DateTime? @db.Timestamptz(6)
+  user           profiles  @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  article        articles? @relation(fields: [article_id], references: [id], onDelete: Restrict)
+  quiz           quizzes?  @relation(fields: [quiz_id], references: [id], onDelete: Restrict)
+
+  @@unique([user_id, article_id])
+  @@unique([user_id, quiz_id])
+  @@map("learning_progress")
+}
+
+/// Schema.md §5.2 — property_enquiries
+model property_enquiries {
+  id                String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id       String                      @db.Uuid
+  user_id           String                      @db.Uuid
+  subject           String                      @db.Text
+  status            String                      @default("open") @db.Text
+  assigned_admin_id String?                     @db.Uuid
+  opened_at         DateTime                    @default(now()) @db.Timestamptz(6)
+  closed_at         DateTime?                   @db.Timestamptz(6)
+  property          properties                  @relation(fields: [property_id], references: [id], onDelete: Restrict)
+  user              profiles                    @relation("enquiry_user", fields: [user_id], references: [id], onDelete: Restrict)
+  assigned_admin    profiles?                   @relation("enquiry_admin", fields: [assigned_admin_id], references: [id], onDelete: Restrict)
+  messages          property_enquiry_messages[]
+
+  @@index([property_id, user_id])
+  @@index([status])
+  @@map("property_enquiries")
+}
+
+/// Schema.md §5.2 — property_enquiry_messages
+model property_enquiry_messages {
+  id          String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  enquiry_id  String             @db.Uuid
+  author_id   String             @db.Uuid
+  author_role String             @db.Text
+  body        String             @db.Text
+  created_at  DateTime           @default(now()) @db.Timestamptz(6)
+  enquiry     property_enquiries @relation(fields: [enquiry_id], references: [id], onDelete: Cascade)
+  author      profiles           @relation("enquiry_message_author", fields: [author_id], references: [id], onDelete: Restrict)
+
+  @@index([enquiry_id, created_at])
+  @@map("property_enquiry_messages")
+}
+
+/// Schema.md §5.2 — invoices
+model invoices {
+  id                String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invoice_number    String        @unique @db.Text
+  user_id           String        @db.Uuid
+  subscription_id   String        @db.Uuid
+  payment_id        String        @db.Uuid
+  gstin             String?       @db.Text
+  customer_gstin    String?       @db.Text
+  place_of_supply   String        @db.Text
+  taxable_value_inr BigInt
+  gst_rate          Decimal       @db.Decimal(5, 2)
+  gst_amount_inr    BigInt
+  total_amount_inr  BigInt
+  description       String        @db.Text
+  issued_at         DateTime      @default(now()) @db.Timestamptz(6)
+  pdf_path          String        @db.Text
+  status            String        @default("issued") @db.Text
+  void_reason       String?       @db.Text
+  created_at        DateTime      @default(now()) @db.Timestamptz(6)
+  user              profiles      @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  subscription      subscriptions @relation(fields: [subscription_id], references: [id], onDelete: Restrict)
+  payment           payments      @relation(fields: [payment_id], references: [id], onDelete: Restrict)
+
+  @@index([user_id, issued_at])
+  @@index([invoice_number])
+  @@index([payment_id])
+  @@map("invoices")
+}
+
+/// Schema.md §5.2 — webhook_events
+model webhook_events {
+  razorpay_event_id String    @id @db.Text
+  event_type        String    @db.Text
+  payload_hash      String    @db.Text
+  received_at       DateTime  @default(now()) @db.Timestamptz(6)
+  processed_at      DateTime? @db.Timestamptz(6)
+  status            String    @default("received") @db.Text
+  error             String?   @db.Text
+
+  @@index([status, received_at])
+  @@map("webhook_events")
+}
+
+/// Schema.md §5.2 — refunds
+model refunds {
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  payment_id         String    @db.Uuid
+  user_id            String    @db.Uuid
+  razorpay_refund_id String?   @unique @db.Text
+  amount_inr         BigInt
+  reason             String    @db.Text
+  status             String    @default("requested") @db.Text
+  requested_by       String    @db.Uuid
+  approved_by        String?   @db.Uuid
+  created_at         DateTime  @default(now()) @db.Timestamptz(6)
+  processed_at       DateTime? @db.Timestamptz(6)
+  payment            payments  @relation(fields: [payment_id], references: [id], onDelete: Restrict)
+  user               profiles  @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  requester          profiles  @relation("refund_requested_by", fields: [requested_by], references: [id], onDelete: Restrict)
+  approver           profiles? @relation("refund_approved_by", fields: [approved_by], references: [id], onDelete: Restrict)
+
+  @@index([user_id, created_at])
+  @@index([status])
+  @@map("refunds")
+}
+
+/// Schema.md §5.2 — audit_logs
+model audit_logs {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  actor_id    String?   @db.Uuid
+  actor_role  String?   @db.Text
+  action      String    @db.Text
+  entity_type String    @db.Text
+  entity_id   String    @db.Text
+  metadata    Json      @default("{}") @db.JsonB
+  ip          String?   @db.Inet
+  user_agent  String?   @db.Text
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  actor       profiles? @relation(fields: [actor_id], references: [id], onDelete: Restrict)
+
+  @@index([actor_id, created_at])
+  @@index([entity_type, entity_id])
+  @@index([action, created_at])
+  @@map("audit_logs")
+}
