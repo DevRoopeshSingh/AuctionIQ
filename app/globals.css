@@ -19,6 +19,10 @@
   font-family: var(--font-body);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -27,8 +31,10 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
+@layer base {
+  a {
+    color: inherit;
+  }
 }
 
 button,

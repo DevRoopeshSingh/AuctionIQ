@@ -21,14 +21,21 @@ export default function RootLayout({
             <Link aria-label="AuctionIQ home" className="font-display text-xl font-bold text-navy" href="/">
               AuctionIQ
             </Link>
-            <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-              <Link href="/#explore">Explore Auctions</Link>
-              <Link href="/#simulator">Simulator</Link>
-              <Link href="/#academy">Academy</Link>
-              <Link href="/#plans">Plans</Link>
-              <Link href="/#about">About</Link>
-              <Link href="/login">Log in</Link>
-              <Link className="rounded-md bg-navy px-3 py-2 font-semibold text-white" href="/signup">Sign up</Link>
+            <nav aria-label="Main navigation" className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm sm:w-auto sm:gap-x-5">
+              {[
+                ["/#explore", "Explore Auctions"],
+                ["/#simulator", "Simulator"],
+                ["/#academy", "Academy"],
+                ["/#plans", "Plans"],
+              ].map(([href, label]) => (
+                <Link aria-label={label} className="font-medium text-charcoal/80 transition-colors hover:text-navy" href={href} key={href}>
+                  {label}
+                </Link>
+              ))}
+              <Link className="font-medium text-charcoal/80 transition-colors hover:text-navy" href="/#about">About</Link>
+              <span aria-hidden="true" className="hidden h-5 border-l border-charcoal/20 sm:block" />
+              <Link className="font-medium text-charcoal/80 transition-colors hover:text-navy" href="/auth/login">Log in</Link>
+              <Link className="rounded-md border border-navy bg-navy px-4 py-2 font-semibold text-ivory shadow-sm ring-1 ring-gold/50 transition-colors hover:bg-navy/90" href="/signup">Sign up</Link>
             </nav>
           </div>
         </header>
