@@ -1,0 +1,5 @@
+datasource db {
+  provider = "postgresql"
+}
+
+// M0: intentionally empty; approved Prisma models are introduced in M1.
