@@ -35,6 +35,11 @@
 | D14 | Cancellation and refund handling | APPROVED | Cancellation takes effect at the end of the paid period; access remains through that period. No partial-month refunds; any other refund follows the published Refund Policy and is audited. | ApprovalRegister.md §7; A11–A16 approved by user instruction; A1–A10 per approved pack status in archive/source-plans/implementation-plan-m0-m8.md §0. |
 | D15 | Listing source and verification | APPROVED | A listing must have a recorded source and verification timestamp before publication. Admins recheck when auction details change and record status transitions; no unapproved automated ingestion. | ApprovalRegister.md §7; A11–A16 approved by user instruction; A1–A10 per approved pack status in archive/source-plans/implementation-plan-m0-m8.md §0. |
 | D16 | RLS and payment event records | APPROVED | Every user-accessible table has an explicit RLS policy. Payment processing stores webhook event IDs for idempotency and records invoice data; service-role access remains server-only. | ApprovalRegister.md §7; A11–A16 approved by user instruction; A1–A10 per approved pack status in archive/source-plans/implementation-plan-m0-m8.md §0. |
+| A21 | Build bundler | APPROVED | Use Webpack for `pnpm build` because Turbopack fails in this environment; revisit the bundler choice at M8. | User instruction, 2026-10-21. |
+| A22 | Public property projection | APPROVED | Public and free-tier property reads use Next.js API routes with explicit column allowlists; no PostgREST/views for public data at MVP. | User approval, 2026-10-21. |
+| A23 | Public property views | APPROVED | `public_properties` and `public_property_photos` views are out of M1 scope and may be reconsidered at M7 for defense-in-depth. | User approval, 2026-10-21. |
+| A25 | §6.1 table classes and DB outcomes | APPROVED | Add classes R/P/S/U/A/X with explicit per-role PostgreSQL semantics; distinguish `deny_perm` (42501 permission denied) from `empty_result` (00000, zero rows). | User approval, pasted instruction, 2026-10-21. |
+| A26 | M1-T9 RLS probe matrix scope | APPROVED | Require 155 SELECT cells (31 tables × 5 roles), client write probes only for the 15 tables with client write policies, plus six service-role grant probes. | User approval, pasted instruction, 2026-10-21. |
 
 ## Pending decisions and inputs
 
@@ -45,10 +50,14 @@
 | P3 | Brand/content ownership | PENDING | Supply brand assets or approve placeholders; name a content owner and approve content briefs. | ProjectPlan.md §1, M0-T9/T10 |
 | P4 | Vendor and budget selection | PENDING | Decide in-house/agency/freelancer and select a budget path before signing a development contract. | ProjectPlan.md §6 and §10 |
 | P5 | Contract and milestone payment schedule | PENDING | Sign the development contract and confirm milestone payment schedule. | ProjectPlan.md §1, M0-T12 |
-| P6 | Implementation authorization | PENDING | A separate explicit build authorization is required before implementation begins. | ProjectPlan.md §10 |
+| P6 | Implementation authorization | APPROVED | User explicitly authorized M1 — Foundations on 2026-10-21. Authorization is limited to the tasks in that milestone prompt; subsequent milestones still require authorization. | User instruction: “Execute M1 (Foundations) from /docs/ProjectPlan.md §1.” |
 
 ## Change history
 
 | Date | Change |
 |---|---|
 | 2026-10-21 | Created from the available documentation pack and implementation plan. A11–A16 recorded as approved per user instruction. |
+| 2026-10-21 | M1 implementation authorization recorded; limited to M1 scope. |
+| 2026-10-21 | A21 recorded: use Webpack for builds in this environment and revisit at M8. |
+| 2026-10-21 | A22–A23 recorded: public property data is served through allowlisted API projections; public views are deferred to M7 evaluation. |
+| 2026-10-21 | A25–A26 recorded: §6.1 adds table classes and exact DB outcome semantics; M1-T9 probe scope is reduced to all SELECT cells, applicable client writes, and service-role grant probes. |
