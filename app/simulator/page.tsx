@@ -1,0 +1,37 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+const modes = [
+  { level: "Beginner", desc: "Clear reserve targets, standard increments, and generous timers.", tone: "text-success" },
+  { level: "Intermediate", desc: "Four simulated bidders with varied budgets. Practise staying within your ceiling.", tone: "text-navy" },
+  { level: "Advanced", desc: "Proxy bids and clock extensions for a tougher practice round.", tone: "text-warning" },
+];
+
+export default function SimulatorPage() {
+  const [step, setStep] = useState(1);
+  const [mode, setMode] = useState("Beginner");
+  const [bid, setBid] = useState(13200000);
+  const [status, setStatus] = useState("Your turn to bid");
+  const ceiling = 14500000;
+  const increment = mode === "Beginner" ? 200000 : mode === "Intermediate" ? 400000 : 600000;
+  const placeBid = () => {
+    if (bid + increment > ceiling) { setStatus("Next bid exceeds your practice budget. Pass or reset the round."); return; }
+    setBid(bid + increment);
+    setStatus("Bid placed. You are now the highest bidder.");
+  };
+  const reset = () => { setBid(13200000); setStatus("Your turn to bid"); };
+
+  return <main className="mx-auto min-h-screen w-full max-w-5xl px-4 py-5 sm:px-6 sm:py-8">
+    <div className="mb-5 flex items-center justify-between gap-3">
+      <Link className="inline-flex min-h-11 items-center font-semibold text-navy underline underline-offset-4" href="/">← <span className="ml-2">Back to AuctionIQ</span></Link>
+      <span className="rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success">Practice · No real money</span>
+    </div>
+    <header className="mb-6 max-w-3xl"><p className="text-sm font-semibold text-warning">ZERO FINANCIAL RISK</p><h1 className="mt-1 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Virtual auction simulator</h1><p className="mt-2 text-sm leading-6 text-charcoal/75 sm:text-base">Work through one short step at a time. This practice round uses fictional property details.</p></header>
+    <nav aria-label="Simulator steps" className="mb-6 grid grid-cols-3 gap-2">{["Scenario", "Practice", "Difficulty"].map((label, index) => <button key={label} type="button" onClick={() => setStep(index + 1)} aria-current={step === index + 1 ? "step" : undefined} className={`min-h-12 rounded-lg border px-2 text-left text-xs font-semibold sm:px-4 sm:text-sm ${step === index + 1 ? "border-navy bg-navy text-white" : "border-charcoal/15 bg-white text-charcoal/70"}`}><span className="mr-1 sm:mr-2">{index + 1}.</span>{label}</button>)}</nav>
+    {step === 1 && <section aria-labelledby="scenario-title" className="rounded-xl border border-charcoal/10 bg-white p-4 shadow-sm sm:p-6"><p className="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Step 1 of 3 · Review the lot</p><h2 id="scenario-title" className="mt-2 font-display text-xl font-bold text-navy sm:text-2xl">3 BHK Sea Breeze Enclave</h2><p className="text-sm text-charcoal/65">Vashi, Navi Mumbai · Training Lot #SIM-04</p><div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">{[["Reserve price", "₹1,20,00,000"], ["Current bid", "₹1,34,00,000"], ["Your ceiling", "₹1,45,00,000"]].map(([label, value]) => <div key={label} className="flex items-center justify-between gap-2 rounded-lg bg-[#f1f5f9] p-3 sm:block sm:text-center"><p className="text-xs font-medium text-charcoal/60">{label}</p><p className="font-display text-base font-bold text-navy sm:mt-1">{value}</p></div>)}</div><p className="mt-4 rounded-lg border border-warning/25 bg-warning/5 p-3 text-xs leading-5 text-charcoal/75">Training only. Real bank-auction bids are legally binding and missed payment deadlines can forfeit your EMD.</p><button type="button" onClick={() => setStep(2)} className="mt-5 min-h-12 w-full rounded-lg bg-navy px-4 font-semibold text-white sm:w-auto">Continue to practice →</button></section>}
+    {step === 2 && <section aria-labelledby="practice-title" className="rounded-xl border border-gold/40 bg-white p-4 shadow-sm sm:p-6"><p className="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Step 2 of 3 · Place a practice bid</p><div className="mt-2 flex flex-wrap items-start justify-between gap-3"><div><h2 id="practice-title" className="font-display text-xl font-bold text-navy sm:text-2xl">Your bidding round</h2><p className="text-sm text-charcoal/65">Sea Breeze Enclave · Vashi · {mode} mode</p></div><span className="rounded-full bg-warning/10 px-3 py-1.5 text-xs font-bold text-warning">01:42 left</span></div><div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3"><div className="rounded-lg bg-[#f1f5f9] p-3"><p className="text-xs text-charcoal/60">Reserve</p><p className="mt-1 text-sm font-bold text-navy">₹1,20,00,000</p></div><div className="rounded-lg bg-navy/5 p-3"><p className="text-xs text-charcoal/60">Highest bid</p><p className="mt-1 text-sm font-bold text-navy">₹{bid.toLocaleString("en-IN")}</p></div><div className="col-span-2 rounded-lg bg-gold/10 p-3 sm:col-span-1"><p className="text-xs text-charcoal/60">Your ceiling</p><p className="mt-1 text-sm font-bold text-navy">₹1,45,00,000</p></div></div><p role="status" aria-live="polite" className="mt-4 rounded-lg bg-ivory p-3 text-sm font-medium text-navy">{status}</p><div className="mt-4 flex flex-col gap-2 sm:flex-row"><button type="button" onClick={placeBid} disabled={bid + increment > ceiling} className="min-h-12 flex-1 rounded-lg bg-navy px-4 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">Place next bid (+₹{increment.toLocaleString("en-IN")})</button><button type="button" onClick={() => setStatus("You passed this round. No money was involved.")} className="min-h-12 rounded-lg border border-charcoal/25 px-4 font-semibold text-charcoal">Pass this round</button><button type="button" onClick={reset} className="min-h-12 rounded-lg px-4 text-sm font-semibold text-navy underline">Reset</button></div><button type="button" onClick={() => setStep(3)} className="mt-5 min-h-11 font-semibold text-navy underline">Continue to difficulty options →</button></section>}
+    {step === 3 && <section aria-labelledby="difficulty-title" className="rounded-xl border border-charcoal/10 bg-white p-4 shadow-sm sm:p-6"><p className="text-xs font-semibold uppercase tracking-wide text-charcoal/55">Step 3 of 3 · Choose a mode</p><h2 id="difficulty-title" className="mt-2 font-display text-xl font-bold text-navy sm:text-2xl">Practice difficulty</h2><p className="mt-1 text-sm text-charcoal/65">Pick the pace that suits your experience.</p><div className="mt-4 space-y-3">{modes.map(item => <button type="button" key={item.level} onClick={() => setMode(item.level)} aria-pressed={mode === item.level} className={`w-full rounded-lg border p-4 text-left ${mode === item.level ? "border-navy bg-navy/5 ring-1 ring-navy" : "border-charcoal/10"}`}><span className={`font-bold ${item.tone}`}>{item.level}{mode === item.level ? " · Selected" : ""}</span><span className="mt-1 block text-sm leading-5 text-charcoal/70">{item.desc}</span></button>)}</div><p className="mt-4 rounded-lg bg-[#f1f5f9] p-3 text-xs leading-5 text-charcoal/70">All modes use fictional parameters. No bank accounts or deposits are involved.</p><button type="button" onClick={() => { setStep(2); setStatus(`${mode} mode selected. Start your practice round.`); }} className="mt-5 min-h-12 w-full rounded-lg bg-navy px-4 font-semibold text-white sm:w-auto">Start {mode} practice</button></section>}
+  </main>;
+}

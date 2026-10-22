@@ -24,7 +24,7 @@ export default function RootLayout({
             <nav aria-label="Main navigation" className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm sm:w-auto sm:gap-x-5">
               {[
                 ["/#explore", "Explore Auctions"],
-                ["/#simulator", "Simulator"],
+                ["/simulator", "Simulator"],
                 ["/#academy", "Academy"],
                 ["/#plans", "Plans"],
               ].map(([href, label]) => (
