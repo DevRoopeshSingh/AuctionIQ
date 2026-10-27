@@ -127,12 +127,12 @@ export function InspectionArrangementModal({
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold">
                   <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
-                  SmartDoor Integrated Inspection
+                  SmartDoor House Visit
                 </span>
-                <span className="text-xs text-white/60">Ref: {property.ref}</span>
+                <span className="text-xs text-white/60">Notice Ref: {property.ref}</span>
               </div>
               <h2 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
-                Physical Inspection Arrangement
+                Book an In-Person Property Visit
               </h2>
               <p className="text-xs text-white/80">{property.title} · {property.area}</p>
             </div>
@@ -196,22 +196,22 @@ export function InspectionArrangementModal({
             <div className="flex items-center justify-between text-xs font-semibold text-charcoal/70">
               <div className={`flex items-center gap-1.5 ${step === "entitlement" ? "text-navy font-bold" : "text-charcoal/50"}`}>
                 <span className={`grid h-5 w-5 place-items-center rounded-full text-[11px] ${step === "entitlement" ? "bg-navy text-white" : "bg-charcoal/20"}`}>1</span>
-                <span>Entitlement</span>
+                <span>Plan Status</span>
               </div>
               <ChevronRight className="h-3.5 w-3.5 text-charcoal/30" />
               <div className={`flex items-center gap-1.5 ${step === "slot" ? "text-navy font-bold" : "text-charcoal/50"}`}>
                 <span className={`grid h-5 w-5 place-items-center rounded-full text-[11px] ${step === "slot" ? "bg-navy text-white" : "bg-charcoal/20"}`}>2</span>
-                <span>Select Slot</span>
+                <span>Choose Date &amp; Time</span>
               </div>
               <ChevronRight className="h-3.5 w-3.5 text-charcoal/30" />
               <div className={`flex items-center gap-1.5 ${step === "kyc" ? "text-navy font-bold" : "text-charcoal/50"}`}>
                 <span className={`grid h-5 w-5 place-items-center rounded-full text-[11px] ${step === "kyc" ? "bg-navy text-white" : "bg-charcoal/20"}`}>3</span>
-                <span>Visitor eKYC</span>
+                <span>Aadhaar Check</span>
               </div>
               <ChevronRight className="h-3.5 w-3.5 text-charcoal/30" />
               <div className={`flex items-center gap-1.5 ${step === "access_pass" ? "text-navy font-bold" : "text-charcoal/50"}`}>
                 <span className={`grid h-5 w-5 place-items-center rounded-full text-[11px] ${step === "access_pass" ? "bg-gold text-navy font-bold" : "bg-charcoal/20"}`}>4</span>
-                <span>SmartDoor Pass</span>
+                <span>Digital Entry Pass</span>
               </div>
             </div>
           </div>
@@ -226,24 +226,24 @@ export function InspectionArrangementModal({
                 <Lock className="h-8 w-8 text-[#C5A059]" />
               </div>
               <h3 className="font-display text-xl font-bold text-navy">
-                Subscription Required for Inspection Arrangement
+                Membership Required to Visit Properties
               </h3>
               <p className="mx-auto mt-2 max-w-md text-sm text-charcoal/75">
-                Physical property inspections and SmartDoor digital entry passes are reserved exclusively for active <strong>Essential</strong> and <strong>Premium</strong> subscribers.
+                In-person property visits and SmartDoor digital entry passes are reserved exclusively for active <strong>Essential</strong> and <strong>Premium</strong> members.
               </p>
 
               <div className="mx-auto mt-6 max-w-md rounded-xl border border-charcoal/15 bg-ivory/50 p-4 text-left text-xs space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-navy">Essential Plan:</span>
-                  <span className="text-charcoal/80">5 physical inspection arrangements / mo</span>
+                  <span className="font-semibold text-navy">Essential Plan (₹850/mo):</span>
+                  <span className="text-charcoal/80">5 house visits per month</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-navy">Premium Plan:</span>
-                  <span className="text-charcoal/80">Unlimited fair-use inspection passes</span>
+                  <span className="font-semibold text-navy">Premium Plan (₹1,250/mo):</span>
+                  <span className="text-charcoal/80">Unlimited property visits</span>
                 </div>
                 <div className="flex items-center justify-between border-t border-charcoal/10 pt-2">
-                  <span className="font-semibold text-navy">Security Gating:</span>
-                  <span className="text-charcoal/80">Mandatory visitor eKYC before access</span>
+                  <span className="font-semibold text-navy">Safe &amp; Verified:</span>
+                  <span className="text-charcoal/80">Quick Aadhaar check ensures safe entry</span>
                 </div>
               </div>
 
@@ -265,44 +265,44 @@ export function InspectionArrangementModal({
                     <div className="flex items-start justify-between">
                       <div>
                         <span className="text-xs font-semibold uppercase tracking-wider text-charcoal/60">
-                          Active Entitlement
+                          Your Membership Status
                         </span>
                         <h4 className="font-display text-lg font-bold text-navy capitalize">
-                          {persona} Tier Member
+                          {persona} Plan Member
                         </h4>
                       </div>
-                      <Badge tone="success">Verified Active</Badge>
+                      <Badge tone="success">Active Account</Badge>
                     </div>
 
                     <div className="mt-3 grid grid-cols-2 gap-4 border-t border-gold/30 pt-3 text-xs">
                       <div>
-                        <p className="text-charcoal/60">Monthly Quota:</p>
+                        <p className="text-charcoal/60">Visits Remaining This Month:</p>
                         <p className="font-semibold text-navy">
-                          {persona === "essential" ? `${quotaUsed} of 5 used (${quotaRemaining} remaining)` : "Unlimited Fair-Use"}
+                          {persona === "essential" ? `${quotaRemaining} visits left (${quotaUsed} used)` : "Unlimited Visits"}
                         </p>
                       </div>
                       <div>
                         <p className="text-charcoal/60">SmartDoor Lock:</p>
-                        <p className="font-semibold text-emerald-700">Online &amp; IoT Ready (94% batt)</p>
+                        <p className="font-semibold text-emerald-700">Online &amp; Active (94% Battery)</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="rounded-lg border border-charcoal/15 bg-white p-4 text-xs space-y-2">
-                    <h5 className="font-semibold text-navy">Statutory Inspection Notice</h5>
+                    <h5 className="font-semibold text-navy">Official Bank Inspection Notice</h5>
                     <p className="text-charcoal/75">
-                      Under the SARFAESI public auction terms, access to <strong>{property.title}</strong> is scheduled in coordination with the authorized officer and secured by <strong>SmartDoor IoT mortise locks</strong>.
+                      Under bank auction rules (SARFAESI), you can visit <strong>{property.title}</strong> during the official inspection window. The property is fitted with a <strong>SmartDoor digital lock</strong> for safe, keyless entry.
                     </p>
                     <ul className="list-disc pl-4 text-charcoal/70 space-y-1">
-                      <li>Access is strictly granted to verified visitors whose eKYC matches the entry pass.</li>
-                      <li>SmartDoor digital passes generate dynamic OTP codes and BLE keys valid only during the designated window.</li>
+                      <li>Only verified visitors with a valid digital pass can unlock the door.</li>
+                      <li>Your pass generates a 6-digit PIN and mobile Bluetooth key valid only during your chosen slot.</li>
                     </ul>
                   </div>
 
                   <div className="flex justify-end gap-3 pt-3">
                     <Button onClick={onClose} tone="secondary">Cancel</Button>
                     <Button onClick={() => setStep("slot")} tone="primary" className="inline-flex items-center gap-2">
-                      <span>Proceed to Slot Selection</span>
+                      <span>Choose Visit Date &amp; Time</span>
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   </div>
@@ -314,13 +314,13 @@ export function InspectionArrangementModal({
                 <div className="space-y-5">
                   <div>
                     <label className="text-xs font-semibold uppercase tracking-wider text-charcoal/70">
-                      1. Select Statutory Inspection Date
+                      1. Select Your Visit Date
                     </label>
                     <div className="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-3">
                       {[
-                        { date: "2026-11-14", label: "Sat, 14 Nov", tag: "Bank Window Day 1" },
-                        { date: "2026-11-15", label: "Sun, 15 Nov", tag: "Bank Window Day 2" },
-                        { date: "2026-11-18", label: "Wed, 18 Nov", tag: "Final Inspection Window" },
+                        { date: "2026-11-14", label: "Sat, 14 Nov", tag: "Bank Visit Day 1" },
+                        { date: "2026-11-15", label: "Sun, 15 Nov", tag: "Bank Visit Day 2" },
+                        { date: "2026-11-18", label: "Wed, 18 Nov", tag: "Final Visit Day" },
                       ].map((item) => (
                         <button
                           key={item.date}
@@ -369,7 +369,7 @@ export function InspectionArrangementModal({
                   <div className="flex items-center gap-2 rounded-lg bg-emerald-50 p-3 text-xs text-emerald-800">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                     <span>
-                      SmartDoor device <strong>{property.smartDoorDevice}</strong> confirmed online and synchronized for this slot.
+                      SmartDoor digital lock is confirmed online and ready for this time window.
                     </span>
                   </div>
 
@@ -379,7 +379,7 @@ export function InspectionArrangementModal({
                       <span>Back</span>
                     </Button>
                     <Button onClick={() => setStep("kyc")} tone="primary" className="inline-flex items-center gap-2">
-                      <span>Next: Visitor eKYC Verification</span>
+                      <span>Next: Quick Aadhaar Check</span>
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   </div>
@@ -392,16 +392,16 @@ export function InspectionArrangementModal({
                   <div className="rounded-lg border border-navy/20 bg-navy/5 p-3.5 text-xs">
                     <div className="flex items-center gap-2 font-semibold text-navy">
                       <ShieldCheck className="h-4 w-4 text-[#C5A059] shrink-0" />
-                      <span>Mandatory Visitor Verification (DPDP Act 2023 Compliant)</span>
+                      <span>Quick Identity Verification (100% Safe &amp; DPDP Compliant)</span>
                     </div>
                     <p className="mt-1 text-charcoal/70">
-                      To prevent unauthorized trespassing and protect secured auction property, SmartDoor entry is tied to the verified identity of the person physically visiting. Full Aadhaar numbers are never stored; only masked identifiers are preserved.
+                      To prevent trespassing and ensure safe visits to bank properties, digital entry passes are issued only to the verified visitor. Your full Aadhaar number is never stored; only masked numbers (XXXX-XXXX-7831) are kept.
                     </p>
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div>
-                      <label className="text-xs font-semibold text-charcoal/80">Full Legal Name (as on Gov ID)</label>
+                      <label className="text-xs font-semibold text-charcoal/80">Full Name (as on your ID) *</label>
                       <input
                         className="mt-1 w-full rounded-md border border-charcoal/25 p-2 text-sm text-navy font-medium"
                         onChange={(e) => setVisitorName(e.target.value)}
@@ -409,7 +409,7 @@ export function InspectionArrangementModal({
                       />
                     </div>
                     <div>
-                      <label className="text-xs font-semibold text-charcoal/80">Visitor Mobile Number</label>
+                      <label className="text-xs font-semibold text-charcoal/80">Mobile Number (WhatsApp) *</label>
                       <input
                         className="mt-1 w-full rounded-md border border-charcoal/25 p-2 text-sm text-navy font-medium"
                         onChange={(e) => setVisitorPhone(e.target.value)}
@@ -420,7 +420,7 @@ export function InspectionArrangementModal({
 
                   <div>
                     <label className="text-xs font-semibold text-charcoal/80">
-                      Aadhaar / DigiLocker 12-Digit Number
+                      12-Digit Aadhaar Number *
                     </label>
                     <div className="mt-1 flex gap-2">
                       <input
@@ -441,7 +441,7 @@ export function InspectionArrangementModal({
                       ) : (
                         <span className="shrink-0 self-center flex items-center gap-1 text-xs font-semibold text-emerald-700">
                           <CheckCircle2 className="h-3.5 w-3.5" />
-                          <span>OTP Dispatched</span>
+                          <span>OTP Sent to Mobile</span>
                         </span>
                       )}
                     </div>
@@ -456,7 +456,7 @@ export function InspectionArrangementModal({
                       type="checkbox"
                     />
                     <span>
-                      I provide consent for AuctionIQ and SmartDoor to verify my visitor credentials through DigiLocker / UIDAI solely for statutory physical inspection access.
+                      I give consent to verify my identity via DigiLocker / UIDAI solely for booking this property visit.
                     </span>
                   </label>
 
@@ -464,9 +464,9 @@ export function InspectionArrangementModal({
                   {otpSent && !kycVerified && (
                     <div className="mt-3 rounded-xl border border-gold/40 bg-gold/10 p-4">
                       <p className="text-xs font-semibold text-navy">
-                        Enter 6-Digit DigiLocker Verification OTP
+                        Enter 6-Digit OTP Sent to Your Phone
                       </p>
-                      <p className="text-[11px] text-charcoal/60">Demo OTP auto-populated: 739201</p>
+                      <p className="text-[11px] text-charcoal/60">Demo OTP filled for test: 739201</p>
                       <div className="mt-2 flex gap-2">
                         <input
                           className="w-36 rounded-md border border-charcoal/30 bg-white p-2 text-center text-lg font-bold tracking-widest text-navy"
@@ -480,7 +480,7 @@ export function InspectionArrangementModal({
                           onClick={handleVerifyKyc}
                           type="button"
                         >
-                          {isVerifyingKyc ? "Verifying with UIDAI..." : "Verify & Complete eKYC"}
+                          {isVerifyingKyc ? "Verifying..." : "Verify & Complete Check"}
                         </button>
                       </div>
                     </div>
@@ -491,7 +491,7 @@ export function InspectionArrangementModal({
                     <div className="rounded-xl border border-emerald-300 bg-emerald-50 p-4 text-emerald-900">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
-                        <h5 className="font-bold">Visitor eKYC Verified Successfully</h5>
+                        <h5 className="font-bold">Identity Verified Successfully</h5>
                       </div>
                       <div className="mt-2 grid grid-cols-2 gap-2 text-xs text-emerald-800">
                         <div>
@@ -521,7 +521,7 @@ export function InspectionArrangementModal({
                       tone="accent"
                       className="inline-flex items-center gap-2"
                     >
-                      <span>{isGeneratingPass ? "Generating SmartDoor Pass..." : "Issue SmartDoor Access Pass"}</span>
+                      <span>{isGeneratingPass ? "Generating SmartDoor Pass..." : "Issue Digital Entry Pass"}</span>
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                   </div>
@@ -535,7 +535,7 @@ export function InspectionArrangementModal({
                     <div className="flex items-start justify-between">
                       <div>
                         <span className="rounded-full bg-gold/20 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-gold">
-                          Official Inspection Digital Pass
+                          Official House Visit Pass
                         </span>
                         <h4 className="mt-1 font-display text-xl font-bold text-white">
                           {property.title}
@@ -543,15 +543,15 @@ export function InspectionArrangementModal({
                         <p className="text-xs text-white/70">{property.area} · Ref: {property.ref}</p>
                       </div>
                       <div className="text-right">
-                        <Badge tone="success">Access Authorized</Badge>
-                        <p className="mt-1 text-[11px] text-white/60">Lock ID: {property.smartDoorDevice}</p>
+                        <Badge tone="success">Visit Approved</Badge>
+                        <p className="mt-1 text-[11px] text-white/60">Digital Keypad Access Active</p>
                       </div>
                     </div>
 
                     {/* Dynamic Keypad PIN Display */}
                     <div className="my-5 rounded-xl border border-white/10 bg-white/5 p-4 text-center backdrop-blur-sm">
                       <p className="text-xs uppercase tracking-widest text-white/70">
-                        Door Lock Keypad Dynamic PIN
+                        Door Lock Keypad 6-Digit PIN
                       </p>
                       <div className="mt-1.5 flex items-center justify-center gap-3">
                         <span className="font-mono text-3xl font-extrabold tracking-widest text-gold sm:text-4xl drop-shadow">
@@ -566,26 +566,26 @@ export function InspectionArrangementModal({
                         </button>
                       </div>
                       <p className="mt-1 text-[11px] text-white/60">
-                        Enter this 6-digit code on the door keypad followed by &quot;#&quot;
+                        Enter this 6-digit code on the door keypad followed by &quot;#&quot; to enter
                       </p>
                     </div>
 
                     {/* Pass Details Grid */}
                     <div className="grid grid-cols-2 gap-3 border-t border-white/10 pt-3 text-xs">
                       <div>
-                        <span className="text-white/50">Inspection Date:</span>
+                        <span className="text-white/50">Visit Date:</span>
                         <p className="font-semibold text-white">{selectedDate}</p>
                       </div>
                       <div>
-                        <span className="text-white/50">Access Window:</span>
+                        <span className="text-white/50">Time Slot:</span>
                         <p className="font-semibold text-white">{selectedSlot}</p>
                       </div>
                       <div>
-                        <span className="text-white/50">Authorized Visitor:</span>
+                        <span className="text-white/50">Visitor Name:</span>
                         <p className="font-semibold text-white">{visitorName}</p>
                       </div>
                       <div>
-                        <span className="text-white/50">Visitor eKYC:</span>
+                        <span className="text-white/50">Visitor Aadhaar:</span>
                         <p className="font-mono font-semibold text-emerald-400">
                           {maskAadhaar(aadhaarInput)} (Verified)
                         </p>
@@ -596,9 +596,9 @@ export function InspectionArrangementModal({
                     <div className="mt-5 border-t border-white/10 pt-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
-                          <p className="text-xs font-semibold text-white">On-Site Smart Unlock</p>
+                          <p className="text-xs font-semibold text-white">Unlock via Mobile (Bluetooth)</p>
                           <p className="text-[11px] text-white/60">
-                            When standing within 10 meters of the smart lock
+                            When standing near the house door
                           </p>
                         </div>
                         <button
@@ -621,7 +621,7 @@ export function InspectionArrangementModal({
                           ) : (
                             <span className="flex items-center justify-center gap-1.5">
                               <Smartphone className="h-4 w-4" />
-                              <span>Quick-Unlock via SmartDoor BLE</span>
+                              <span>Unlock via SmartDoor BLE</span>
                             </span>
                           )}
                         </button>
@@ -638,11 +638,11 @@ export function InspectionArrangementModal({
                   {/* Summary & Quota Impact */}
                   <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-lg border border-charcoal/15 bg-ivory/50 p-3 text-xs">
                     <div>
-                      <span className="font-semibold text-navy">Calendar Month Quota Status:</span>
+                      <span className="font-semibold text-navy">Visits Remaining This Month:</span>
                       <p className="text-charcoal/70">
                         {persona === "essential"
-                          ? `1 request deducted. 2 of 5 inspections remaining for ${persona} tier.`
-                          : "Unlimited fair-use access logged. No quota deduction."}
+                          ? `1 visit booked. 2 of 5 visits remaining for ${persona} plan.`
+                          : "Unlimited fair-use visit logged."}
                       </p>
                     </div>
                     <Button onClick={onClose} tone="primary">

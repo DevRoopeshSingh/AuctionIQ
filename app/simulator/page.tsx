@@ -104,44 +104,44 @@ export default function SimulatorPage() {
               className="inline-flex items-center gap-2 text-xs font-semibold text-white/70 transition-colors hover:text-white sm:text-sm"
             >
               <ArrowLeft className="h-4 w-4" />
-              <span>Back to Main Terminal</span>
+              <span>Back to Home</span>
             </Link>
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-400">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Zero Financial Risk · Sandbox E-Bidding Environment</span>
+              <span>Zero Risk · 100% Free Practice Bidding Simulator</span>
             </div>
           </div>
 
           <div className="mt-6 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-md bg-[#D4AF37]/15 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
               <Gavel className="h-3.5 w-3.5" />
-              <span>Interactive Training Protocol</span>
+              <span>Practice Before You Bid</span>
             </div>
             <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
-              Virtual SARFAESI Auction Simulator
+              Bank Auction Bidding Simulator
             </h1>
             <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-              Master electronic bidding mechanics, automated round extensions, and budget discipline before deploying capital in competitive bank e-auctions.
+              Learn how real bank e-auctions work without risking a single rupee. Practice placing bids, understand the 5-minute timer extension rule, and learn to stick to your budget.
             </p>
           </div>
 
           {/* Quick Stats Bar */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 border-t border-white/10 pt-6">
             <div>
-              <p className="text-xs text-slate-400">Target Asset</p>
+              <p className="text-xs text-slate-400">Practice Property</p>
               <p className="mt-1 font-semibold text-white truncate">3 BHK Sea Breeze Enclave</p>
             </div>
             <div>
-              <p className="text-xs text-slate-400">Statutory Reserve</p>
+              <p className="text-xs text-slate-400">Starting Price (Reserve)</p>
               <p className="mt-1 font-semibold text-white">₹1,20,00,000</p>
             </div>
             <div>
-              <p className="text-xs text-slate-400">Max Budget Ceiling</p>
+              <p className="text-xs text-slate-400">Your Max Budget</p>
               <p className="mt-1 font-semibold text-[#D4AF37]">₹1,45,00,000</p>
             </div>
             <div>
-              <p className="text-xs text-slate-400">Statutory Framework</p>
-              <p className="mt-1 font-semibold text-white">SARFAESI Rule 9</p>
+              <p className="text-xs text-slate-400">Auction Framework</p>
+              <p className="mt-1 font-semibold text-white">SARFAESI Bank Auction</p>
             </div>
           </div>
         </div>
@@ -168,8 +168,8 @@ export default function SimulatorPage() {
               <Building2 className="h-4 w-4" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Phase 01</p>
-              <p className="text-sm font-bold text-navy">Asset Dossier & Valuation</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Step 01</p>
+              <p className="text-sm font-bold text-navy">Check Property &amp; Price</p>
             </div>
           </button>
 
@@ -190,8 +190,8 @@ export default function SimulatorPage() {
               <Gavel className="h-4 w-4" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Phase 02</p>
-              <p className="text-sm font-bold text-navy">Live E-Bidding Arena</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Step 02</p>
+              <p className="text-sm font-bold text-navy">Live Practice Bidding</p>
             </div>
           </button>
 
@@ -212,8 +212,8 @@ export default function SimulatorPage() {
               <CheckCircle2 className="h-4 w-4" />
             </div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Phase 03</p>
-              <p className="text-sm font-bold text-navy">Settlement & Possession</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-charcoal/50">Step 03</p>
+              <p className="text-sm font-bold text-navy">Winning &amp; 15-Day Payment</p>
             </div>
           </button>
         </nav>
@@ -225,50 +225,50 @@ export default function SimulatorPage() {
               <section className="rounded-2xl border border-charcoal/10 bg-white p-6 sm:p-8 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-charcoal/10 pb-4">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">Training Lot #SIM-04</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">Practice Property #SIM-04</span>
                     <h2 className="mt-1 font-display text-2xl font-bold text-navy sm:text-3xl">
                       3 BHK Sea Breeze Enclave
                     </h2>
-                    <p className="text-sm text-charcoal/70">Sector 17, Vashi, Navi Mumbai · Physical Possession</p>
+                    <p className="text-sm text-charcoal/70">Sector 17, Vashi, Navi Mumbai · Physical Possession (Keys Ready)</p>
                   </div>
                   <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200">
-                    Title Dossier Verified
+                    Title &amp; Legal Papers Verified
                   </span>
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <div className="rounded-xl border border-charcoal/10 bg-[#FAF9F6] p-4 text-center">
-                    <p className="text-xs font-medium text-charcoal/60">Reserve Price</p>
+                    <p className="text-xs font-medium text-charcoal/60">Starting Price (Reserve)</p>
                     <p className="mt-1 font-display text-xl font-bold text-navy">₹1,20,00,000</p>
-                    <p className="mt-1 text-[11px] text-charcoal/50">Bank statutory minimum</p>
+                    <p className="mt-1 text-[11px] text-charcoal/50">Lowest price bank will accept</p>
                   </div>
                   <div className="rounded-xl border border-charcoal/10 bg-[#FAF9F6] p-4 text-center">
-                    <p className="text-xs font-medium text-charcoal/60">Market Comparable</p>
+                    <p className="text-xs font-medium text-charcoal/60">Market Value Nearby</p>
                     <p className="mt-1 font-display text-xl font-bold text-emerald-700">₹1,65,00,000</p>
-                    <p className="mt-1 text-[11px] text-charcoal/50">27% potential spread</p>
+                    <p className="mt-1 text-[11px] text-charcoal/50">Save ~₹45 Lakhs (27% cheaper)</p>
                   </div>
                   <div className="rounded-xl border border-[#D4AF37]/30 bg-[#FAF7EE] p-4 text-center">
-                    <p className="text-xs font-medium text-[#8A6D3B]">Your Ceiling Limit</p>
+                    <p className="text-xs font-medium text-[#8A6D3B]">Your Maximum Budget</p>
                     <p className="mt-1 font-display text-xl font-bold text-navy">₹1,45,00,000</p>
-                    <p className="mt-1 text-[11px] text-[#8A6D3B]">Discipline threshold</p>
+                    <p className="mt-1 text-[11px] text-[#8A6D3B]">Never bid above this limit</p>
                   </div>
                 </div>
 
                 <div className="mt-6 space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-navy">Key Inspection Findings</h3>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-navy">Verified Property Details</h3>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div className="flex items-start gap-3 rounded-lg border border-charcoal/10 bg-white p-3.5">
                       <ShieldCheck className="h-5 w-5 shrink-0 text-emerald-600 mt-0.5" />
                       <div>
-                        <p className="text-xs font-semibold text-navy">CMM Physical Possession</p>
-                        <p className="text-xs text-charcoal/70">Bank has physical custody under SARFAESI Sec 14 order.</p>
+                        <p className="text-xs font-semibold text-navy">Physical Possession (Keys Ready)</p>
+                        <p className="text-xs text-charcoal/70">The bank has empty, locked possession under court order. No occupants to evict.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 rounded-lg border border-charcoal/10 bg-white p-3.5">
                       <FileCheck2 className="h-5 w-5 shrink-0 text-emerald-600 mt-0.5" />
                       <div>
-                        <p className="text-xs font-semibold text-navy">30-Year Search Report</p>
-                        <p className="text-xs text-charcoal/70">Sub-registrar filings reflect no prior mortgages or lis pendens.</p>
+                        <p className="text-xs font-semibold text-navy">Clean 30-Year Title Search</p>
+                        <p className="text-xs text-charcoal/70">Verified at the registrar office. No other loans, disputes, or court stays.</p>
                       </div>
                     </div>
                   </div>
@@ -276,14 +276,14 @@ export default function SimulatorPage() {
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-t border-charcoal/10 pt-6">
                   <p className="text-xs text-charcoal/60">
-                    Ready to evaluate bidding speed, counter-bids, and timeout mechanics?
+                    Ready to practice placing bids and watching the timer?
                   </p>
                   <button
                     type="button"
                     onClick={() => setStep(2)}
                     className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-navy px-6 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#0a182c] active:scale-[0.98]"
                   >
-                    <span>Enter Live Bidding Arena</span>
+                    <span>Start Practice Bidding</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>
@@ -295,20 +295,20 @@ export default function SimulatorPage() {
               <div className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
                 <h3 className="font-display text-base font-bold text-navy flex items-center gap-2">
                   <Lock className="h-4 w-4 text-[#8A6D3B]" />
-                  <span>Mandatory Rules of Engagement</span>
+                  <span>3 Golden Rules for Bank Auctions</span>
                 </h3>
                 <ul className="mt-4 space-y-3 text-xs leading-relaxed text-charcoal/75">
                   <li className="flex items-start gap-2">
                     <span className="font-bold text-navy">•</span>
-                    <span><strong>Incremental Ceiling:</strong> Stick strictly to pre-calculated internal IRR targets. Bidding above your ceiling wipes out your safety margin.</span>
+                    <span><strong>Set a Strict Budget:</strong> Decide your maximum price before bidding starts. Never exceed your budget in the heat of the moment.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="font-bold text-navy">•</span>
-                    <span><strong>Auto-Extension:</strong> Every bid submitted in the final 5 minutes extends the auction clock by another 5 minutes. Avoid panic bidding.</span>
+                    <span><strong>5-Minute Timer Extension:</strong> If any bidder places a bid in the last 5 minutes, the auction timer extends by another 5 minutes. Stay calm and don't panic bid.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="font-bold text-navy">•</span>
-                    <span><strong>Forfeiture Risk:</strong> In actual auctions, winning bids are legally binding. Failure to remit 25% by Day 1 forfeits your 10% EMD immediately.</span>
+                    <span><strong>Real Bids are Legally Binding:</strong> In a real auction, if you win and fail to pay 25% by Day 1, the bank forfeits your 10% EMD token deposit.</span>
                   </li>
                 </ul>
               </div>
@@ -324,24 +324,24 @@ export default function SimulatorPage() {
               <section className="rounded-2xl border border-[#D4AF37]/40 bg-white p-6 sm:p-8 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-charcoal/10 pb-4">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">Live Auction Round</span>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">Live Practice Round</span>
                     <h2 className="mt-1 font-display text-2xl font-bold text-navy">
                       3 BHK Sea Breeze Enclave
                     </h2>
-                    <p className="text-xs text-charcoal/60">Navi Mumbai · IBAPI Simulation Portal #04</p>
+                    <p className="text-xs text-charcoal/60">Navi Mumbai · Simulation Portal #04</p>
                   </div>
                   <div className="flex items-center gap-2 rounded-full border border-amber-300 bg-amber-50 px-3.5 py-1.5 text-xs font-bold text-amber-900 shadow-sm">
                     <Timer className="h-4 w-4 animate-spin text-amber-600" />
-                    <span>01:42 Left (Auto-Extend Active)</span>
+                    <span>01:42 Left (Timer Extends on New Bid)</span>
                   </div>
                 </div>
 
                 {/* Progress Bar towards Ceiling */}
                 <div className="mt-6 space-y-2">
                   <div className="flex justify-between text-xs font-semibold text-charcoal/70">
-                    <span>Ceiling Consumption</span>
+                    <span>Budget Used</span>
                     <span className={ceilingPercentage > 90 ? "text-red-600 font-bold" : "text-navy"}>
-                      ₹{(currentBid / 10000000).toFixed(2)} Cr of ₹{(budgetCeiling / 10000000).toFixed(2)} Cr ({ceilingPercentage}%)
+                      ₹{(currentBid / 10000000).toFixed(2)} Cr of ₹{(budgetCeiling / 10000000).toFixed(2)} Cr Max Budget ({ceilingPercentage}%)
                     </span>
                   </div>
                   <div className="h-2.5 w-full rounded-full bg-charcoal/10 overflow-hidden">
@@ -385,7 +385,7 @@ export default function SimulatorPage() {
                     className="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#0a182c] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <TrendingUp className="h-4 w-4 text-[#D4AF37]" />
-                    <span>Next Standard Bid (+₹2.0 L)</span>
+                    <span>Place Next Bid (+₹2.0 Lakhs)</span>
                   </button>
 
                   <button
@@ -395,7 +395,7 @@ export default function SimulatorPage() {
                     className="min-h-12 inline-flex items-center justify-center gap-2 rounded-xl border border-navy/20 bg-white px-4 font-semibold text-navy shadow-sm transition-all duration-200 hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     <Banknote className="h-4 w-4 text-[#8A6D3B]" />
-                    <span>Jump Bid (+₹5.0 L)</span>
+                    <span>Jump Bid (+₹5.0 Lakhs)</span>
                   </button>
                 </div>
 
@@ -406,7 +406,7 @@ export default function SimulatorPage() {
                       onClick={handlePass}
                       className="min-h-10 rounded-lg border border-charcoal/20 px-3.5 text-xs font-semibold text-charcoal hover:bg-white active:scale-[0.98]"
                     >
-                      Hold / Pass Round
+                      Hold / Pass This Round
                     </button>
                     <button
                       type="button"
@@ -423,7 +423,7 @@ export default function SimulatorPage() {
                     onClick={() => setStep(3)}
                     className="inline-flex min-h-10 items-center gap-1.5 text-xs font-semibold text-navy hover:underline"
                   >
-                    <span>View Post-Auction Settlement Phase</span>
+                    <span>See What Happens After Winning</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </button>
                 </div>
@@ -434,8 +434,8 @@ export default function SimulatorPage() {
             <div className="space-y-6">
               <section className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
                 <h3 className="font-display text-sm font-bold uppercase tracking-wider text-navy flex items-center justify-between">
-                  <span>Live Audit Log</span>
-                  <span className="text-[11px] font-normal text-charcoal/50">Auto-Refreshed</span>
+                  <span>Recent Bids</span>
+                  <span className="text-[11px] font-normal text-charcoal/50">Live Updates</span>
                 </h3>
                 <div className="mt-4 space-y-3">
                   {history.map((item) => (
@@ -466,53 +466,53 @@ export default function SimulatorPage() {
         {step === 3 && (
           <div className="rounded-2xl border border-charcoal/10 bg-white p-6 sm:p-10 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
             <div className="max-w-2xl">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">Statutory Compliance</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#8A6D3B]">After You Win</span>
               <h2 className="mt-1 font-display text-2xl font-bold text-navy sm:text-3xl">
-                SARFAESI Rule 9 Post-Auction Settlement Timeline
+                What Happens After You Win a Bank Auction?
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-charcoal/70">
-                In a real bank auction, winning is only the first step. Strict statutory deadlines govern payment and possession:
+                In a real bank auction under Indian law (SARFAESI Rule 9), winning is just step one. Follow these 4 clear deadlines to complete your purchase and get the keys:
               </p>
             </div>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-4">
               <div className="rounded-xl border border-charcoal/10 bg-[#FAF9F6] p-5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-navy text-white text-xs font-bold">
-                  T+0
+                  Day 1
                 </div>
-                <h3 className="mt-3 text-sm font-bold text-navy">25% Immediate Remittance</h3>
+                <h3 className="mt-3 text-sm font-bold text-navy">Pay 25% Deposit Total</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
-                  Adjust 10% EMD and remit balance 15% by 5:00 PM next business day. Failure forfeits EMD under Rule 9(3).
+                  Your 10% advance deposit is counted, and you must pay the remaining 15% by 5:00 PM the next day. If late, the bank cancels your bid.
                 </p>
               </div>
 
               <div className="rounded-xl border border-amber-300 bg-amber-50/50 p-5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-600 text-white text-xs font-bold">
-                  T+15
+                  Day 15
                 </div>
-                <h3 className="mt-3 text-sm font-bold text-amber-950">75% Statutory Balance Cliff</h3>
+                <h3 className="mt-3 text-sm font-bold text-amber-950">Pay Remaining 75%</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
-                  Full remaining balance must be paid within 15 calendar days under Rule 9(4). AuctionIQ pre-approved bridge capital unlocks this.
+                  You must pay the remaining 75% within strictly 15 days. AuctionIQ fast loans disburse in 7 to 10 days to make sure you never miss this deadline.
                 </p>
               </div>
 
               <div className="rounded-xl border border-charcoal/10 bg-[#FAF9F6] p-5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-navy text-white text-xs font-bold">
-                  T+21
+                  Day 21
                 </div>
-                <h3 className="mt-3 text-sm font-bold text-navy">Sale Certificate Issuance</h3>
+                <h3 className="mt-3 text-sm font-bold text-navy">Get Bank Sale Certificate</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
-                  Authorized Officer issues Form 8 Sale Certificate confirming free-and-clear title transfer.
+                  The bank's authorized officer issues the official Sale Certificate (Form 8) confirming you are the 100% legal owner of the property.
                 </p>
               </div>
 
               <div className="rounded-xl border border-charcoal/10 bg-[#FAF9F6] p-5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white text-xs font-bold">
-                  T+30
+                  Day 30
                 </div>
-                <h3 className="mt-3 text-sm font-bold text-navy">Sub-Registrar & Keys</h3>
+                <h3 className="mt-3 text-sm font-bold text-navy">Register &amp; Collect Keys</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
-                  Registration of certificate at Sub-Registrar Office, society share transfer, and physical possession handover.
+                  Register the Sale Certificate at the local Sub-Registrar Office, transfer society share certificates, and take physical possession of your home.
                 </p>
               </div>
             </div>
@@ -523,13 +523,13 @@ export default function SimulatorPage() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-navy px-6 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#0a182c] active:scale-[0.98]"
               >
                 <Banknote className="h-4 w-4 text-[#D4AF37]" />
-                <span>Explore Auction Bridge Financing</span>
+                <span>Explore Fast 15-Day Loans</span>
               </Link>
               <Link
                 href="/explore"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-charcoal/20 bg-white px-6 font-semibold text-navy shadow-sm transition-all duration-200 hover:bg-slate-50 active:scale-[0.98]"
               >
-                <span>Browse Live Verified Properties</span>
+                <span>Browse Real Bank Auction Properties</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

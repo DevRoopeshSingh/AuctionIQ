@@ -63,18 +63,18 @@ function FinanceContent() {
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/10 px-3.5 py-1 text-xs font-semibold tracking-wider uppercase text-[#D4AF37] backdrop-blur-sm">
               <ShieldCheck className="h-3.5 w-3.5 text-[#D4AF37]" />
-              <span>SARFAESI RULE 9(4) CAPITAL ADVISORY</span>
+              <span>15-DAY AUCTION LOAN ASSISTANCE</span>
             </div>
 
             <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white leading-[1.08]">
-              Bridge Capital &amp;{" "}
+              Fast Loans for{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E5C17B] via-[#F5E6B8] to-[#C5A059]">
-                Auction Financing.
+                Bank Auction Properties.
               </span>
             </h1>
 
             <p className="text-base sm:text-lg leading-relaxed text-white/80 font-normal">
-              Secure specialized balance funding within the mandatory <strong>15-day statutory payment window</strong>. Protect your 25% Earnest Money Deposit from forfeiture with pre-vetted NBFC balance takeout facilities and long-term retail mortgage conversion.
+              When you win a bank auction under Indian law (SARFAESI Rule 9), you must pay the remaining 75% of your bid within strictly <strong>15 days</strong>. Regular bank home loans usually take 30 to 60 days. AuctionIQ helps you get fast short-term funding in <strong>7 to 10 days</strong> so you never risk losing your deposit.
             </p>
           </div>
 
@@ -85,11 +85,11 @@ function FinanceContent() {
                 <div className="flex items-center gap-2">
                   <ShieldAlert className="h-4 w-4 text-[#D4AF37]" />
                   <span className="rounded bg-[#C5A059]/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#D4AF37]">
-                    The 15-Day Statutory Cliff
+                    The 15-Day Payment Rule
                   </span>
                 </div>
                 <p className="mt-2.5 text-xs leading-relaxed text-white/75 font-normal">
-                  Under SARFAESI Rule 9(4), the winning bidder must deposit the remaining 75% strictly within 15 calendar days. Regular commercial mortgages require 30–60 days, putting your initial deposit at catastrophic forfeiture risk.
+                  Under Indian banking law (SARFAESI Rule 9), the winning bidder must pay the remaining 75% strictly within 15 calendar days. Regular bank loans take 30 to 60 days, putting your initial deposit at risk of forfeiture if you are late.
                 </p>
               </div>
 
@@ -97,11 +97,11 @@ function FinanceContent() {
                 <div className="flex items-center gap-2">
                   <Zap className="h-4 w-4 text-emerald-400" />
                   <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-300">
-                    AuctionIQ Fast Bridge
+                    AuctionIQ Fast Loan in 7–10 Days
                   </span>
                 </div>
                 <p className="mt-2.5 text-xs leading-relaxed text-white/75 font-normal">
-                  Pre-auction eligibility checks and specialized balance bridge capital disbursed directly into the Authorized Officer bank escrow within 7–10 business days upon KYC &amp; statutory notice validation.
+                  We check your eligibility beforehand and arrange fast auction funding disbursed directly to the bank within 7 to 10 working days, protecting your deposit and securing your property on time.
                 </p>
               </div>
 
@@ -109,11 +109,11 @@ function FinanceContent() {
                 <div className="flex items-center gap-2">
                   <RefreshCw className="h-4 w-4 text-white/90" />
                   <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                    Smooth Takeout Refinance
+                    Convert to Regular Home Loan
                   </span>
                 </div>
                 <p className="mt-2.5 text-xs leading-relaxed text-white/75 font-normal">
-                  Once the Recovery Officer delivers registered Sale Certificate and physical handover, our credit team seamlessly transitions your bridge line into a prime retail home loan at standard institutional rates.
+                  Once the bank hands over your official Sale Certificate and property keys, our team helps you convert the short-term bridge loan into a standard low-interest home loan from top Indian banks.
                 </p>
               </div>
             </div>
@@ -128,13 +128,13 @@ function FinanceContent() {
           <div className="rounded-2xl border border-charcoal/10 bg-white p-7 sm:p-9 shadow-[0_10px_30px_-5px_rgba(15,23,42,0.08)]">
             <div className="border-b border-charcoal/10 pb-4">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                CAPITAL CONSULTATION DESK
+                LOAN ASSISTANCE DESK
               </span>
               <h2 className="mt-1 font-display text-2xl font-bold text-navy">
-                Request Specialized Auction Financing
+                Apply for Bank Auction Financing
               </h2>
               <p className="mt-1 text-xs text-charcoal/70">
-                Detail your target asset and statutory timeline. Our senior credit desk responds within 4 business hours.
+                Tell us about your property and payment deadline. Our auction loan specialist will call you within 4 working hours.
               </p>
             </div>
 
@@ -144,36 +144,36 @@ function FinanceContent() {
                   <CheckCircle2 className="h-9 w-9" />
                 </div>
                 <h3 className="mt-4 font-display text-2xl font-bold text-navy">
-                  Finance Application Received
+                  Loan Application Received
                 </h3>
                 <p className="mt-1 text-xs text-charcoal/70">
-                  Transaction Reference: <strong className="font-mono text-navy font-bold">{inquiryRef}</strong>
+                  Your Application Number: <strong className="font-mono text-navy font-bold">{inquiryRef}</strong>
                 </p>
 
                 <div className="mx-auto mt-6 max-w-md rounded-xl bg-white p-5 text-left text-xs space-y-2.5 border border-emerald-200 shadow-xs">
                   <div className="flex justify-between items-center">
                     <span className="text-charcoal/60">Applicant Name:</span>
-                    <span className="font-semibold text-navy">{fullName || "Verified Investor"}</span>
+                    <span className="font-semibold text-navy">{fullName || "Verified Buyer"}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-charcoal/60">Phone Contact:</span>
+                    <span className="text-charcoal/60">Mobile Number:</span>
                     <span className="font-semibold text-navy font-mono">{phone || "+91 98200 45892"}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-charcoal/60">Estimated Loan Facility:</span>
+                    <span className="text-charcoal/60">Loan Amount Requested:</span>
                     <span className="font-bold text-navy font-mono">₹{Number(loanRequired).toLocaleString("en-IN")}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-charcoal/60">Statutory Urgency:</span>
+                    <span className="text-charcoal/60">Time Remaining:</span>
                     <span className="font-bold text-[#C5A059] flex items-center gap-1 font-mono">
                       <Clock className="h-3.5 w-3.5" />
-                      {daysRemaining} Days to statutory deadline
+                      {daysRemaining} Days left to pay bank
                     </span>
                   </div>
                 </div>
 
                 <p className="mt-5 text-xs text-emerald-950 font-medium">
-                  Our Senior Underwriting Advisor is reviewing the statutory notice and will contact you directly to review eligibility criteria.
+                  Our loan specialist is reviewing your property notice and will contact you directly to guide you through the next steps.
                 </p>
 
                 <button
@@ -181,7 +181,7 @@ function FinanceContent() {
                   onClick={() => setIsSubmitted(false)}
                   type="button"
                 >
-                  Submit Another Inquiry
+                  Submit Another Loan Request
                 </button>
               </div>
             ) : (
@@ -189,33 +189,33 @@ function FinanceContent() {
                 {/* Assistance Stage Radio Selection */}
                 <div>
                   <label className="text-xs font-semibold uppercase tracking-wider text-charcoal/70">
-                    Select Your Current Auction Situation
+                    What Stage of the Auction Are You In?
                   </label>
                   <div className="mt-2.5 grid gap-2.5 sm:grid-cols-2 text-xs">
                     {[
                       {
                         id: "won_auction_15_days",
                         icon: Zap,
-                        title: "Won Bid · Need 15-Day Funding",
-                        desc: "Declared highest bidder; must deposit 75% balance within 15 days.",
+                        title: "Won Bid · Need 15-Day Loan",
+                        desc: "Declared highest bidder; must pay the remaining 75% within 15 calendar days.",
                       },
                       {
                         id: "pre_bidding",
                         icon: ShieldCheck,
-                        title: "Pre-Auction Sanction",
-                        desc: "Planning to bid; need pre-approval and borrowing capacity check.",
+                        title: "Pre-Auction Loan Check",
+                        desc: "Planning to bid soon; need pre-approval to know your exact borrowing budget.",
                       },
                       {
                         id: "property_eligibility",
                         icon: Search,
                         title: "Check Property Eligibility",
-                        desc: "Need to confirm whether auction finance is provided on this asset.",
+                        desc: "Want to check if a specific bank auction property qualifies for financing.",
                       },
                       {
                         id: "refinance",
                         icon: RefreshCw,
-                        title: "Takeout Home Loan Refinance",
-                        desc: "Sale certificate issued; ready for low-cost retail mortgage.",
+                        title: "Switch to Regular Home Loan",
+                        desc: "Bank Sale Certificate issued; ready to convert to a low-interest home loan.",
                       },
                     ].map((item) => {
                       const Icon = item.icon;
@@ -253,7 +253,7 @@ function FinanceContent() {
                 {/* Personal Details */}
                 <div className="grid gap-3.5 sm:grid-cols-2">
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Full Legal Name *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Your Full Name *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setFullName(e.target.value)}
@@ -264,7 +264,7 @@ function FinanceContent() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Phone Number (WhatsApp) *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Mobile Number (WhatsApp) *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setPhone(e.target.value)}
@@ -281,7 +281,7 @@ function FinanceContent() {
                   <input
                     className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="investor@familyoffice.in"
+                    placeholder="rupesh@example.com"
                     required
                     type="email"
                     value={email}
@@ -291,22 +291,22 @@ function FinanceContent() {
                 {/* Property & Bank Information */}
                 <div className="grid gap-3.5 sm:grid-cols-2">
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Target Property / Notice Ref *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Property Name or Auction Notice ID *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setPropertyInput(e.target.value)}
-                      placeholder="e.g. BOM-WOR-042 or Address"
+                      placeholder="e.g. BOM-WOR-042 or 2BHK Worli Flat"
                       required
                       type="text"
                       value={propertyInput}
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Auctioning Bank / Institution *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Name of Selling Bank *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setBankName(e.target.value)}
-                      placeholder="e.g. State Bank of India, BOB"
+                      placeholder="e.g. State Bank of India, Bank of Baroda"
                       required
                       type="text"
                       value={bankName}
@@ -317,7 +317,7 @@ function FinanceContent() {
                 {/* Financial Figures */}
                 <div className="grid gap-3.5 sm:grid-cols-3">
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Reserve / Bid Amount (₹) *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Winning Bid / Reserve Price (₹) *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs font-mono text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setPropertyValue(e.target.value)}
@@ -327,7 +327,7 @@ function FinanceContent() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Loan Required (₹) *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Loan Amount Needed (₹) *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs font-mono text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setLoanRequired(e.target.value)}
@@ -337,7 +337,7 @@ function FinanceContent() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-charcoal/80">Days Left for Payment *</label>
+                    <label className="text-xs font-semibold text-charcoal/80">Days Left to Pay Bank *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs font-mono text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       max={90}
@@ -352,12 +352,12 @@ function FinanceContent() {
 
                 <div>
                   <label className="text-xs font-semibold text-charcoal/80">
-                    Additional Notes or Paperwork Readiness
+                    Additional Details (Optional)
                   </label>
                   <textarea
                     className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                     onChange={(e) => setNotes(e.target.value)}
-                    placeholder="Mention whether you have already paid the 25% deposit, co-borrower details, or verification filing readiness..."
+                    placeholder="Mention if you already paid the 25% amount on auction day, your employment type, or documents ready..."
                     rows={2}
                     value={notes}
                   />
@@ -370,10 +370,10 @@ function FinanceContent() {
                     tone="accent"
                     type="submit"
                   >
-                    {isSubmitting ? "Submitting Application..." : "Submit Auction Finance Inquiry →"}
+                    {isSubmitting ? "Submitting Application..." : "Submit Loan Request →"}
                   </Button>
                   <p className="mt-2.5 text-center text-[11px] text-charcoal/55">
-                    Confidentiality Ensured: Financial disclosures are shared strictly with authorized institutional credit desks under NDA.
+                    100% Private &amp; Secure: Your financial details are shared strictly with verified lending partners for loan sanction.
                   </p>
                 </div>
               </form>
@@ -385,10 +385,10 @@ function FinanceContent() {
             {/* Comparison Card */}
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                UNDERWRITING ADVANTAGE
+                HOW IT COMPARES
               </span>
               <h3 className="mt-1 font-display text-xl font-bold text-navy">
-                Auction Finance vs Traditional Bank Loan
+                AuctionIQ Loan vs Regular Bank Loan
               </h3>
 
               <div className="mt-4 overflow-hidden rounded-xl border border-charcoal/15 text-xs shadow-xs">
@@ -397,34 +397,34 @@ function FinanceContent() {
                     <tr>
                       <th className="p-3 font-bold">Feature</th>
                       <th className="p-3 text-emerald-800 font-extrabold">AuctionIQ Desk</th>
-                      <th className="p-3 text-charcoal/50 font-normal">Regular Bank</th>
+                      <th className="p-3 text-charcoal/50 font-normal">Regular Bank Loan</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-charcoal/10">
                     <tr>
-                      <td className="p-3 font-semibold text-navy">Disbursal Speed</td>
-                      <td className="p-3 text-emerald-700 font-bold">5–10 Business Days</td>
-                      <td className="p-3 text-charcoal/60">30–60 Days (Misses deadline)</td>
+                      <td className="p-3 font-semibold text-navy">Loan Payout Speed</td>
+                      <td className="p-3 text-emerald-700 font-bold">7 to 10 Working Days</td>
+                      <td className="p-3 text-charcoal/60">30 to 60 Days (Misses 15-day deadline)</td>
                     </tr>
                     <tr>
                       <td className="p-3 font-semibold text-navy">Pre-Auction Sanction</td>
-                      <td className="p-3 text-emerald-700 font-bold">Yes, in principle</td>
-                      <td className="p-3 text-charcoal/60">Rarely provided</td>
+                      <td className="p-3 text-emerald-700 font-bold">Yes, know your limit before bidding</td>
+                      <td className="p-3 text-charcoal/60">Rarely given without property registry</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold text-navy">Title Requirement</td>
-                      <td className="p-3 text-emerald-700 font-bold">Auction Notice + 13(4)</td>
-                      <td className="p-3 text-charcoal/60">Requires Registered Deed</td>
+                      <td className="p-3 font-semibold text-navy">Paperwork Needed</td>
+                      <td className="p-3 text-emerald-700 font-bold">Auction Notice + Bank possession docs</td>
+                      <td className="p-3 text-charcoal/60">Demands registered deed upfront</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold text-navy">Max Funding LTV</td>
-                      <td className="p-3 text-emerald-700 font-bold">Up to 75% of Bid</td>
-                      <td className="p-3 text-charcoal/60">Up to 75% of Circle Rate</td>
+                      <td className="p-3 font-semibold text-navy">Maximum Loan Amount</td>
+                      <td className="p-3 text-emerald-700 font-bold">Up to 75% of your winning bid</td>
+                      <td className="p-3 text-charcoal/60">Up to 75% of circle rate only</td>
                     </tr>
                     <tr>
-                      <td className="p-3 font-semibold text-navy">Refinancing Takeout</td>
-                      <td className="p-3 text-emerald-700 font-bold">Facilitated smoothly</td>
-                      <td className="p-3 text-charcoal/60">Separate application</td>
+                      <td className="p-3 font-semibold text-navy">Switch to Regular Home Loan</td>
+                      <td className="p-3 text-emerald-700 font-bold">Smooth conversion once keys delivered</td>
+                      <td className="p-3 text-charcoal/60">Must re-apply from scratch</td>
                     </tr>
                   </tbody>
                 </table>
@@ -434,36 +434,36 @@ function FinanceContent() {
             {/* Required Verification Paperwork Checklist */}
             <div className="rounded-2xl border border-[#C5A059]/40 bg-[#C5A059]/10 p-7 shadow-sm">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                ACCELERATED CLEARANCE
+                KEEP DOCUMENTS READY
               </span>
               <h3 className="mt-1 font-display text-lg font-bold text-navy">
-                Fast-Track Verification Checklist
+                Documents for Fast 48-Hour Loan Approval
               </h3>
               <p className="mt-1 text-xs text-charcoal/75 leading-relaxed">
-                Have these paperwork records handy to accelerate bridge loan underwriting within 48 business hours:
+                Having these 4 simple documents ready helps our lending team approve your loan quickly:
               </p>
 
               <ul className="mt-4 space-y-2.5 text-xs text-charcoal/80">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="h-4 w-4 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Copy of the Bank Public Auction Notice and Tender Bid Form.</span>
+                  <span>Copy of the Bank's Auction Notice and your bid submission form.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="h-4 w-4 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Proof of 10% EMD payment and bank acknowledgment receipt.</span>
+                  <span>Receipt proving you paid the 10% EMD token deposit.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="h-4 w-4 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>Bid confirmation letter from the Authorized Officer (if already highest bidder).</span>
+                  <span>Letter from the bank declaring you as the highest bidder (if auction is completed).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="h-4 w-4 text-[#C5A059] shrink-0 mt-0.5" />
-                  <span>KYC (PAN &amp; Aadhaar) + Last 2 years ITR and 6 months bank statements.</span>
+                  <span>Your KYC (PAN &amp; Aadhaar) + last 2 years ITR and 6 months bank statement.</span>
                 </li>
               </ul>
 
               <div className="mt-5 border-t border-[#C5A059]/30 pt-3.5 flex items-center justify-between text-xs font-semibold">
-                <span className="text-navy">Need immediate assistance?</span>
+                <span className="text-navy">Need urgent loan advice?</span>
                 <span className="font-mono text-emerald-800 font-bold">WhatsApp: +91 98200 45892</span>
               </div>
             </div>

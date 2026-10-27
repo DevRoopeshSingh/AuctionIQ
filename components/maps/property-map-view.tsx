@@ -16,8 +16,14 @@ export function PropertyMapView({
   onArrangeInspection,
   onViewDueDiligence,
 }: PropertyMapViewProps) {
-  const [selectedProperty, setSelectedProperty] = useState<PropertyListing>(properties[0]);
+  const [selectedPropertyRef, setSelectedPropertyRef] = useState<string>(properties[0]?.ref || "");
   const [mapType, setMapType] = useState<"standard" | "satellite">("standard");
+
+  const selectedProperty = properties.find((p) => p.ref === selectedPropertyRef) || properties[0];
+
+  if (!selectedProperty) {
+    return null;
+  }
 
   const embedUrl = `https://maps.google.com/maps?q=${selectedProperty.coordinates.lat},${selectedProperty.coordinates.lng}&hl=en&z=15&output=embed${
     mapType === "satellite" ? "&t=k" : ""
@@ -88,7 +94,7 @@ export function PropertyMapView({
                     : "border-charcoal/15 bg-white/70 hover:bg-white hover:border-charcoal/30"
                 }`}
                 key={prop.ref}
-                onClick={() => setSelectedProperty(prop)}
+                onClick={() => setSelectedPropertyRef(prop.ref)}
               >
                 <div className="flex items-center justify-between font-semibold">
                   <span className="text-navy">{prop.area}</span>
@@ -103,7 +109,7 @@ export function PropertyMapView({
                   <span className="font-bold text-navy">{prop.reservePriceDisplay}</span>
                   <span className="inline-flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>SmartDoor {prop.smartDoorDevice}</span>
+                    <span>Inspection Ready</span>
                   </span>
                 </div>
               </div>

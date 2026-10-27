@@ -2,7 +2,7 @@
 
 ## 1.1 Vision and Problem Statement
 
-**Vision.** AuctionIQ is a premium bank-auction property intelligence platform that helps Indian investors *discover the opportunity, understand the risks, and prepare before they bid* — through free education and simulation, and paid verified information, community knowledge and due-diligence coordination.
+**Vision.** AuctionIQ is a premium bank auction property intelligence platform that helps Indian investors *discover the opportunity, understand the risks, and prepare before they bid* — through free education and simulation, and paid verified information, community knowledge and due-diligence coordination.
 
 **Problem.** Bank auction (SARFAESI/DRT) properties in South Mumbai and Navi Mumbai offer price advantages but are opaque: scattered notices, unclear dues, possession uncertainty, document gaps, and no structured peer knowledge. Investors either avoid the category or bid uninformed.
 

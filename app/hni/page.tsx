@@ -49,18 +49,18 @@ export default function HniDeskPage() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/10 px-3.5 py-1 text-xs font-semibold tracking-wider uppercase text-[#D4AF37] backdrop-blur-sm">
                 <Crown className="h-3.5 w-3.5 text-[#D4AF37]" />
-                <span>PRIVATE CLIENT GROUP &amp; FAMILY OFFICE DESK</span>
+                <span>PRIVATE CLIENT GROUP &amp; FAMILY OFFICES</span>
               </div>
 
               <h1 className="font-display text-4xl font-extrabold sm:text-5xl lg:text-6xl leading-[1.08] text-white">
-                Bespoke Distressed Asset Advisory for{" "}
+                High-Value Bank Auction Deals for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E5C17B] via-[#F5E6B8] to-[#C5A059]">
                   Family Offices &amp; HNIs.
                 </span>
               </h1>
 
               <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-white/80 font-normal">
-                Discreet deal flow, cross-collateral asset structuring, and high-yield DRT special situations exceeding ₹5 Cr—backed by institutional title audits, physical possession enforcement, and private mandate representation.
+                Handpicked luxury homes, commercial buildings, and industrial plots above ₹5 Cr. We handle the entire process—from 30-year legal title checks to physical key handover and 15-day bank financing.
               </p>
 
               <div className="flex flex-wrap items-center gap-3.5 pt-2">
@@ -68,16 +68,16 @@ export default function HniDeskPage() {
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#C5A059] px-6 text-xs font-bold text-white shadow-md transition-all duration-200 hover:bg-[#b08e4c] hover:shadow-lg active:scale-[0.98]"
                   href="#consultation"
                 >
-                  <span>Request a Private Mandate</span>
+                  <span>Speak with a Senior Advisor</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </a>
                 <button
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-6 text-xs font-semibold text-white shadow-xs transition-all duration-200 hover:bg-white/20 active:scale-[0.98]"
-                  onClick={() => alert("HNI Institutional Portfolio Dossier (Q4 2026) download initialized.")}
+                  onClick={() => alert("HNI Portfolio Overview downloaded.")}
                   type="button"
                 >
                   <Download className="h-4 w-4 text-[#D4AF37]" />
-                  <span>Download Institutional Dossier</span>
+                  <span>Download Portfolio Overview</span>
                 </button>
               </div>
             </div>
@@ -86,13 +86,13 @@ export default function HniDeskPage() {
             <div className="rounded-2xl border border-white/15 bg-[#071324]/85 p-8 sm:p-9 lg:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-xl ring-1 ring-white/10 text-white">
               <div className="border-b border-white/10 pb-4">
                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#D4AF37]">
-                  DISCREET MANDATE ADVANTAGE
+                  EXCLUSIVE ADVISORY
                 </span>
                 <h2 className="mt-1 font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  Institutional Capital Services
+                  Services for High-Value Buyers
                 </h2>
                 <p className="mt-1 text-xs text-white/65 leading-relaxed font-normal">
-                  End-to-end transaction architecture for substantial balance sheets.
+                  End-to-end support for substantial property acquisitions.
                 </p>
               </div>
 
@@ -102,9 +102,9 @@ export default function HniDeskPage() {
                     <Crown className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white/95">Curated Trophy &amp; NPA Deal Flow</h3>
+                    <h3 className="text-sm font-semibold text-white/95">Luxury Deals Above ₹5 Cr</h3>
                     <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
-                      Prime luxury penthouses, corporate headquarters, and Grade-A industrial parks above ₹5 Cr.
+                      Sea-facing penthouses, independent bungalows, office floors, and industrial land parcels.
                     </p>
                   </div>
                 </div>
@@ -114,9 +114,9 @@ export default function HniDeskPage() {
                     <TrendingUp className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white/95">Empirical Yield &amp; Exit Modeling</h3>
+                    <h3 className="text-sm font-semibold text-white/95">Accurate Valuation &amp; Rental Returns</h3>
                     <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
-                      Sub-registrar circle rate mapping, secondary transaction spreads, and multi-year IRR stress tests.
+                      We compare government circle rates with actual neighbor sale deeds so you never overpay.
                     </p>
                   </div>
                 </div>
@@ -126,9 +126,9 @@ export default function HniDeskPage() {
                     <ShieldCheck className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white/95">Turnkey Acquisition Execution</h3>
+                    <h3 className="text-sm font-semibold text-white/95">Complete Legal Verification &amp; Keys</h3>
                     <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
-                      SmartDoor private walkthroughs, 30-year sub-registrar search certificates, and recovery escort.
+                      Private property walkthroughs, 30-year sub-registrar search reports, and physical key handover.
                     </p>
                   </div>
                 </div>
@@ -138,9 +138,9 @@ export default function HniDeskPage() {
                     <Users className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white/95">Dedicated Senior Mandate Partner</h3>
+                    <h3 className="text-sm font-semibold text-white/95">Dedicated Senior Relationship Partner</h3>
                     <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
-                      Single-point confidential liaison managing advocate coordination, bid execution, and bank escrow.
+                      One senior advisor handles your lawyer coordination, auction bidding, and bank paperwork.
                     </p>
                   </div>
                 </div>
@@ -155,12 +155,12 @@ export default function HniDeskPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-2 gap-6 text-center sm:grid-cols-4 sm:text-left">
             <div className="border-r border-charcoal/10 last:border-r-0 pr-4">
-              <span className="font-display text-3xl sm:text-4xl font-extrabold text-navy">₹1,000 Cr+</span>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Asset Deal Pool</p>
+              <span className="font-display text-3xl sm:text-4xl font-extrabold text-navy">₹5 Cr–₹100 Cr</span>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Target Ticket Size</p>
             </div>
             <div className="border-r border-charcoal/10 last:border-r-0 pr-4">
               <span className="font-display text-3xl sm:text-4xl font-extrabold text-navy">18%–28%</span>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Discount to Secondary</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Below Market Value</p>
             </div>
             <div className="border-r border-charcoal/10 last:border-r-0 pr-4">
               <span className="font-display text-3xl sm:text-4xl font-extrabold text-navy">100%</span>
@@ -168,7 +168,7 @@ export default function HniDeskPage() {
             </div>
             <div>
               <span className="font-display text-3xl sm:text-4xl font-extrabold text-navy">48 Hours</span>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Mandate Response</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-charcoal/60">Direct Advisor Response</p>
             </div>
           </div>
         </div>
@@ -179,13 +179,13 @@ export default function HniDeskPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-              CORE COMPETENCIES
+              OUR EXPERTISE
             </span>
             <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-              Engineered for Discerning Balance Sheets
+              Tailored for Serious Investors &amp; Family Offices
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-charcoal/70">
-              Institutional safeguards and valuation accuracy tailored for private family offices.
+              Clear valuations and institutional safety checks designed for high-value properties.
             </p>
           </div>
 
@@ -194,32 +194,32 @@ export default function HniDeskPage() {
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-navy/5 text-[#C5A059] shadow-2xs">
                 <Target className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-display text-base font-bold text-navy">Targeted Deal Allocation</h3>
-              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Off-market and pre-auction notifications aligned specifically with your asset allocation mandate.</p>
+              <h3 className="mt-4 font-display text-base font-bold text-navy">Targeted Deal Alerts</h3>
+              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">We alert you first when bank auctions matching your exact budget and location criteria are announced.</p>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-navy/5 text-[#C5A059] shadow-2xs">
                 <TrendingUp className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-display text-base font-bold text-navy">Circle Rate Modeling</h3>
-              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Comparative analysis cross-referencing sub-registrar stamped transaction deeds and municipal zoning bylaws.</p>
+              <h3 className="mt-4 font-display text-base font-bold text-navy">Circle Rate &amp; Price Checks</h3>
+              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">We verify official circle rates and recent registration deeds so you know the exact real value before bidding.</p>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-navy/5 text-[#C5A059] shadow-2xs">
                 <Scale className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-display text-base font-bold text-navy">Senior Legal Counsel</h3>
-              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Direct engagement with senior DRT advocates, registered government valuers, and high-court title searchers.</p>
+              <h3 className="mt-4 font-display text-base font-bold text-navy">Senior Legal Review</h3>
+              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Direct engagement with experienced property advocates and government-approved valuation experts.</p>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1">
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-navy/5 text-[#C5A059] shadow-2xs">
                 <ShieldCheck className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-display text-base font-bold text-navy">Discreet Transaction NDA</h3>
-              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Anonymous bidding structures, proxy bidding services, and private settlement execution.</p>
+              <h3 className="mt-4 font-display text-base font-bold text-navy">100% Confidentiality &amp; NDA</h3>
+              <p className="mt-1.5 text-charcoal/70 leading-relaxed font-normal">Discreet bidding options, proxy bidding assistance, and private settlement execution protected by strict NDAs.</p>
             </div>
           </div>
         </div>
@@ -231,14 +231,14 @@ export default function HniDeskPage() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                TARGET PORTFOLIOS
+                OPPORTUNITIES
               </span>
               <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-                Curated Opportunities by Asset Class
+                Curated Properties by Category
               </h2>
             </div>
             <Link className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C5A059] hover:underline" href="/explore">
-              <span>View All Inventory</span>
+              <span>View All Properties</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -246,56 +246,56 @@ export default function HniDeskPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between">
               <div>
-                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Residential Trophy</span>
+                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Luxury Residential</span>
                 <h3 className="mt-4 font-display text-lg font-bold text-navy">Luxury Residences</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70 font-normal">
-                  Sea-facing penthouses in South Mumbai, gated villas in Bangalore, and prime builder floors in New Delhi.
+                  Sea-facing penthouses in South Mumbai, waterfront homes in Navi Mumbai, and prime villas in Bandra West.
                 </p>
               </div>
               <Link className="mt-6 inline-flex items-center gap-1 text-xs font-bold text-[#C5A059] transition-colors hover:text-[#b08e4c]" href="/explore?type=Residential">
-                <span>View Luxury Filings</span>
+                <span>View Luxury Homes</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between">
               <div>
-                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Commercial Yield</span>
+                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Rental Yield</span>
                 <h3 className="mt-4 font-display text-lg font-bold text-navy">Grade-A Commercial</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70 font-normal">
-                  Pre-leased office floors, high-street retail stores, and industrial warehouse clusters with verified MNC tenant leases.
+                  Pre-leased office floors, retail showrooms, and modern warehouses with verified corporate tenant rent agreements.
                 </p>
               </div>
               <Link className="mt-6 inline-flex items-center gap-1 text-xs font-bold text-[#C5A059] transition-colors hover:text-[#b08e4c]" href="/explore?type=Commercial">
-                <span>View Commercial Filings</span>
+                <span>View Commercial Properties</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between">
               <div>
-                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Strategic Land</span>
-                <h3 className="mt-4 font-display text-lg font-bold text-navy">Development Plots</h3>
+                <span className="inline-block rounded-md bg-navy/10 px-2.5 py-1 text-[11px] font-bold text-navy">Development Land</span>
+                <h3 className="mt-4 font-display text-lg font-bold text-navy">Strategic Plots</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70 font-normal">
-                  Clear-title institutional plots suitable for logistics parks, plotted development, and data centers along highway growth corridors.
+                  Clean-title land plots suitable for warehousing, residential layouts, or commercial development along highway corridors.
                 </p>
               </div>
               <Link className="mt-6 inline-flex items-center gap-1 text-xs font-bold text-[#C5A059] transition-colors hover:text-[#b08e4c]" href="/explore?type=Land">
-                <span>View Land Filings</span>
+                <span>View Land Plots</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
 
             <div className="rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between">
               <div>
-                <span className="inline-block rounded-md bg-[#C5A059]/20 px-2.5 py-1 text-[11px] font-bold text-navy">Special Situation</span>
-                <h3 className="mt-4 font-display text-lg font-bold text-navy">NPA Portfolios</h3>
+                <span className="inline-block rounded-md bg-[#C5A059]/20 px-2.5 py-1 text-[11px] font-bold text-navy">Special Portfolios</span>
+                <h3 className="mt-4 font-display text-lg font-bold text-navy">Distressed Assets</h3>
                 <p className="mt-2 text-xs leading-relaxed text-charcoal/70 font-normal">
-                  High-yield distressed assets, corporate insolvency auctions (IBC), and SARFAESI debt resolution opportunities.
+                  High-discount bank NPA properties and corporate insolvency auctions (IBC) with strong turnaround potential.
                 </p>
               </div>
               <Link className="mt-6 inline-flex items-center gap-1 text-xs font-bold text-[#C5A059] transition-colors hover:text-[#b08e4c]" href="/explore">
-                <span>View Special Situations</span>
+                <span>View Special Opportunities</span>
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
@@ -310,36 +310,36 @@ export default function HniDeskPage() {
             {/* Left: Our Process */}
             <div>
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                MANDATE LIFECYCLE
+                HOW IT WORKS
               </span>
               <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-                From Mandate to Registered Title
+                From Finding a Property to Key Handover
               </h2>
               <p className="mt-2 text-xs sm:text-sm text-charcoal/70 max-w-xl">
-                A structured, confidential pipeline designed for family offices and institutional wealth desks.
+                A structured, confidential process designed for family offices and discerning property investors.
               </p>
 
               <div className="mt-8 space-y-4 text-xs">
                 {[
                   {
                     step: "01",
-                    title: "Mandate Scoping & Yield Modeling",
-                    desc: "Define target IRR, asset class parameters, ticket size (₹5 Cr–₹100 Cr+), geographic focus, and tax residency constraints.",
+                    title: "Understand Your Investment Goals",
+                    desc: "Define your preferred property type, budget range (₹5 Cr–₹100 Cr+), target cities, and expected rental return.",
                   },
                   {
                     step: "02",
-                    title: "Direct Recovery Officer Sourcing",
-                    desc: "Scan internal bank recovery databases, Debts Recovery Tribunal listings, and off-market distress filings ahead of public gazettes.",
+                    title: "Direct Bank & DRT Deal Sourcing",
+                    desc: "We scan internal bank recovery databases and court listings to spot great deals before public newspaper ads appear.",
                   },
                   {
                     step: "03",
-                    title: "Comprehensive Legal & Asset Audit",
-                    desc: "Coordinate sub-registrar title searches, physical possession verification, pending society dues audit, and property tax liability clearance.",
+                    title: "Deep Legal & Ownership Due Diligence",
+                    desc: "We complete 30-year sub-registrar deed searches, verify physical possession, and audit society maintenance bills.",
                   },
                   {
                     step: "04",
                     title: "Bidding Strategy & Handover Support",
-                    desc: "Structured pre-auction ceiling bidding, 15-day balance settlement bridge capital, registered Sale Certificate execution, and physical possession handover.",
+                    desc: "We guide your bidding limit, arrange 15-day bank balance financing, and help register your official Sale Certificate.",
                   },
                 ].map((item) => (
                   <div className="flex gap-4 rounded-2xl border border-charcoal/10 bg-white p-5 shadow-xs transition-all duration-200 hover:shadow-sm" key={item.step}>
@@ -356,11 +356,11 @@ export default function HniDeskPage() {
             {/* Right: Partner With Us Consultation Form */}
             <div className="rounded-2xl border-2 border-[#C5A059] bg-white p-7 sm:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
               <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#C5A059]">
-                PRIVATE CLIENT INTAKE
+                PRIVATE CLIENT DESK
               </span>
-              <h3 className="mt-1 font-display text-2xl font-bold text-navy">Partner With Us</h3>
+              <h3 className="mt-1 font-display text-2xl font-bold text-navy">Talk to a Senior Advisor</h3>
               <p className="mt-1.5 text-xs text-charcoal/70 leading-relaxed font-normal">
-                Receive confidential access to curated distress opportunities and dedicated execution support from our Senior Partners.
+                Get confidential access to curated bank auction opportunities and dedicated execution support from our leadership team.
               </p>
 
               {isSubmitted ? (
@@ -368,22 +368,22 @@ export default function HniDeskPage() {
                   <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-emerald-600 text-white shadow-sm">
                     <CheckCircle2 className="h-7 w-7" />
                   </div>
-                  <h4 className="font-bold text-lg text-navy mt-3">Consultation Mandate Received</h4>
+                  <h4 className="font-bold text-lg text-navy mt-3">Inquiry Received</h4>
                   <p className="text-xs text-charcoal/75 mt-1.5 leading-relaxed">
-                    Thank you, <strong>{name}</strong>. A Senior Partner from our HNI &amp; Institutional Desk will contact you within 2 business hours under formal NDA.
+                    Thank you, <strong>{name}</strong>. A Senior Advisor from our HNI Desk will contact you within 2 working hours under strict confidentiality.
                   </p>
                   <button
                     className="mt-5 rounded-xl bg-navy px-5 py-2.5 text-xs font-bold text-white shadow-sm transition-all duration-200 hover:bg-navy/90 active:scale-[0.98]"
                     onClick={() => setIsSubmitted(false)}
                     type="button"
                   >
-                    Submit Another Mandate
+                    Submit Another Inquiry
                   </button>
                 </div>
               ) : (
                 <form className="mt-6 space-y-4 text-xs" onSubmit={handleConsultation}>
                   <div>
-                    <label className="font-semibold text-charcoal/80">Full Legal Name *</label>
+                    <label className="font-semibold text-charcoal/80">Your Full Name *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setName(e.target.value)}
@@ -395,11 +395,11 @@ export default function HniDeskPage() {
                   </div>
 
                   <div>
-                    <label className="font-semibold text-charcoal/80">Corporate / Family Office Email *</label>
+                    <label className="font-semibold text-charcoal/80">Email Address *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="principal@familyoffice.in"
+                      placeholder="rupesh@example.com"
                       required
                       type="email"
                       value={email}
@@ -407,7 +407,7 @@ export default function HniDeskPage() {
                   </div>
 
                   <div>
-                    <label className="font-semibold text-charcoal/80">Direct Mobile Phone *</label>
+                    <label className="font-semibold text-charcoal/80">Mobile Number (WhatsApp) *</label>
                     <input
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setPhone(e.target.value)}
@@ -419,17 +419,17 @@ export default function HniDeskPage() {
                   </div>
 
                   <div>
-                    <label className="font-semibold text-charcoal/80">Primary Asset Interest</label>
+                    <label className="font-semibold text-charcoal/80">Property Type of Interest</label>
                     <select
                       className="mt-1 w-full rounded-xl border border-charcoal/25 bg-white p-2.5 text-xs text-navy font-medium shadow-2xs focus:border-[#C5A059] focus:outline-none focus:ring-1 focus:ring-[#C5A059]"
                       onChange={(e) => setInterest(e.target.value)}
                       value={interest}
                     >
-                      <option>Residential Trophy Assets (₹10 Cr+)</option>
-                      <option>Commercial Pre-Leased Real Estate (₹15 Cr+)</option>
-                      <option>Industrial &amp; Logistics Parks (₹25 Cr+)</option>
-                      <option>Large Land Parcels &amp; Plotted Corridors</option>
-                      <option>NPA &amp; Distressed Corporate Debt Portfolios</option>
+                      <option>Luxury Residential Homes (₹5 Cr+)</option>
+                      <option>Commercial Pre-Leased Real Estate (₹10 Cr+)</option>
+                      <option>Industrial &amp; Logistics Parks (₹15 Cr+)</option>
+                      <option>Large Land Parcels &amp; Plots</option>
+                      <option>Distressed Corporate Asset Portfolios</option>
                     </select>
                   </div>
 
@@ -438,10 +438,10 @@ export default function HniDeskPage() {
                       className="w-full rounded-xl bg-[#C5A059] py-3 text-xs font-bold text-white shadow-md transition-all duration-200 hover:bg-[#b08e4c] hover:shadow-lg active:scale-[0.98]"
                       type="submit"
                     >
-                      Request Confidential Consultation →
+                      Request Confidential Call →
                     </button>
                     <p className="mt-2 text-center text-[10px] text-charcoal/50">
-                      Strict Non-Disclosure: All communications protected by bilateral confidentiality covenants.
+                      100% Confidential: All conversations and details are protected under mutual non-disclosure.
                     </p>
                   </div>
                 </form>

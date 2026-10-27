@@ -122,53 +122,17 @@ export default function ExplorePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       {/* 1. Page Header (Clean, Light, Simple & Elegant) */}
-      <div className="flex flex-col justify-between gap-4 border-b border-charcoal/10 pb-6 md:flex-row md:items-end">
-        <div>
-          <div className="flex items-center gap-2">
-            <Badge tone="warning">Curated Bank Auctions</Badge>
-            <span className="text-xs text-charcoal/60">Verified SARFAESI &amp; DRT Notices</span>
-          </div>
-          <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
-            Explore Auction Properties
-          </h1>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-charcoal/75">
-            Discover verified bank auction opportunities across Mumbai, Navi Mumbai, Bengaluru, and Hyderabad. Every listing includes verified title and encumbrance checks, circle rate market comparisons, bid ceiling planning, and SmartDoor digital inspection access.
-          </p>
+      <div className="border-b border-charcoal/10 pb-6">
+        <div className="flex items-center gap-2">
+          <Badge tone="warning">Verified Bank Auctions</Badge>
+          <span className="text-xs text-charcoal/60">Official Bank Notices · 100% Verified</span>
         </div>
-
-        {/* View Mode Switcher */}
-        <div className="flex items-center gap-1.5 rounded-lg border border-charcoal/20 bg-white p-1 text-xs font-semibold shadow-xs">
-          <button
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors ${
-              viewMode === "list" ? "bg-navy text-white shadow-xs" : "text-charcoal/70 hover:text-navy"
-            }`}
-            onClick={() => setViewMode("list")}
-            type="button"
-          >
-            <List className="h-3.5 w-3.5" />
-            <span>Simple List</span>
-          </button>
-          <button
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors ${
-              viewMode === "grid" ? "bg-navy text-white shadow-xs" : "text-charcoal/70 hover:text-navy"
-            }`}
-            onClick={() => setViewMode("grid")}
-            type="button"
-          >
-            <LayoutGrid className="h-3.5 w-3.5" />
-            <span>Grid Cards</span>
-          </button>
-          <button
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors ${
-              viewMode === "map" ? "bg-navy text-white shadow-xs" : "text-charcoal/70 hover:text-navy"
-            }`}
-            onClick={() => setViewMode("map")}
-            type="button"
-          >
-            <Map className="h-3.5 w-3.5" />
-            <span>Google Map</span>
-          </button>
-        </div>
+        <h1 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">
+          Explore Bank Auction Properties
+        </h1>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-charcoal/75">
+          Find verified bank auction properties across Mumbai and Navi Mumbai. Every listing includes a full 30-year legal title check, comparison with government circle rates, safe bidding budget guidance, and in-person house visits.
+        </p>
       </div>
 
       {/* 2. Search Bar & Clean Filter Controls */}
@@ -181,7 +145,7 @@ export default function ExplorePage() {
           <input
             className="w-full rounded-xl border border-charcoal/25 bg-white py-3 pl-10 pr-10 text-sm text-navy placeholder:text-charcoal/50 shadow-xs transition-all focus:border-navy focus:outline-none focus:ring-2 focus:ring-gold/40"
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by locality (Worli, Nariman Point, BKC, Yelahanka, Peerzadiguda), property ref (BOM-WOR-042), or bank name..."
+            placeholder="Search by area (Worli, BKC, Vashi, Powai), property ID (BOM-WOR-042), or bank name..."
             type="text"
             value={searchQuery}
           />
@@ -199,9 +163,9 @@ export default function ExplorePage() {
         {/* Quick Locality Filter Chips */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="font-semibold text-charcoal/60 mr-1">City:</span>
-          {["All", "Mumbai", "Navi Mumbai", "Bengaluru", "Hyderabad"].map((city) => (
+          {["All", "Mumbai", "Navi Mumbai"].map((city) => (
             <button
-              className={`rounded-full px-3 py-1 transition-all ${
+              className={`rounded-full px-3.5 py-1 transition-all ${
                 selectedCity === city
                   ? "bg-navy font-bold text-white shadow-xs"
                   : "bg-white border border-charcoal/15 text-charcoal/75 hover:border-charcoal/30"
@@ -258,8 +222,8 @@ export default function ExplorePage() {
                 value={selectedPossession}
               >
                 <option value="All">All Statuses</option>
-                <option value="physical">Physical Possession (Move-in ready)</option>
-                <option value="symbolic">Symbolic Possession (Assisted)</option>
+                <option value="physical">Physical Possession (Keys Ready)</option>
+                <option value="symbolic">Symbolic Possession (Court Order Needed)</option>
               </select>
             </div>
 
@@ -277,21 +241,64 @@ export default function ExplorePage() {
               </select>
             </div>
           </div>
+        </div>
 
-          {/* Result Count & Reset */}
+        {/* 2.5 View Mode & Results Count Bar (Prominently placed down right above listings) */}
+        <div className="flex flex-col gap-3 rounded-xl border border-charcoal/15 bg-white p-3 shadow-xs sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <span className="font-semibold text-charcoal/80">
-              Showing {filteredProperties.length} of {LISTED_PROPERTIES.length} verified listings
+            <span className="text-xs font-semibold text-charcoal/80 sm:text-sm">
+              Showing <span className="font-bold text-navy">{filteredProperties.length}</span> of {LISTED_PROPERTIES.length} verified listings
             </span>
             {(selectedCity !== "All" || selectedType !== "All" || selectedPrice !== "all" || selectedPossession !== "All" || searchQuery) && (
               <button
-                className="font-bold text-[#C5A059] hover:underline"
+                className="text-xs font-bold text-[#C5A059] hover:underline"
                 onClick={handleResetFilters}
                 type="button"
               >
                 Reset
               </button>
             )}
+          </div>
+
+          {/* View Mode Switcher: Simple List, Grid Cards, Google Map */}
+          <div className="flex items-center gap-1 rounded-lg border border-charcoal/20 bg-ivory/60 p-1 text-xs font-semibold shadow-xs">
+            <span className="hidden px-2 text-[11px] font-medium text-charcoal/50 md:inline-block">View:</span>
+            <button
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
+                viewMode === "list"
+                  ? "bg-navy text-white shadow-xs font-bold"
+                  : "text-charcoal/70 hover:text-navy hover:bg-white"
+              }`}
+              onClick={() => setViewMode("list")}
+              type="button"
+            >
+              <List className="h-4 w-4" />
+              <span>Simple List</span>
+            </button>
+            <button
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
+                viewMode === "grid"
+                  ? "bg-navy text-white shadow-xs font-bold"
+                  : "text-charcoal/70 hover:text-navy hover:bg-white"
+              }`}
+              onClick={() => setViewMode("grid")}
+              type="button"
+            >
+              <LayoutGrid className="h-4 w-4" />
+              <span>Grid Cards</span>
+            </button>
+            <button
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-all ${
+                viewMode === "map"
+                  ? "bg-navy text-white shadow-xs font-bold"
+                  : "text-charcoal/70 hover:text-navy hover:bg-white"
+              }`}
+              onClick={() => setViewMode("map")}
+              type="button"
+            >
+              <Map className="h-4 w-4 text-[#C5A059]" />
+              <span>Google Map</span>
+            </button>
           </div>
         </div>
       </div>
@@ -355,26 +362,25 @@ export default function ExplorePage() {
                     <span>•</span>
                     <span className="inline-flex items-center gap-1"><Building className="h-3 w-3 text-[#C5A059]" /> {prop.unitConfig}</span>
                     <span>•</span>
-                    <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3 text-[#C5A059]" /> Auction: {prop.auctionDate}</span>
+                    <span className="inline-flex items-center gap-1"><Calendar className="h-3 w-3 text-[#C5A059]" /> Auction Date: {prop.auctionDate}</span>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
                     {isPhysical ? (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-800">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        Move-in ready (Physical Possession)
+                        Physical Possession (Keys Ready)
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[11px] font-semibold text-amber-800">
                         <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                        Occupied — we assist (Symbolic Possession)
+                        Symbolic Possession (Court Order Needed)
                       </span>
                     )}
 
-                    <span className="inline-flex items-center gap-1.5 text-[11px] text-charcoal/65">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] text-charcoal/65 font-medium">
                       <KeyRound className="h-3 w-3 text-[#C5A059]" />
-                      <span>SmartDoor Device:</span>
-                      <span className="font-mono font-medium text-navy">{prop.smartDoorDevice}</span>
+                      <span>SmartDoor Visit Ready</span>
                     </span>
                   </div>
                 </div>
@@ -382,7 +388,7 @@ export default function ExplorePage() {
                 {/* Right Column: Pricing & Action Buttons */}
                 <div className="flex flex-col justify-between gap-3 border-t border-charcoal/10 pt-3 lg:border-t-0 lg:border-l lg:pl-6 lg:pt-0 shrink-0 lg:text-right">
                   <div>
-                    <span className="text-[11px] text-charcoal/60">Reserve Price</span>
+                    <span className="text-[11px] text-charcoal/60">Starting Price (Reserve)</span>
                     <div className="font-display text-2xl font-black text-navy">
                       {prop.reservePriceDisplay}
                     </div>
@@ -404,7 +410,7 @@ export default function ExplorePage() {
                       onClick={() => setActiveDueDiligenceProp(prop)}
                       type="button"
                     >
-                      View Details
+                      Legal Report
                     </button>
                     <button
                       className="inline-flex items-center justify-center gap-1.5 rounded-md border border-[#C5A059] bg-[#C5A059]/10 px-4 py-2 text-xs font-bold text-[#8a6c31] transition-all duration-200 hover:bg-[#C5A059]/20 active:scale-[0.98]"
@@ -412,7 +418,7 @@ export default function ExplorePage() {
                       type="button"
                     >
                       <KeyRound className="h-3.5 w-3.5" />
-                      <span>SmartDoor Pass</span>
+                      <span>Visit House</span>
                     </button>
                     <button
                       className="inline-flex items-center justify-center gap-1.5 rounded-md border border-charcoal/20 bg-white px-3 py-1.5 text-xs font-medium text-charcoal/80 transition-all duration-200 hover:bg-charcoal/5 active:scale-[0.98]"
@@ -420,7 +426,7 @@ export default function ExplorePage() {
                       type="button"
                     >
                       <Coins className="h-3.5 w-3.5" />
-                      <span>Auction Loan</span>
+                      <span>Loan Help</span>
                     </button>
                   </div>
                 </div>

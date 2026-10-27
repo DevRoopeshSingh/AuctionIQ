@@ -1,17 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   Search,
   CircleDollarSign,
-  Lock,
   FileCheck2,
   KeyRound,
-  Coins,
   ShieldCheck,
   ArrowRight,
+  Landmark,
+  MapPin,
 } from "lucide-react";
 import { Badge } from "@/components/ui/primitives";
 import { LISTED_PROPERTIES, type PropertyListing } from "@/lib/properties/data";
@@ -20,6 +21,12 @@ import {
   InspectionArrangementModal,
   type PropertyInspectionDetails,
 } from "./inspection-arrangement-modal";
+
+const cardImageThumbnails = [
+  { src: "/images/mumbai-property.jpg", alt: "Worli Sea Face residential tower" },
+  { src: "/images/navi-mumbai.jpg", alt: "Grade-A IT park corporate tower" },
+  { src: "/images/hni_luxury_deal.jpg", alt: "Duplex penthouse & ocean sky deck" },
+];
 
 export function ExplorePropertiesSection() {
   const router = useRouter();
@@ -45,12 +52,12 @@ export function ExplorePropertiesSection() {
     <section aria-labelledby="explore-title" className="border-t border-charcoal/10 py-16" id="explore">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div className="max-w-2xl">
-          <Badge tone="warning">Active Bank Inventory</Badge>
+          <Badge tone="warning">Verified Bank Properties</Badge>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl" id="explore-title">
-            Featured Statutory Bank Auctions
+            Featured Bank Auction Properties
           </h2>
           <p className="mt-3 leading-relaxed text-sm sm:text-base text-charcoal/75">
-            Preview verified SARFAESI auction notices across South Mumbai and Navi Mumbai. Verified members receive automated <strong>physical inspection passes</strong> via <strong>SmartDoor</strong> digital locks, authenticated <strong>due diligence dossiers</strong>, and structured <strong>auction bridge financing</strong>.
+            Browse verified bank auction properties in Mumbai and Navi Mumbai. Click on any property to see its <strong>legal check report</strong>, book an in-person <strong>house visit (SmartDoor)</strong>, or check <strong>fast 15-day loan</strong> options.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
@@ -59,7 +66,7 @@ export function ExplorePropertiesSection() {
             href="/explore"
           >
             <Search className="h-3.5 w-3.5" />
-            <span>Search &amp; Map Directory</span>
+            <span>Search All on Map</span>
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
           <Link
@@ -72,107 +79,172 @@ export function ExplorePropertiesSection() {
         </div>
       </div>
 
-      <div className="mt-9 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {LISTED_PROPERTIES.slice(0, 3).map((item) => (
-          <div
-            className="flex flex-col justify-between overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059]/70 hover:shadow-[0_20px_35px_-5px_rgba(15,23,42,0.12)] hover:-translate-y-1"
-            key={item.ref}
-          >
-            <div className="p-6">
-              <div className="flex items-center justify-between text-xs font-semibold">
-                <span className="rounded-md bg-navy/10 px-2.5 py-1 text-navy font-bold">{item.area}</span>
-                <span className="font-mono text-charcoal/50 text-[11px]">{item.ref}</span>
-              </div>
-              <h3 className="mt-3 font-display text-lg font-bold text-navy tracking-tight">{item.title}</h3>
-              <p className="text-xs font-medium text-charcoal/60 mt-0.5">{item.unitConfig} · {item.noticeType}</p>
+      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {LISTED_PROPERTIES.slice(0, 3).map((item, idx) => {
+          const thumb = cardImageThumbnails[idx % cardImageThumbnails.length];
+          const bankShort = item.bankName.split("(")[0].trim();
+          const isPhysical = item.possessionStatus.toLowerCase().includes("physical");
 
-              <div className="mt-4 rounded-xl border border-charcoal/10 bg-[#f8fafc] p-3.5 text-xs">
-                <div className="flex justify-between items-center">
-                  <span className="text-charcoal/65 font-medium">Reserve Price:</span>
-                  <span className="font-bold text-navy font-mono text-sm">{item.reservePriceDisplay}</span>
+          return (
+            <div
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-300 hover:border-[#C5A059]/70 hover:shadow-[0_20px_35px_-5px_rgba(15,23,42,0.12)] hover:-translate-y-1"
+              key={item.ref}
+            >
+              {/* Top Photographic Banner */}
+              <div className="relative h-48 w-full overflow-hidden bg-slate-900">
+                <Image
+                  src={thumb.src}
+                  alt={thumb.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+
+                {/* Top Badges: Bank & Possession */}
+                <div className="absolute top-3 inset-x-3 flex items-center justify-between text-xs">
+                  <span className="inline-flex items-center gap-1.5 rounded-md bg-black/60 px-2.5 py-1 font-semibold text-white backdrop-blur-md text-[11px] border border-white/10">
+                    <Landmark className="h-3 w-3 text-[#D4AF37]" />
+                    <span>{bankShort}</span>
+                  </span>
+                  <span
+                    className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md border ${
+                      isPhysical
+                        ? "bg-emerald-950/70 text-emerald-300 border-emerald-500/30"
+                        : "bg-amber-950/70 text-amber-300 border-amber-500/30"
+                    }`}
+                  >
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${isPhysical ? "bg-emerald-400" : "bg-amber-400"}`}
+                    />
+                    <span>{isPhysical ? "Physical Possession (Keys Ready)" : "Symbolic Possession"}</span>
+                  </span>
                 </div>
-                <div className="mt-1.5 flex justify-between items-center">
-                  <span className="text-charcoal/65">Earnest Deposit (EMD):</span>
-                  <span className="font-semibold text-charcoal/85 font-mono">{item.emdDisplay}</span>
-                </div>
-                <div className="mt-1.5 flex justify-between items-center">
-                  <span className="text-charcoal/65">Auction Date:</span>
-                  <span className="font-semibold text-charcoal/85">{item.auctionDate}</span>
-                </div>
-                <div className="mt-2.5 flex items-center justify-between border-t border-charcoal/10 pt-2 text-[11px]">
-                  <span className="text-charcoal/65">SmartDoor Lock:</span>
-                  <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-700">
-                    <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Online · {item.smartDoorDevice}</span>
+
+                {/* Bottom Overlay: Location and Ref */}
+                <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-white text-xs gap-2">
+                  <span className="inline-flex items-center gap-1 font-medium bg-black/60 px-2.5 py-1 rounded-md backdrop-blur-md truncate max-w-[70%]">
+                    <MapPin className="h-3 w-3 text-[#D4AF37] shrink-0" />
+                    <span className="truncate">{item.subLocality.split(",")[0]}, {item.city}</span>
+                  </span>
+                  <span className="font-mono text-[10px] text-white/90 bg-black/60 px-2 py-1 rounded-md backdrop-blur-md whitespace-nowrap shrink-0 font-semibold tracking-wider">
+                    {item.ref}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-between text-xs">
-                <span className="inline-flex items-center gap-1 font-bold text-emerald-800">
-                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-700" />
-                  <span>Safety Score: {item.dueDiligence.riskScore}/100</span>
-                </span>
-                <span className="font-bold text-[#C5A059]">
-                  {item.dueDiligence.marketComparison.discountToMarketPercent}% Off Market
-                </span>
-              </div>
-
-              <div className="mt-4 space-y-2 border-t border-charcoal/10 pt-3.5">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-charcoal/50">
-                  Investor Tier Access
-                </p>
-                {item.lockedItems.map((locked) => (
-                  <div className="flex items-center gap-2 text-xs text-charcoal/70" key={locked}>
-                    <Lock className="h-3 w-3 text-[#C5A059] shrink-0" />
-                    <span>{locked}</span>
+              {/* Card Body with Clear Hierarchy & Breathing Room */}
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                {/* Title & Configuration */}
+                <div>
+                  <div className="flex items-center justify-between gap-2 text-xs">
+                    <span className="font-semibold text-navy/70 tracking-wide uppercase text-[11px] truncate">
+                      {item.unitConfig.replace(/\s*\([^)]*\)/g, "").trim()}
+                    </span>
+                    <span className="font-medium text-charcoal/50 text-[11px] shrink-0">
+                      {item.carpetAreaSqFt.toLocaleString("en-IN")} sq.ft
+                    </span>
                   </div>
-                ))}
+                  <h3
+                    className="mt-1.5 font-display text-base sm:text-lg font-bold text-navy tracking-tight line-clamp-2 min-h-[3.25rem] leading-snug group-hover:text-[#9A7B38] transition-colors"
+                    title={item.title}
+                  >
+                    {item.title}
+                  </h3>
+                </div>
+
+                {/* Hero Pricing & Market Spread */}
+                <div className="flex items-end justify-between rounded-xl bg-slate-50 border border-charcoal/8 px-3.5 py-2.5">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal/50 block">
+                      Starting Price (Reserve)
+                    </span>
+                    <div className="mt-0.5 flex items-baseline gap-2">
+                      <span className="font-display text-lg sm:text-xl font-extrabold text-navy tracking-tight">
+                        {item.reservePriceDisplay}
+                      </span>
+                      {item.marketValueDisplay && (
+                        <span className="text-xs font-medium text-charcoal/45 line-through">
+                          {item.marketValueDisplay}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 border border-emerald-200/70 shrink-0">
+                    {item.dueDiligence.marketComparison.discountToMarketPercent}% below market
+                  </span>
+                </div>
+
+                {/* Statutory Terms: EMD & Auction Date */}
+                <div className="grid grid-cols-2 gap-2.5 text-xs">
+                  <div className="rounded-lg border border-charcoal/8 bg-white p-2.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal/50 block">
+                      Token Deposit (10% EMD)
+                    </span>
+                    <span className="mt-0.5 font-mono text-xs font-bold text-charcoal/90 block">
+                      {item.emdDisplay}
+                    </span>
+                  </div>
+                  <div className="rounded-lg border border-charcoal/8 bg-white p-2.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-charcoal/50 block">
+                      Auction Date
+                    </span>
+                    <span className="mt-0.5 text-xs font-bold text-charcoal/90 flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      {item.auctionDate}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Verified Diligence & Inspection Strip */}
+                <div className="flex items-center justify-between text-xs pt-1 border-t border-charcoal/10 text-charcoal/75">
+                  <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-800">
+                    <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+                    <span>Safety Score: {item.dueDiligence.riskScore}/100</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1 font-medium text-navy/80 text-[11px]">
+                    <KeyRound className="h-3.5 w-3.5 text-[#C5A059] shrink-0" />
+                    <span>SmartDoor Visit Ready</span>
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <div className="border-t border-charcoal/10 bg-ivory/50 p-4 space-y-2">
-              <button
-                className="inline-flex w-full min-h-10 items-center justify-center gap-2 rounded-xl bg-navy px-3 py-2 text-xs font-semibold text-white shadow-xs transition-all duration-200 hover:bg-navy/90 hover:shadow-sm active:scale-[0.98]"
-                onClick={() => setActiveDueDiligence(item)}
-                type="button"
-              >
-                <FileCheck2 className="h-3.5 w-3.5" />
-                <span>View Due Diligence Report</span>
-              </button>
-
-              <div className="grid grid-cols-2 gap-2">
+              {/* Clean 2-Button Action Bar */}
+              <div className="border-t border-charcoal/10 bg-[#fbfcfd] p-4 flex items-center gap-2.5">
                 <button
-                  className="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-xl border border-navy/30 bg-white px-2 py-1.5 text-xs font-semibold text-navy shadow-2xs transition-all duration-200 hover:bg-navy/5 active:scale-[0.98]"
-                  onClick={() => handleOpenInspection(item)}
+                  className="flex-1 inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl bg-navy px-3 py-2 text-xs font-semibold text-white shadow-xs transition-all duration-200 hover:bg-navy/90 hover:shadow-sm active:scale-[0.98]"
+                  onClick={() => setActiveDueDiligence(item)}
                   type="button"
                 >
-                  <KeyRound className="h-3.5 w-3.5" />
-                  <span>Inspection</span>
+                  <FileCheck2 className="h-3.5 w-3.5 text-[#D4AF37]" />
+                  <span>View Legal Report</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-white/70" />
                 </button>
 
-                <Link
-                  className="inline-flex min-h-9 items-center justify-center gap-1.5 rounded-xl border border-[#C5A059] bg-[#C5A059]/15 px-2 py-1.5 text-xs font-bold text-navy shadow-2xs transition-all duration-200 hover:bg-[#C5A059]/25 active:scale-[0.98]"
-                  href={`/finance?ref=${item.ref}`}
+                <button
+                  className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-charcoal/20 bg-white px-3.5 py-2 text-xs font-semibold text-navy shadow-2xs transition-all duration-200 hover:bg-navy/5 active:scale-[0.98]"
+                  onClick={() => handleOpenInspection(item)}
+                  type="button"
+                  title="Schedule SmartDoor physical house visit"
                 >
-                  <Coins className="h-3.5 w-3.5" />
-                  <span>Finance Help</span>
-                </Link>
+                  <KeyRound className="h-3.5 w-3.5 text-[#C5A059]" />
+                  <span>Visit</span>
+                </button>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mt-9 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-charcoal/10 bg-white p-5 shadow-sm text-xs">
         <p className="text-charcoal/75 font-medium">
-          Seeking full portfolio search with geospatial coordinates and interactive filters?
+          Looking for more bank auction properties with interactive map and filters?
         </p>
         <Link
           className="inline-flex items-center gap-1.5 rounded-xl bg-navy px-5 py-2.5 text-xs font-semibold text-white shadow-xs transition-all duration-200 hover:bg-navy/90 active:scale-[0.98]"
           href="/explore"
         >
-          <span>Open Full Search Directory &amp; Map</span>
+          <span>Search All Properties on Map</span>
           <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>

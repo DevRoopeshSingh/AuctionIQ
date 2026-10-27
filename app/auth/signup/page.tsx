@@ -31,7 +31,7 @@ export default function SignupPage() {
               Establish Investor Account
             </h1>
             <p className="mt-1 text-xs leading-relaxed text-charcoal/70 sm:text-sm">
-              Register to access bank-auction properties, full 30-year title reports, and proprietary distress discount analytics.
+              Register to access bank auction properties, full 30-year title reports, and proprietary distress discount analytics.
             </p>
           </div>
 

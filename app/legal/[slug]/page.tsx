@@ -25,113 +25,114 @@ interface PolicyDetail {
 
 const policyRegistry: Record<string, PolicyDetail> = {
   terms: {
-    title: "Terms of Use & Statutory Disclaimers",
-    subtitle: "Regulatory framework, SARFAESI Act 2002 disclaimers, and platform advisory scope.",
-    category: "Legal & Regulatory",
+    title: "Terms of Use & Legal Information",
+    subtitle: "Clear, simple explanations of how AuctionIQ works, what bank rules apply, and how we protect you.",
+    category: "Legal & Rules",
     sections: [
       {
-        heading: "1. Institutional Advisory Scope & Platform Role",
+        heading: "1. What AuctionIQ Does (and Does Not Do)",
         paragraphs: [
-          "AuctionIQ is an independent real estate intelligence and advisory technology platform. AuctionIQ is neither an auctioneer nor a direct seller of banking assets. All properties cataloged on this terminal are distressed banking assets auctioned by authorized secured creditors under the Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest Act, 2002 (SARFAESI Act, 2002), the Recovery of Debts and Bankruptcy Act, 1993, or orders of the Debt Recovery Tribunal (DRT).",
-          "Information displayed on the platform is collated from statutory public notices published in official gazettes, bank public sale notifications, and sub-registrar transaction filings. While AuctionIQ executes independent title searches and physical inspection audits, prospective bidders are advised to conduct independent legal title verification prior to depositing statutory EMD.",
+          "AuctionIQ is an independent real estate technology platform. We help you find, verify, and bid on bank auction properties safely. We are NOT a bank, an auctioneer, or a property broker. All properties listed on our website are seized banking assets sold by authorized banks under Indian law (the SARFAESI Act, 2002) to recover unpaid loans.",
+          "We collect property details directly from official bank notices, government gazettes, and court announcements. We also inspect properties in person and run 30-year title checks. However, bank auctions are legally binding. Before you pay your token deposit (10% EMD), you should always review our detailed Due Diligence report and visit the property in person.",
         ],
       },
       {
-        heading: "2. Bidder Representation, KYC, and Due Diligence",
+        heading: "2. Who Can Bid & What 'As Is Where Is' Means",
         paragraphs: [
-          "By accessing AuctionIQ and utilizing our verified asset dossiers, you warrant that you are legally competent under Indian law to bid at public auctions and are not disqualified under Section 29A of the Insolvency and Bankruptcy Code (IBC), 2016.",
-          "Users acknowledge that bank-auction properties are acquired strictly on an 'As is where is', 'As is what is', and 'Whatever there is' basis. Society maintenance dues, municipal property tax arrears, and statutory encumbrances remain the responsibility of the purchaser as defined in the specific bank sale notice.",
+          "Any Indian citizen, NRI, company, or authorized entity eligible under Indian law can bid on these properties (as long as you are not a defaulting borrower disqualified under insolvency rules).",
+          "Crucial Rule — 'As is where is, whatever there is': Banks sell auction properties in their current state. Any pending society maintenance charges, electricity bills, or municipal property taxes must usually be cleared by the winning buyer, as stated in the bank's sale notice. That is why AuctionIQ calculates all pending bills in advance in our Due Diligence report, so there are no surprise costs after you win.",
         ],
       },
       {
-        heading: "3. Jurisdiction & Dispute Resolution",
+        heading: "3. Court Jurisdiction & Resolving Issues",
         paragraphs: [
-          "These terms are governed by and construed in accordance with the laws of the Republic of India. Any legal proceedings arising out of or in connection with the platform shall be subject to the exclusive jurisdiction of the competent courts in Mumbai, Maharashtra.",
+          "These terms are governed by the laws of India. If any legal dispute arises regarding our platform services, it will be handled under the jurisdiction of the competent courts in Mumbai, Maharashtra.",
         ],
       },
     ],
   },
   privacy: {
-    title: "Privacy Policy & Information Security",
-    subtitle: "Enterprise data encryption, PAN/KYC confidentiality, and investor data governance.",
-    category: "Data Governance",
+    title: "Privacy Policy & Data Security",
+    subtitle: "How we keep your personal details, Aadhaar/PAN checks, and bidding budget 100% private and confidential.",
+    category: "Data Privacy",
     sections: [
       {
-        heading: "1. Collection of Investor & Institutional Data",
+        heading: "1. What Information We Collect and Why",
         paragraphs: [
-          "AuctionIQ collects information strictly required to facilitate verified title reports, smart-door physical inspections, and pre-approved auction financing. This includes verified identity credentials (PAN, Aadhaar e-KYC), contact records, and investor preference parameters.",
-          "We maintain a strict zero-leakage guarantee regarding bidder identity, prospective ceiling budgets, and target auction strategies. Your bidding intent is never shared with competing bidders, intermediary brokers, or unauthorized third parties.",
+          "We collect only the basic information needed to verify property documents, issue in-person SmartDoor visit passes, and help you apply for pre-approved auction loans. This includes your name, phone number, email, and ID proof (such as PAN or Aadhaar verification for visit passes).",
+          "100% Confidentiality Guarantee: We will NEVER reveal your identity, your target property, or how much you plan to bid to other bidders, brokers, or third parties. Your bidding strategy remains completely secret.",
         ],
       },
       {
-        heading: "2. Bank-Grade 256-Bit Cryptographic Standards",
+        heading: "2. Bank-Grade Security (256-Bit Protection)",
         paragraphs: [
-          "All communications and digital dossier transfers are secured using TLS 1.3 encryption and AES-256 at-rest database protection. Audit logs of title access and digital property inspections are immutably archived for regulatory auditing under the Information Technology Act, 2000.",
+          "Your data is protected with the same high-level security used by major Indian banks (TLS 1.3 encryption and 256-bit database protection). We keep strict digital logs of property visits to prevent unauthorized access and comply with the Information Technology Act, 2000.",
         ],
       },
       {
-        heading: "3. Retention & Investor Privacy Rights",
+        heading: "3. Your Privacy Rights & Data Deletion",
         paragraphs: [
-          "Investors may request complete redaction of their personal records and transaction history from our platform upon written notice to our Nodal Grievance Officer, subject to statutory retention obligations under anti-money laundering (PMLA) regulations.",
+          "You have complete control over your personal data. If you ever want your account data or search history removed from our platform, simply email our Grievance Officer, and we will delete your records (except for records legally required to be maintained under Indian financial regulations).",
         ],
       },
     ],
   },
   refund: {
-    title: "Refund, Cancellation & Advisory Terms",
-    subtitle: "Transparent fee policies, title audit guarantees, and statutory EMD regulations.",
-    category: "Financial Compliance",
+    title: "Refund Policy & Token Deposit Rules",
+    subtitle: "Transparent details on report fees, SmartDoor visits, and how bank EMD deposits are refunded.",
+    category: "Payments & Refunds",
     sections: [
       {
-        heading: "1. Advisory & Due Diligence Report Fee Policies",
+        heading: "1. AuctionIQ Report & Visit Pass Fees",
         paragraphs: [
-          "Fees paid for AuctionIQ Title Verification Dossiers, Structural Engineer Audit Reports, and Society Arrears Certificates are non-refundable once the field verification has been initiated by our legal desk. In the rare event that an inspection cannot be completed due to physical seal cancellation by the bank, a 100% credit or refund is issued within 3 business days.",
+          "When you order an AuctionIQ Due Diligence report or engineer audit, our legal team starts searching government registries and field records immediately. Because we incur direct costs right away, these service fees are non-refundable once verification has started. However, if a visit cannot take place because the bank cancelled or postponed the auction, we give you a 100% full refund or credit within 3 working days.",
         ],
       },
       {
-        heading: "2. Bank Earnest Money Deposit (EMD) Statutory Disclaimer",
+        heading: "2. How Your Bank EMD (10% Token Deposit) Works",
         paragraphs: [
-          "AuctionIQ DOES NOT hold or process statutory Earnest Money Deposits (EMD). EMDs are paid directly to the Authorized Officer / lending institution's designated RTGS account.",
-          "Under SARFAESI Security Interest (Enforcement) Rules 2002, Rule 9(4), failure by the successful bidder to remit the remaining 75% of the purchase price within the mandatory 15-day window results in automatic statutory forfeiture of the deposited 25% by the secured creditor. AuctionIQ carries no liability for bank forfeiture resulting from bidder default.",
+          "Important: AuctionIQ NEVER collects or holds your 10% auction token deposit (EMD). You pay your EMD directly to the bank via RTGS into the bank's official account listed in the auction notice.",
+          "If you do not win the auction: The bank automatically refunds 100% of your EMD within 48 to 72 hours directly into your bank account. No fees or deductions are made.",
+          "The Strict 15-Day Payment Rule (SARFAESI Rule 9): If you win the auction, you must pay 25% on the auction day (inclusive of your 10% EMD), and the remaining 75% balance strictly within 15 days. If you fail to pay on time, the bank can cancel your purchase and forfeit your 25% deposit under Indian law. AuctionIQ offers fast 7 to 10 day bridge loans so you never miss this deadline.",
         ],
       },
     ],
   },
   "community-guidelines": {
-    title: "Institutional Code of Conduct & Anti-Collusion",
-    subtitle: "Ensuring fair price discovery, anti-bid-rigging protocols, and investor integrity.",
-    category: "Market Integrity",
+    title: "Code of Conduct & Fair Bidding Rules",
+    subtitle: "Ensuring open bidding, honest pricing, and respectful in-person property visits.",
+    category: "Fair Bidding Rules",
     sections: [
       {
-        heading: "1. Strict Anti-Collusion & Anti-Bid-Rigging",
+        heading: "1. Zero Tolerance for Price Fixing & Cartels",
         paragraphs: [
-          "AuctionIQ adheres strictly to Section 3 of the Competition Act, 2002. Any attempt by platform users to collude, artificially suppress bidding prices, pool bids to manipulate bank reserves, or engage in bid rotation will result in immediate permanent account termination and referral to regulatory authorities.",
+          "We believe in open and honest auctions. We strictly prohibit any attempt by bidders or brokers to form cartels, artificially lower prices, or fix bids. Any user attempting to manipulate bank auctions will be banned permanently and reported to the authorities under the Competition Act, 2002.",
         ],
       },
       {
-        heading: "2. Verified HNI & Institutional Desk Standards",
+        heading: "2. Respectful In-Person Property Visits",
         paragraphs: [
-          "Members accessing the AuctionIQ HNI Distressed Asset Desk must maintain professional integrity during physical inspections and bank negotiations. Harassment of existing occupants or interference with bank authorized officers executing Section 14 physical possession is strictly prohibited.",
+          "When visiting properties using SmartDoor passes or during bank inspection days, all visitors must treat existing occupants and bank officials with courtesy and respect. Any harassment or unauthorized entry into locked premises is strictly prohibited.",
         ],
       },
     ],
   },
   contact: {
-    title: "Grievance Redressal & Institutional Support",
-    subtitle: "Official nodal officers, regulatory escalations, and dedicated investor support.",
-    category: "Investor Redressal",
+    title: "Help, Support & Grievance Redressal",
+    subtitle: "Get in touch with our team for property reports, site visits, or loan assistance.",
+    category: "Customer Support",
     sections: [
       {
-        heading: "1. Dedicated Advisory & Due Diligence Desk",
+        heading: "1. Customer Support & Property Advisory Desk",
         paragraphs: [
-          "For inquiries regarding live auction dossiers, scheduled physical site visits, or SARFAESI bridge financing, reach our institutional desk Monday through Saturday from 9:00 AM to 7:00 PM IST.",
+          "Have questions about a bank auction property, need help booking an in-person visit, or want to apply for a fast 15-day loan? Our expert support team is available Monday to Saturday from 9:00 AM to 7:00 PM IST.",
         ],
       },
       {
-        heading: "2. Statutory Nodal Grievance Officer",
+        heading: "2. Official Grievance Officer",
         paragraphs: [
-          "In compliance with the Information Technology Act, 2000, and rules made thereunder, the contact details of the Nodal Grievance Officer for AuctionIQ are as follows:",
-          "Nodal Officer: Legal & Compliance Directorate, AuctionIQ Technologies Private Limited. Express Towers, 14th Floor, Nariman Point, Mumbai, Maharashtra 400021. Email: grievance@auctioniq.in.",
+          "As required under the Information Technology Act, 2000, if you have any legal concern, privacy question, or unresolved complaint, you can directly contact our Nodal Grievance Officer:",
+          "Nodal Grievance Officer: Legal & Compliance Directorate, AuctionIQ Technologies Private Limited. Express Towers, 14th Floor, Nariman Point, Mumbai, Maharashtra 400021. Email: grievance@auctioniq.in | Phone: +91 22 6982 4400.",
         ],
       },
     ],
@@ -186,11 +187,11 @@ export default async function LegalPage({
               className="inline-flex items-center gap-2 text-xs font-semibold text-white/70 transition-colors hover:text-white sm:text-sm"
             >
               <ArrowLeft className="h-4 w-4" />
-              <span>Back to Home Terminal</span>
+              <span>Back to Home</span>
             </Link>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
               <ShieldCheck className="h-3.5 w-3.5 text-[#D4AF37]" />
-              <span>SARFAESI Act 2002 & DRT Regulatory Compliance</span>
+              <span>Compliant with SARFAESI Act, 2002 & Bank Auction Rules</span>
             </div>
           </div>
 
@@ -208,9 +209,9 @@ export default async function LegalPage({
           </div>
 
           <div className="mt-6 flex items-center gap-4 text-xs text-slate-400">
-            <span>Last Updated: Statutory 2026 Revision</span>
+            <span>Last Updated: 2026 Edition</span>
             <span>•</span>
-            <span>Jurisdiction: High Court of Judicature at Bombay</span>
+            <span>Legal Jurisdiction: Mumbai, India</span>
           </div>
         </div>
       </section>
@@ -264,7 +265,7 @@ export default async function LegalPage({
             <div className="rounded-2xl border border-charcoal/10 bg-white p-6 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)]">
               <h3 className="font-display text-sm font-bold uppercase tracking-wider text-navy flex items-center gap-2">
                 <Building2 className="h-4 w-4 text-[#8A6D3B]" />
-                <span>Registered Headquarters</span>
+                <span>Registered Office</span>
               </h3>
               <div className="mt-4 space-y-3 text-xs leading-relaxed text-charcoal/75">
                 <p className="flex items-start gap-2">
@@ -281,7 +282,7 @@ export default async function LegalPage({
                 </p>
                 <p className="flex items-center gap-2">
                   <Mail className="h-4 w-4 shrink-0 text-navy" />
-                  <span>compliance@auctioniq.in</span>
+                  <span>help@auctioniq.in</span>
                 </p>
               </div>
             </div>
@@ -289,10 +290,10 @@ export default async function LegalPage({
             <div className="rounded-2xl border border-charcoal/10 bg-[#FAF9F6] p-6">
               <h3 className="font-display text-sm font-bold text-navy flex items-center gap-2">
                 <Lock className="h-4 w-4 text-[#8A6D3B]" />
-                <span>Statutory Compliance Oversight</span>
+                <span>How We Protect You</span>
               </h3>
               <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
-                All property dossiers are examined against Section 13(2), 13(4), and Rule 8/9 of SARFAESI Act, 2002. Title investigations verify 30-year sub-registrar encumbrance certificates prior to cataloging.
+                Every bank auction listing is checked for valid SARFAESI legal notices. Our legal team verifies 30-year ownership records, checks for pending court disputes, and calculates all outstanding society dues before you bid.
               </p>
             </div>
           </aside>

@@ -50,9 +50,9 @@ export function DueDiligenceModal({
             <div>
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/15 px-2.5 py-0.5 text-xs font-semibold text-gold">
-                  Verified Due Diligence Report
+                  Property Legal &amp; Value Report
                 </span>
-                <span className="text-xs text-white/60">Ref: {property.ref}</span>
+                <span className="text-xs text-white/60">Notice Ref: {property.ref}</span>
               </div>
               <h2 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
                 {property.title}
@@ -74,25 +74,25 @@ export function DueDiligenceModal({
           {/* Quick Stats Bar */}
           <div className="mt-4 grid grid-cols-2 gap-2 rounded-xl bg-white/10 p-3 sm:grid-cols-4 text-xs">
             <div>
-              <span className="text-white/60">Reserve Price:</span>
+              <span className="text-white/60">Starting Price (Reserve):</span>
               <p className="font-bold text-white text-sm">{property.reservePriceDisplay}</p>
             </div>
             <div>
-              <span className="text-white/60">Safety Score:</span>
+              <span className="text-white/60">Safety Rating:</span>
               <p className="font-bold text-emerald-400 text-sm">
-                {dueDiligence.riskScore}/100 ({dueDiligence.overallRiskLevel})
+                {dueDiligence.riskScore}/100 ({dueDiligence.overallRiskLevel.toUpperCase()} RISK)
               </p>
             </div>
             <div>
-              <span className="text-white/60">Market Discount:</span>
+              <span className="text-white/60">Price Discount:</span>
               <p className="font-bold text-gold text-sm">
-                {dueDiligence.marketComparison.discountToMarketPercent}% below prevailing
+                {dueDiligence.marketComparison.discountToMarketPercent}% below market price
               </p>
             </div>
             <div>
-              <span className="text-white/60">Rental Yield:</span>
+              <span className="text-white/60">Expected Rental Return:</span>
               <p className="font-bold text-white text-sm">
-                {dueDiligence.marketComparison.grossRentalYieldPercent}% Gross Yield
+                {dueDiligence.marketComparison.grossRentalYieldPercent}% Annual Yield
               </p>
             </div>
           </div>
@@ -105,56 +105,56 @@ export function DueDiligenceModal({
             <div className="flex items-center justify-between border-b border-charcoal/10 pb-3">
               <div>
                 <h3 className="font-display text-base font-bold text-navy">
-                  1. Title &amp; Statutory Documentation Audit
+                  1. Title &amp; Ownership Check (Due Diligence)
                 </h3>
                 <p className="text-xs text-charcoal/65">
-                  Verified against CERSAI, DRT litigation databases, and revenue records.
+                  Verified against CERSAI central loan registry, court records, and local sub-registrar office.
                 </p>
               </div>
-              <Badge tone="success">Title Clean</Badge>
+              <Badge tone="success">100% Clear Title</Badge>
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
               <div className="rounded-lg bg-ivory/60 p-3">
-                <span className="text-charcoal/60">CERSAI Security Registry:</span>
+                <span className="text-charcoal/60">Central Loan Registry (CERSAI):</span>
                 <p className="flex items-center gap-1 font-semibold text-navy mt-0.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
                   <span>Registered ({dueDiligence.titleVerification.cersaiRef})</span>
                 </p>
                 <p className="text-[11px] text-charcoal/60 mt-1">
-                  Confirms no prior unreleased charges from other lenders.
+                  Verified: No hidden mortgages or unpaid loans from other banks or NBFCs.
                 </p>
               </div>
 
               <div className="rounded-lg bg-ivory/60 p-3">
-                <span className="text-charcoal/60">SARFAESI Statutory Process:</span>
+                <span className="text-charcoal/60">Bank Legal Process (SARFAESI):</span>
                 <p className="flex items-center gap-1 font-semibold text-navy mt-0.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
                   <span>{dueDiligence.titleVerification.sarfaesiNoticeStatus}</span>
                 </p>
                 <p className="text-[11px] text-charcoal/60 mt-1">
-                  Statutory 60-day demand and possession notice duly executed.
+                  The bank served the required 60-day borrower notice and took legal possession.
                 </p>
               </div>
 
               <div className="rounded-lg bg-ivory/60 p-3">
-                <span className="text-charcoal/60">Encumbrance Search (Sub-Registrar):</span>
+                <span className="text-charcoal/60">Sub-Registrar Ownership Search:</span>
                 <p className="flex items-center gap-1 font-semibold text-navy mt-0.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                  <span>{dueDiligence.titleVerification.encumbranceCertificateYears}-Year Clear Search</span>
+                  <span>{dueDiligence.titleVerification.encumbranceCertificateYears}-Year Clear Ownership Record</span>
                 </p>
                 <p className="text-[11px] text-charcoal/60 mt-1">
-                  No registered lis pendens or third-party attachments.
+                  No active court stays, family property disputes, or third-party claims.
                 </p>
               </div>
 
               <div className="rounded-lg bg-ivory/60 p-3">
-                <span className="text-charcoal/60">Society &amp; Municipal Status:</span>
+                <span className="text-charcoal/60">Society NOC &amp; Property Tax:</span>
                 <p className="font-semibold text-navy mt-0.5">
-                  {dueDiligence.titleVerification.societyNocStatus} · Municipal Tax Clear
+                  {dueDiligence.titleVerification.societyNocStatus} · Municipal Tax Paid
                 </p>
                 <p className="text-[11px] text-charcoal/60 mt-1">
-                  Pending maintenance dues: ₹{(dueDiligence.titleVerification.pendingSocietyDuesInr).toLocaleString("en-IN")}.
+                  Pending society maintenance: ₹{(dueDiligence.titleVerification.pendingSocietyDuesInr).toLocaleString("en-IN")} (factored into your bidding budget).
                 </p>
               </div>
             </div>
@@ -165,34 +165,34 @@ export function DueDiligenceModal({
             <div className="flex items-center justify-between border-b border-charcoal/10 pb-3">
               <div>
                 <h3 className="font-display text-base font-bold text-navy">
-                  2. Market Valuation &amp; Rental Comparables
+                  2. Real Market Value &amp; Rental Potential
                 </h3>
                 <p className="text-xs text-charcoal/65">
-                  Independent pricing benchmark comparing circle rates and recent registration deeds.
+                  Comparing the bank's starting price with official government circle rates and recent neighbor sales.
                 </p>
               </div>
               <span className="font-mono text-xs font-bold text-navy bg-gold/20 px-2.5 py-1 rounded">
-                ₹{dueDiligence.marketComparison.auctionReserveRatePerSqFt.toLocaleString("en-IN")}/sq.ft
+                ₹{dueDiligence.marketComparison.auctionReserveRatePerSqFt.toLocaleString("en-IN")}/sq.ft Starting Rate
               </span>
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-3 text-xs">
               <div className="rounded-lg border border-charcoal/10 p-3">
-                <span className="text-charcoal/60">Govt Ready Reckoner / Circle Rate:</span>
+                <span className="text-charcoal/60">Govt Circle Rate (Ready Reckoner):</span>
                 <p className="font-bold text-navy text-sm mt-0.5">
                   ₹{dueDiligence.marketComparison.circleRatePerSqFt.toLocaleString("en-IN")}/sq.ft
                 </p>
               </div>
               <div className="rounded-lg border border-charcoal/10 p-3">
-                <span className="text-charcoal/60">Prevailing Secondary Market Rate:</span>
+                <span className="text-charcoal/60">Typical Market Selling Rate:</span>
                 <p className="font-bold text-navy text-sm mt-0.5">
                   ₹{dueDiligence.marketComparison.prevailingMarketRatePerSqFt.toLocaleString("en-IN")}/sq.ft
                 </p>
               </div>
               <div className="rounded-lg border border-charcoal/10 p-3">
-                <span className="text-charcoal/60">Expected Monthly Rental:</span>
+                <span className="text-charcoal/60">Expected Monthly Rent:</span>
                 <p className="font-bold text-emerald-700 text-sm mt-0.5">
-                  ₹{dueDiligence.marketComparison.expectedMonthlyRentInr.toLocaleString("en-IN")}/mo
+                  ₹{dueDiligence.marketComparison.expectedMonthlyRentInr.toLocaleString("en-IN")}/month
                 </p>
               </div>
             </div>
@@ -200,16 +200,16 @@ export function DueDiligenceModal({
             {/* Registry Comparables Table */}
             <div className="mt-4">
               <p className="text-xs font-semibold text-charcoal/70 mb-2 uppercase tracking-wider">
-                Recent Sub-Registrar Registered Transactions (Micro-Market)
+                Recent Real Transactions Registered in This Exact Neighborhood
               </p>
               <div className="overflow-x-auto rounded-lg border border-charcoal/15">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-[#f1f5f9] text-charcoal/75">
                     <tr>
-                      <th className="p-2.5">Building / Location</th>
-                      <th className="p-2.5">Unit Config</th>
-                      <th className="p-2.5">Registered Rate</th>
-                      <th className="p-2.5">Deed Date</th>
+                      <th className="p-2.5">Building / Street</th>
+                      <th className="p-2.5">Flat Configuration</th>
+                      <th className="p-2.5">Registered Sale Rate</th>
+                      <th className="p-2.5">Registration Date</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-charcoal/10">
@@ -234,65 +234,65 @@ export function DueDiligenceModal({
             <div className="flex items-center justify-between border-b border-charcoal/10 pb-3">
               <div>
                 <h3 className="font-display text-base font-bold text-navy">
-                  3. Maximum Bidding Limit Planner
+                  3. Safe Bidding Price Planner
                 </h3>
                 <p className="text-xs text-charcoal/65">
-                  Scientifically modeled ceiling limits to protect you against auction overbidding.
+                  Pre-calculated bidding ceilings so you never overbid or compromise your profit margin.
                 </p>
               </div>
-              <Badge tone="warning">Bidding Ceiling</Badge>
+              <Badge tone="warning">Bidding Budget</Badge>
             </div>
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border-2 border-emerald-500/30 bg-emerald-50/50 p-4">
                 <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-                  Recommended Conservative Bid Ceiling
+                  Recommended Safe Bidding Limit
                 </span>
                 <p className="mt-1 font-display text-2xl font-extrabold text-navy">
                   ₹{(dueDiligence.maxBiddingPlanner.conservativeCeilingInr).toLocaleString("en-IN")}
                 </p>
                 <p className="mt-1 text-xs text-charcoal/70">
-                  Maintains a minimum 25% safety margin after factoring all costs.
+                  Guarantees at least a 25% profit margin after paying all taxes, repairs, and fees.
                 </p>
               </div>
 
               <div className="rounded-xl border border-gold/50 bg-gold/10 p-4">
                 <span className="text-xs font-semibold uppercase tracking-wider text-charcoal/70">
-                  Aggressive Hard Ceiling
+                  Maximum Hard Ceiling
                 </span>
                 <p className="mt-1 font-display text-2xl font-bold text-navy">
                   ₹{(dueDiligence.maxBiddingPlanner.aggressiveCeilingInr).toLocaleString("en-IN")}
                 </p>
                 <p className="mt-1 text-xs text-charcoal/70">
-                  Absolute cutoff above which the investment risk outweighs financial yield.
+                  Absolute maximum price. Never bid above this amount under any circumstances.
                 </p>
               </div>
             </div>
 
             {/* Cost Breakdown */}
             <div className="mt-4 rounded-lg bg-ivory/60 p-3.5 text-xs">
-              <span className="font-semibold text-navy">Deductions Factored in Model:</span>
+              <span className="font-semibold text-navy">Extra Costs Already Factored into These Limits:</span>
               <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 text-charcoal/80">
                 <div>
-                  <span className="text-charcoal/50">Renovation / Refurbishment:</span>
+                  <span className="text-charcoal/50">Renovation &amp; Paint:</span>
                   <p className="font-semibold">
                     ₹{(dueDiligence.maxBiddingPlanner.costBreakdown.expectedRenovationInr).toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div>
-                  <span className="text-charcoal/50">Unpaid Dues Provision:</span>
+                  <span className="text-charcoal/50">Unpaid Society Dues:</span>
                   <p className="font-semibold">
                     ₹{(dueDiligence.maxBiddingPlanner.costBreakdown.unpaidDuesProvisionInr).toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div>
-                  <span className="text-charcoal/50">Stamp Duty &amp; Registration:</span>
+                  <span className="text-charcoal/50">Stamp Duty &amp; Registry:</span>
                   <p className="font-semibold">
                     ₹{(dueDiligence.maxBiddingPlanner.costBreakdown.stampDutyAndRegistrationInr).toLocaleString("en-IN")}
                   </p>
                 </div>
                 <div>
-                  <span className="text-charcoal/50">Financing / Cost of Capital:</span>
+                  <span className="text-charcoal/50">Loan &amp; Interest Cost:</span>
                   <p className="font-semibold">
                     ₹{(dueDiligence.maxBiddingPlanner.costBreakdown.costOfCapitalInr).toLocaleString("en-IN")}
                   </p>
@@ -304,7 +304,7 @@ export function DueDiligenceModal({
           {/* SECTION 4: IDENTIFIED RISKS & MITIGATION STRATEGY */}
           <section className="rounded-xl border border-charcoal/15 bg-white p-5 shadow-sm">
             <h3 className="font-display text-base font-bold text-navy border-b border-charcoal/10 pb-3">
-              4. Potential Property Issues &amp; Risk Mitigation Matrix
+              4. Property Checks &amp; How We Protect You
             </h3>
 
             <div className="mt-4 space-y-3">
@@ -315,15 +315,15 @@ export function DueDiligenceModal({
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-navy">
-                      Category: {issue.category}
+                      Check: {issue.category}
                     </span>
                     <Badge tone={issue.severity === "low" ? "success" : "warning"}>
-                      {issue.severity.toUpperCase()} SEVERITY
+                      {issue.severity.toUpperCase()} RISK
                     </Badge>
                   </div>
                   <p className="mt-1.5 text-charcoal/80">{issue.summary}</p>
                   <div className="mt-2 rounded bg-emerald-50/70 p-2 text-emerald-900 border-l-2 border-emerald-600">
-                    <span className="font-semibold">Mitigation Strategy: </span>
+                    <span className="font-semibold">How AuctionIQ Solves This: </span>
                     <span>{issue.mitigationStrategy}</span>
                   </div>
                 </div>
@@ -335,7 +335,7 @@ export function DueDiligenceModal({
         {/* Modal Actions Footer */}
         <div className="border-t border-charcoal/10 bg-ivory/50 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
           <div className="text-xs text-charcoal/60">
-            Report authenticated by AuctionIQ Research Engine. Data cross-referenced with CERSAI &amp; Sub-Registrar.
+            Report authenticated by AuctionIQ. All property records verified with CERSAI and Sub-Registrar.
           </div>
           <div className="flex flex-wrap gap-2">
             {onArrangeInspection && (
@@ -347,7 +347,7 @@ export function DueDiligenceModal({
                 tone="primary"
               >
                 <KeyRound className="h-4 w-4 inline mr-1.5" />
-                <span>Arrange SmartDoor Inspection</span>
+                <span>Book Property Visit (SmartDoor)</span>
               </Button>
             )}
             {onApplyFinance && (
@@ -359,7 +359,7 @@ export function DueDiligenceModal({
                 tone="accent"
               >
                 <Coins className="h-4 w-4 inline mr-1.5" />
-                <span>Get Auction Finance Assistance</span>
+                <span>Apply for Fast 15-Day Loan</span>
               </Button>
             )}
             <Button onClick={onClose} tone="secondary">
