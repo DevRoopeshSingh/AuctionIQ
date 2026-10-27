@@ -50,14 +50,14 @@
 | P4 | Advanced alerts (document availability, EMD deadlines, auction date changes) |
 | P5 | Legal-review workspace and advocate credential verification |
 | P6 | DRT case/application tracking dashboard |
-| P7 | Full inspection workflow, checklist, observations, history |
+| P7 | SmartDoor inspection access & visitor eKYC workflow (Essential & Premium) |
 | P8 | Investment exit planner (Premium) |
 
 ### Phase 3 — Deferred
 
 | # | Feature | Condition |
 |---|---|---|
-| D1 | SmartDoor integration | Partner authorisation, API, commercial terms |
+| D1 | SmartDoor fleet bulk hardware deployment | Bank/ARC hardware rollout agreement |
 | D2 | Automated data ingestion | Approved sources and permissions only |
 | D3 | Document extraction / structured parsing | — |
 | D4 | Institutional/professional investor dashboard | — |

@@ -68,13 +68,16 @@ Inputs: bid amount, stamp duty %, registration, legal/professional fees, society
 - Moderation actions: dismiss, remove (soft), warn, suspend (admin), record reason.
 - Badges: Active Member, Helpful Contributor, Inspection Contributor, Verified Professional (only after credential record exists).
 
-## 2.6 Inspection Request Rules (MVP — logged)
+## 2.6 Inspection Arrangement Rules (SmartDoor & Visitor eKYC)
 
-- Essential: max 5 requests per calendar month; counter shown; server-enforced.
-- Premium: unlimited with fair-use flag at >10/month for admin review (no hard block).
-- Fields: property, preferred dates (1–3), full name, phone, consent checkbox (inspection consent), notes.
-- Statuses: requested → confirmed / declined → completed / cancelled.
-- Notifications: request received, status change, reminder 24h before confirmed date (email + in-app).
+- **Entitlement**: Logged-in members with active subscriptions only. Free users cannot book inspections.
+- **Quota**: Essential tier: max 5 requests per calendar month (counter tracked server-side); Premium tier: unlimited fair-use (flagged for review at >10/mo).
+- **Eligibility**: Properties with `inspection_available = true` and authorized inspection windows.
+- **Visitor eKYC Requirement**: Prior to issuing property access, the individual visiting must complete digital identity verification (DigiLocker / Aadhaar OTP). In compliance with the DPDP Act 2023, only masked identity identifiers (`XXXX-XXXX-1234`) and verification transaction references are stored.
+- **SmartDoor IoT Access Integration**: For SmartDoor-equipped properties, once eKYC is verified, the system calls SmartDoor API to generate a time-bounded Digital Access Pass (dynamic OTP / BLE access token / QR code).
+- **Statuses**: `requested` → `kyc_pending` → `confirmed` → `active_access` → `completed` / `cancelled` / `declined`.
+- **Telemetry & Webhooks**: SmartDoor webhooks capture door unlock (`visit.started`) and lock (`visit.ended`) to mark inspection completion and audit entry.
+- **Notifications**: Request received, eKYC verification confirmation, digital access pass ready with 24h & 2h reminders, and completion receipt.
 
 ## 2.7 Advocate Coordination (MVP — enquiry only)
 

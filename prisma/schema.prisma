@@ -91,10 +91,19 @@ enum contribution_type {
 
 enum inspection_status {
   requested
+  kyc_pending
   confirmed
+  active_access
   completed
   cancelled
   declined
+}
+
+enum kyc_status {
+  pending
+  verified
+  failed
+  expired
 }
 
 enum simulation_difficulty {
@@ -167,6 +176,7 @@ model profiles {
   resolved_forum_reports     forum_reports[]             @relation("forum_resolved_by")
   watchlists                 watchlists[]
   inspections                inspections[]
+  visitor_kycs               visitor_kyc[]
   advocate_enquiries         advocate_enquiries[]
   notifications              notifications[]
   simulation_sessions        simulation_sessions[]
@@ -264,6 +274,8 @@ model properties {
   reported_dues_inr        BigInt?
   dues_verification_status evidence_label             @default(unknown)
   inspection_available     Boolean                    @default(false)
+  smartdoor_property_id    String?                    @db.Text
+  smartdoor_device_id      String?                    @db.Text
   listing_status           listing_status             @default(draft)
   published_at             DateTime?                  @db.Timestamptz(6)
   created_by               String                     @db.Uuid
@@ -439,24 +451,69 @@ model watchlists {
 
 /// Schema.md §5.2 — inspections
 model inspections {
-  id              String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  property_id     String            @db.Uuid
-  user_id         String            @db.Uuid
-  preferred_dates Json              @db.JsonB
-  status          inspection_status @default(requested)
-  confirmed_date  DateTime?         @db.Timestamptz(6)
-  notes           String?           @db.Text
-  admin_note      String?           @db.Text
-  consent_at      DateTime          @db.Timestamptz(6)
-  created_at      DateTime          @default(now()) @db.Timestamptz(6)
-  updated_at      DateTime          @default(now()) @db.Timestamptz(6)
-  property        properties        @relation(fields: [property_id], references: [id], onDelete: Restrict)
-  user            profiles          @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  id              String                   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  property_id     String                   @db.Uuid
+  user_id         String                   @db.Uuid
+  visitor_kyc_id  String?                  @db.Uuid
+  preferred_dates Json                     @db.JsonB
+  status          inspection_status        @default(requested)
+  confirmed_date  DateTime?                @db.Timestamptz(6)
+  notes           String?                  @db.Text
+  admin_note      String?                  @db.Text
+  consent_at      DateTime                 @db.Timestamptz(6)
+  created_at      DateTime                 @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime                 @default(now()) @db.Timestamptz(6)
+  property        properties               @relation(fields: [property_id], references: [id], onDelete: Restrict)
+  user            profiles                 @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  visitor_kyc     visitor_kyc?             @relation(fields: [visitor_kyc_id], references: [id], onDelete: Restrict)
+  smartdoor_pass  smartdoor_access_passes?
 
   @@index([user_id, created_at])
   @@index([property_id])
   @@index([status])
+  @@index([visitor_kyc_id])
   @@map("inspections")
+}
+
+/// Visitor eKYC for property physical inspections (DPDP Act 2023 compliant)
+model visitor_kyc {
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id          String        @db.Uuid
+  full_name        String        @db.Text
+  phone            String        @db.Text
+  masked_id_number String        @db.Text
+  id_type          String        @default("aadhaar_digilocker") @db.Text
+  verification_ref String        @db.Text
+  status           kyc_status    @default(pending)
+  verified_at      DateTime?     @db.Timestamptz(6)
+  created_at       DateTime      @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime      @default(now()) @db.Timestamptz(6)
+  user             profiles      @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  inspections      inspections[]
+
+  @@index([user_id])
+  @@index([status])
+  @@map("visitor_kyc")
+}
+
+/// SmartDoor dynamic IoT lock access passes for physical inspections
+model smartdoor_access_passes {
+  id                 String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  inspection_id      String      @unique @db.Uuid
+  external_pass_id   String      @db.Text
+  door_device_id     String      @db.Text
+  access_code_masked String?     @db.Text
+  valid_from         DateTime    @db.Timestamptz(6)
+  valid_to           DateTime    @db.Timestamptz(6)
+  unlocked_at        DateTime?   @db.Timestamptz(6)
+  telemetry          Json?       @db.JsonB
+  created_at         DateTime    @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime    @default(now()) @db.Timestamptz(6)
+  inspection         inspections @relation(fields: [inspection_id], references: [id], onDelete: Cascade)
+
+  @@index([door_device_id])
+  @@index([external_pass_id])
+  @@map("smartdoor_access_passes")
 }
 
 /// Schema.md §5.2 — advocate_enquiries

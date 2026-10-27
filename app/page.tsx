@@ -1,570 +1,430 @@
-import { Badge } from "@/components/ui/primitives";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  Search,
+  MapPin,
+  Building,
+  Building2,
+  Compass,
+  Landmark,
+  ShieldCheck,
+  TrendingUp,
+  Calculator,
+  KeyRound,
+  Coins,
+  Crown,
+  ArrowRight,
+  CheckCircle2,
+  Shield,
+  Percent,
+} from "lucide-react";
+import { ExplorePropertiesSection } from "@/components/inspections/explore-properties-section";
 
 export default function Home() {
+  const router = useRouter();
+  const [heroSearch, setHeroSearch] = useState("");
+
+  const handleHeroSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (heroSearch.trim()) {
+      router.push(`/explore?q=${encodeURIComponent(heroSearch.trim())}`);
+    } else {
+      router.push("/explore");
+    }
+  };
+
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <section className="grid gap-10 py-16 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-24">
-        <div>
-          <Badge>South Mumbai · Navi Mumbai</Badge>
-          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-tight text-navy sm:text-6xl">
-            Make your next auction decision with better information.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-charcoal/75">
-            AuctionIQ is building a clearer way to understand bank-auction properties, key dates, and due diligence.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              className="inline-flex min-h-12 items-center justify-center rounded-md bg-navy px-5 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-navy/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-              href="#how-it-helps"
-            >
-              How AuctionIQ plans to help
-            </Link>
-            <Link
-              className="inline-flex min-h-12 items-center justify-center rounded-md border border-navy px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-navy/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
-              href="#pre-auction-checklist"
-            >
-              View the due-diligence checklist
-            </Link>
-          </div>
-          <p className="mt-6 text-sm text-charcoal/70">The platform is in foundations setup. Property intelligence features are not live yet.</p>
-        </div>
-        <div className="overflow-hidden rounded-2xl border border-gold/40 bg-white shadow-xl transition-all hover:shadow-2xl">
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy/5">
-            <Image
-              src="/images/mumbai-property.jpg"
-              alt="Prime South Mumbai and coastal waterfront real estate architecture along Marine Drive"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover transition-transform duration-700 hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent" />
-            <div className="absolute top-3.5 left-3.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-navy/80 px-3 py-1 text-xs font-semibold text-ivory backdrop-blur-md">
-                <span className="h-2 w-2 rounded-full bg-gold" />
-                South Mumbai Focus Area
-              </span>
-            </div>
-            <div className="absolute bottom-3.5 left-4 right-4 text-white">
-              <p className="font-display text-lg font-bold text-white drop-shadow-sm">Bank-Auction Intelligence</p>
-              <p className="text-xs text-white/80">Structured research across prime residential &amp; commercial assets</p>
-            </div>
-          </div>
-          <div className="p-6">
-            <p className="font-display text-xl font-semibold text-navy">A more informed starting point</p>
-            <p className="mt-2 text-sm leading-6 text-charcoal/75">
-              Clear property facts, source context, and practical learning resources are planned for upcoming releases.
-            </p>
-            <div className="mt-4 flex items-center justify-between border-t border-charcoal/10 pt-4 text-xs font-semibold">
-              <span className="text-warning">Listings and member tools are coming soon.</span>
-              <span className="text-charcoal/50">SARFAESI · DRT Research</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="explore-title" className="border-t border-charcoal/10 py-14" id="explore">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <Badge tone="warning">Property Discovery</Badge>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl" id="explore-title">
-              Explore curated bank auctions
-            </h2>
-            <p className="mt-3 leading-7 text-charcoal/75">
-              Preview active bank auction notices across South Mumbai and Navi Mumbai. Public previews show verified reserve prices, general localities, and key dates. Detailed legal records, verified encumbrances, and exact unit data are unlocked for members.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2 text-xs font-semibold">
-            <span className="rounded-full bg-navy px-3.5 py-1.5 text-white">All Areas (14)</span>
-            <span className="rounded-full border border-charcoal/20 bg-white px-3.5 py-1.5 text-charcoal/80">South Mumbai (8)</span>
-            <span className="rounded-full border border-charcoal/20 bg-white px-3.5 py-1.5 text-charcoal/80">Navi Mumbai (6)</span>
-          </div>
+    <div>
+      {/* 1. BESPOKE HERO SECTION: Refined mesh gradient, elevated typography & authoritative copy */}
+      <section className="relative overflow-hidden bg-[#06101E] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(197,160,89,0.18),rgba(255,255,255,0))] bg-gradient-to-br from-[#06101E] via-[#0B1E38] to-[#040913] text-white">
+        {/* Background Panoramic Sea Link Image with Rich Gradient Tint */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            alt="Mumbai Bandra-Worli Sea Link cable-stayed bridge at golden sunset dusk"
+            className="object-cover object-center opacity-30 mix-blend-luminosity"
+            fill
+            priority
+            sizes="100vw"
+            src="/images/sealink_skyline_hero.jpg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06101E] via-[#06101E]/90 to-[#06101E]/60" />
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              ref: "BOM-WOR-042",
-              type: "Residential · 3 BHK",
-              title: "Sea-Facing Residence · Worli Sea Face",
-              area: "South Mumbai",
-              reserve: "₹4,85,00,000",
-              emd: "₹48,50,000 (10%)",
-              carpet: "1,620 sq.ft",
-              date: "18 Nov 2026",
-              possession: "Physical Possession Pending",
-              noticeType: "SARFAESI Statutory Notice",
-              lockedItems: ["Exact unit & building details", "Title search report summary"],
-            },
-            {
-              ref: "BOM-NP-019",
-              type: "Commercial Office Suite",
-              title: "Prime Commercial Floor · Nariman Point",
-              area: "South Mumbai",
-              reserve: "₹3,20,00,000",
-              emd: "₹32,00,000 (10%)",
-              carpet: "1,150 sq.ft built-up",
-              date: "25 Nov 2026",
-              possession: "Symbolic Possession",
-              noticeType: "DRT Public Auction",
-              lockedItems: ["Full auction notice PDF", "Encumbrance certificate"],
-            },
-            {
-              ref: "NAV-PBR-108",
-              type: "Residential · 4 BHK Penthouse",
-              title: "Waterfront Tower · Palm Beach Road",
-              area: "Navi Mumbai",
-              reserve: "₹2,45,00,000",
-              emd: "₹24,50,000 (10%)",
-              carpet: "2,380 sq.ft",
-              date: "04 Dec 2026",
-              possession: "Inspection Window Scheduled",
-              noticeType: "SARFAESI Auction",
-              lockedItems: ["Housing society NOC status", "Acquisition cost breakdown"],
-            },
-          ].map((item) => (
-            <div className="flex flex-col justify-between overflow-hidden rounded-xl border border-charcoal/15 bg-white shadow-sm transition-all hover:border-gold/60 hover:shadow-md" key={item.ref}>
-              <div className="p-5">
-                <div className="flex items-center justify-between text-xs font-semibold">
-                  <span className="rounded bg-navy/10 px-2 py-0.5 text-navy">{item.area}</span>
-                  <span className="font-mono text-charcoal/50">{item.ref}</span>
-                </div>
-                <h3 className="mt-3 font-display text-lg font-bold text-navy">{item.title}</h3>
-                <p className="text-xs font-medium text-charcoal/60">{item.type} · {item.noticeType}</p>
-
-                <div className="mt-4 rounded-lg bg-[#f1f5f9] p-3 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-charcoal/65">Reserve Price:</span>
-                    <span className="font-bold text-navy">{item.reserve}</span>
-                  </div>
-                  <div className="mt-1 flex justify-between">
-                    <span className="text-charcoal/65">Earnest Money (EMD):</span>
-                    <span className="font-semibold text-charcoal/85">{item.emd}</span>
-                  </div>
-                  <div className="mt-1 flex justify-between">
-                    <span className="text-charcoal/65">Auction Date:</span>
-                    <span className="font-semibold text-charcoal/85">{item.date}</span>
-                  </div>
-                </div>
-
-                <div className="mt-4 space-y-1.5 border-t border-charcoal/10 pt-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-charcoal/55">Member Tier Preview</p>
-                  {item.lockedItems.map((locked) => (
-                    <div className="flex items-center gap-2 text-xs text-charcoal/70" key={locked}>
-                      <span aria-hidden="true" className="text-gold">🔒</span>
-                      <span>{locked}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:py-24">
+          <div className="grid gap-12 lg:grid-cols-[1.25fr_0.95fr] lg:items-center">
+            {/* Left Hero Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/10 px-3.5 py-1 text-xs font-semibold tracking-wider uppercase text-[#D4AF37] backdrop-blur-sm">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#D4AF37]" />
+                <span>SARFAESI &amp; DRT AUCTION INTELLIGENCE</span>
               </div>
 
-              <div className="border-t border-charcoal/10 bg-ivory/50 p-4">
-                <Link
-                  className="inline-flex w-full min-h-10 items-center justify-center rounded-md border border-navy/80 bg-white px-3 py-2 text-xs font-semibold text-navy transition-colors hover:bg-navy hover:text-white"
-                  href="/auth/signup"
-                >
-                  Join member waitlist to unlock
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-5 text-center text-xs text-charcoal/60">
-          Public teasers show general areas only. Sample previews for interface demonstration during platform setup.
-        </p>
-      </section>
+              <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white leading-[1.08] sm:leading-[1.06]">
+                Acquire Bank-Auction Assets with{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E5C17B] via-[#F5E6B8] to-[#C5A059]">
+                  Institutional Clarity.
+                </span>
+              </h1>
 
-      <section className="border-t border-charcoal/10 py-14" aria-labelledby="simulator-title"><div className="mx-auto max-w-3xl text-center"><Badge tone="warning">Zero Financial Risk</Badge><h2 className="mt-3 font-display text-3xl font-bold text-navy">Practice before the auction</h2><p className="mt-3 text-charcoal/75">Learn bidding flow in a fictional, zero-risk training environment.</p><Link className="mt-6 inline-flex min-h-12 items-center justify-center rounded-md bg-navy px-6 font-semibold text-white" href="/simulator">Open the simulator</Link></div></section>
-
-      <section aria-labelledby="academy-title" className="border-t border-charcoal/10 py-14" id="academy">
-        <div className="max-w-3xl">
-          <Badge tone="warning">Education &amp; Methodology</Badge>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl" id="academy-title">
-            AuctionIQ Learning Academy
-          </h2>
-          <p className="mt-3 leading-7 text-charcoal/75">
-            Master the legal frameworks, statutory risks, and due-diligence protocols governing Indian bank auctions under SARFAESI and DRT procedures.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: "SARFAESI Act & Section 13(4) Explained",
-              readTime: "6 min read",
-              level: "Core Legal",
-              summary: "How banks enforce security interest without court orders, statutory 30-day notice windows, and buyer rights.",
-            },
-            {
-              title: "Physical vs Symbolic Possession",
-              readTime: "8 min read",
-              level: "Risk Due Diligence",
-              summary: "Why symbolic possession doesn't guarantee vacant keys, and how Section 14 magistrate orders work in Mumbai.",
-            },
-            {
-              title: "Uncovering Hidden Arrears & Liabilities",
-              readTime: "7 min read",
-              level: "Financial Audit",
-              summary: "How municipal property taxes, cooperative society maintenance dues, and unpaid builder charges attach to properties.",
-            },
-            {
-              title: "The True Net Acquisition Cost Formula",
-              readTime: "5 min read",
-              level: "Financial Planning",
-              summary: "Calculating costs beyond the hammer price: 10% EMD, 15% next-day, 6% Maharashtra stamp duty, and 1% TDS.",
-            },
-          ].map((item) => (
-            <div className="flex flex-col justify-between rounded-xl border border-charcoal/10 bg-white p-5 shadow-sm transition-all hover:border-gold/50 hover:shadow-md" key={item.title}>
-              <div>
-                <div className="flex items-center justify-between text-[11px] font-semibold text-charcoal/60">
-                  <span className="rounded bg-navy/10 px-2 py-0.5 text-navy">{item.level}</span>
-                  <span>{item.readTime}</span>
-                </div>
-                <h3 className="mt-3 font-display text-base font-bold text-navy">{item.title}</h3>
-                <p className="mt-2 text-xs leading-5 text-charcoal/70">{item.summary}</p>
-              </div>
-              <div className="mt-4 border-t border-charcoal/10 pt-3">
-                <Link className="text-xs font-semibold text-navy hover:underline" href="#auction-process">
-                  Read guide outline →
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 rounded-xl border border-gold/40 bg-gradient-to-r from-navy to-[#18385c] p-6 text-white shadow-md sm:p-8">
-          <div className="grid gap-6 md:grid-cols-[1.3fr_0.7fr] md:items-center">
-            <div>
-              <span className="rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold text-gold">Self-Assessment</span>
-              <h3 className="mt-2 font-display text-2xl font-bold text-white">Test your auction readiness in 5 minutes</h3>
-              <p className="mt-2 text-sm leading-6 text-white/80">
-                Answer scenario-based questions to evaluate your understanding of possession status, title verification, and statutory deadlines before participating in real auctions.
+              <p className="max-w-2xl text-base sm:text-lg leading-relaxed text-white/80 font-normal">
+                Independent intelligence mapping verified SARFAESI statutory notices, DRT public auctions, and Ready Reckoner circle rates. We uncover the true acquisition cost—factoring unpaid society maintenance, physical possession status, and stamp duties—before you commit capital.
               </p>
-            </div>
-            <div className="text-left md:text-right">
-              <Link
-                className="inline-flex min-h-11 items-center justify-center rounded-md bg-gold px-5 py-2.5 text-sm font-bold text-charcoal shadow transition-colors hover:bg-gold/90"
-                href="#pre-auction-checklist"
+
+              {/* Search Bar with Sophisticated Depth & Lucide Icon */}
+              <form
+                className="max-w-2xl rounded-2xl bg-white/95 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-sm ring-1 ring-black/5 hover:ring-black/15 focus-within:ring-2 focus-within:ring-[#C5A059] flex flex-col sm:flex-row gap-2 transition-all duration-200"
+                onSubmit={handleHeroSearch}
               >
-                Review Due-Diligence Checklist
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section aria-labelledby="how-it-helps-title" className="border-t border-charcoal/10 py-12" id="how-it-helps">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-          <div>
-            <Badge tone="warning">Planned for upcoming releases</Badge>
-            <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-navy" id="how-it-helps-title">
-              A clearer way to prepare
-            </h2>
-            <p className="mt-3 max-w-2xl leading-7 text-charcoal/75">
-              AuctionIQ is being built to help people approach bank-auction research with a more structured set of questions.
-            </p>
-            <ol className="mt-6 grid gap-4 sm:grid-cols-3">
-              {[
-                ["01", "Understand the notice", "Get familiar with auction terms, dates, and the information provided."],
-                ["02", "Review the available facts", "Bring property details and source context together for easier review."],
-                ["03", "Plan your due diligence", "Identify questions to resolve before deciding whether to proceed."],
-              ].map(([number, title, description]) => (
-                <li className="rounded-lg border border-charcoal/10 bg-white p-4" key={number}>
-                  <span aria-hidden="true" className="font-display text-sm font-bold text-warning">{number}</span>
-                  <h3 className="mt-2 font-semibold text-navy">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-charcoal/70">{description}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div aria-label="Illustration of AuctionIQ's focus areas" className="overflow-hidden rounded-xl border border-gold/40 bg-white shadow-md">
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy/5">
-              <Image
-                src="/images/navi-mumbai.jpg"
-                alt="Modern planned skyline and waterfront along Palm Beach Road in Navi Mumbai"
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent" />
-              <div className="absolute bottom-3 left-4 right-4">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Geographic Focus</span>
-                <p className="font-display text-sm font-bold text-white">Navi Mumbai &amp; South Mumbai Corridors</p>
-              </div>
-            </div>
-            <div className="p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal/65">Area focus</p>
-              <div className="mt-3 grid grid-cols-2 gap-3 text-center">
-                <div className="rounded-md border border-charcoal/10 bg-[#f1f5f9] px-2 py-2.5">
-                  <p className="text-xs font-bold text-navy">South Mumbai</p>
-                  <p className="mt-0.5 text-[11px] text-charcoal/60">Colaba to Worli</p>
+                <div className="relative flex-1 flex items-center pl-3">
+                  <Search className="h-4 w-4 text-charcoal/45 mr-2.5 shrink-0" />
+                  <input
+                    aria-label="Search auctions by micro-market, bank, or notice"
+                    className="w-full text-xs sm:text-sm text-navy placeholder:text-charcoal/50 focus:outline-none bg-transparent"
+                    onChange={(e) => setHeroSearch(e.target.value)}
+                    placeholder="Search by micro-market, bank (e.g., SBI, BOB), or asset type..."
+                    type="text"
+                    value={heroSearch}
+                  />
                 </div>
-                <div className="rounded-md border border-charcoal/10 bg-[#f1f5f9] px-2 py-2.5">
-                  <p className="text-xs font-bold text-navy">Navi Mumbai</p>
-                  <p className="mt-0.5 text-[11px] text-charcoal/60">Vashi to Panvel</p>
+                <button
+                  className="rounded-xl bg-[#C5A059] px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-[#b08e4c] hover:shadow-lg active:scale-[0.98]"
+                  type="submit"
+                >
+                  Search Auctions
+                </button>
+              </form>
+
+              {/* Locality & Asset Type Chips with Lucide Icons */}
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
+                {[
+                  { label: "Mumbai", icon: MapPin, href: "/explore?city=Mumbai" },
+                  { label: "Navi Mumbai", icon: MapPin, href: "/explore?city=Navi Mumbai" },
+                  { label: "Thane", icon: MapPin, href: "/explore?q=Thane" },
+                  { label: "Residential", icon: Building, href: "/explore?type=Residential" },
+                  { label: "Commercial", icon: Building2, href: "/explore?type=Commercial" },
+                  { label: "Land / Plot", icon: Compass, href: "/explore?type=Land" },
+                  { label: "All Scheduled Banks", icon: Landmark, href: "/explore" },
+                ].map(({ label, icon: Icon, href }) => (
+                  <Link
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 font-medium text-white/90 backdrop-blur-sm shadow-xs transition-all duration-200 hover:bg-white/20 hover:text-white hover:border-white/30 active:scale-95"
+                    href={href}
+                    key={label}
+                  >
+                    <Icon className="h-3 w-3 text-[#D4AF37]" />
+                    <span>{label}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Feature Card: Elevated Breathing Room, Padding & High-Trust Tone */}
+            <div className="rounded-2xl border border-white/15 bg-[#071324]/85 p-8 sm:p-9 lg:p-10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-xl ring-1 ring-white/10 text-white">
+              <div className="border-b border-white/10 pb-4">
+                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#D4AF37]">
+                  INSTITUTIONAL TRUST BENCHMARK
+                </span>
+                <h2 className="mt-1 font-display text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  Why Seasoned Investors Rely on AuctionIQ
+                </h2>
+                <p className="mt-1 text-xs text-white/65 leading-relaxed font-normal">
+                  Proprietary due diligence and regulatory clarity for Indian distressed bank assets.
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-5 sm:space-y-6 text-xs">
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">Verified SARFAESI &amp; DRT Notices</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Authenticated directly against official bank recovery officer proclamations and statutory DRT registries.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <TrendingUp className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">Market Intelligence &amp; Circle Rates</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Compare reserve prices against prevailing Ready Reckoner circle rates and recent sub-registrar registered deeds.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <Calculator className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">True Acquisition Cost Accounting</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Audit unrecorded society maintenance dues, municipal tax arrears, and stamp duty obligations before bidding.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <KeyRound className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">SmartDoor Physical Inspection</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Direct on-site walkthroughs scheduled with biometric eKYC digital access passes and authorized officer escorts.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <Coins className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">15-Day Balance Settlement Capital</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Pre-auction underwriting and bridge funding to fulfill strict 15-day statutory bank payment windows.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-white/10 bg-white/5 text-[#D4AF37] shadow-xs">
+                    <Crown className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white/95">Private Family Office &amp; HNI Desk</h3>
+                    <p className="text-white/65 mt-0.5 leading-relaxed font-normal">
+                      Curated distress portfolios, cross-collateral structuring, and dedicated legal representation for family offices.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <p className="mt-3 text-center text-xs text-charcoal/60">Regional focus · no live property locations yet</p>
             </div>
           </div>
         </div>
       </section>
-      <section aria-labelledby="auction-process-title" className="border-t border-charcoal/10 py-12" id="auction-process">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warning">Educational overview</p>
-          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy" id="auction-process-title">
-            How a bank auction generally works
-          </h2>
-          <p className="mt-3 leading-7 text-charcoal/75">
-            The sale notice and applicable rules set the terms. Use this as a starting point for reading the notice, not as a guide to any specific property or auction.
-          </p>
-        </div>
-        <ol className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ["01", "Read the sale notice", "Look for the property description, reserve price, deposit requirements, inspection details, deadlines, and sale conditions."],
-            ["02", "Review and verify", "Check the records and information relevant to the property. Arrange an inspection if the notice permits one."],
-            ["03", "Prepare as required", "Follow the notice for bidder registration, submission paperwork, deposits, and the auction platform or process."],
-            ["04", "Follow the stated terms", "If you participate, use the notice and authorised officer's instructions for bidding and any later steps."],
-          ].map(([number, title, description]) => (
-            <li className="rounded-lg border border-charcoal/10 bg-white p-5" key={number}>
-              <span aria-hidden="true" className="font-display text-sm font-bold text-warning">{number}</span>
-              <h3 className="mt-2 font-semibold text-navy">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-charcoal/70">{description}</p>
-            </li>
-          ))}
-        </ol>
-        <p className="mt-5 text-sm leading-6 text-charcoal/65">
-          For reference, see the official text of the <a className="font-semibold text-navy underline decoration-gold underline-offset-4" href="https://upload.indiacode.nic.in/showfile?actid=AC_CEN_2_11_00037_200254_1517807324604&filename=security_interest_%28enforcement%29_rules%2C_2002.pdf&type=rule" rel="noreferrer" target="_blank">Security Interest (Enforcement) Rules, 2002</a>, any applicable amendments, and the specific sale notice issued for an auction.
-        </p>
-      </section>
-      <section aria-labelledby="pre-auction-checklist-title" className="border-t border-charcoal/10 py-12" id="pre-auction-checklist">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warning">Before you decide</p>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy" id="pre-auction-checklist-title">
-              A due-diligence question list
-            </h2>
-            <p className="mt-3 leading-7 text-charcoal/75">
-              Use these prompts to organise your review. What applies and what can be verified will vary by property and sale notice.
-            </p>
-            <p className="mt-4 text-sm leading-6 text-charcoal/65">
-              This is general educational information, not legal, tax, or investment advice. Consider getting advice from qualified professionals before making a decision.
-            </p>
-          </div>
-          <ul className="grid content-start gap-3 sm:grid-cols-2">
-            {[
-              "Is this the latest sale notice, including any corrigenda or updates?",
-              "Do the property description and available records match what is being offered?",
-              "What is known about title, encumbrances, dues, and possession?",
-              "Can the property be inspected, and what can you verify about its condition and access?",
-              "What costs and obligations may apply beyond the bid amount?",
-              "What registration, deposit, payment, and post-sale deadlines does the notice specify?",
-            ].map((question) => (
-              <li className="flex gap-3 rounded-lg border border-charcoal/10 bg-white p-4 text-sm leading-6 text-charcoal/80" key={question}>
-                <span aria-hidden="true" className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy/10 text-xs font-bold text-navy">?</span>
-                {question}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <section aria-labelledby="auction-glossary-title" className="border-t border-charcoal/10 py-12" id="auction-glossary">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warning">Auction terms</p>
-          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy" id="auction-glossary-title">
-            A quick glossary
-          </h2>
-          <p className="mt-3 leading-7 text-charcoal/75">
-            Sale notices may use these terms. Their implications depend on the specific notice, records, and applicable rules.
-          </p>
-        </div>
-        <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[
-            ["Reserve price", "The reserve amount stated for the property in the sale notice. It is not a promise of market value."],
-            ["Earnest Money Deposit (EMD)", "A deposit amount and deadline stated in the notice for prospective bidders. The notice and applicable rules explain payment, refund, and other conditions."],
-            ["Possession status", "A notice may describe possession as physical or symbolic. That label alone should not be treated as confirmation of occupancy, access, or vacant possession."],
-            ["Encumbrance", "A claim, right, or other burden that may affect a property. Check relevant records and get qualified advice; a notice may not resolve every question."],
-          ].map(([term, definition]) => (
-            <div className="rounded-lg border border-charcoal/10 bg-white p-5" key={term}>
-              <dt className="font-display text-lg font-semibold text-navy">{term}</dt>
-              <dd className="mt-2 text-sm leading-6 text-charcoal/75">{definition}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-5 text-sm text-charcoal/65">
-          For an example of how sale notices present EMD, reserve price, and possession information, see this <a className="font-semibold text-navy underline decoration-gold underline-offset-4" href="https://ibbi.gov.in/uploads/auction_notice_liquidation/7fc8166edb1356037f3f5ff83d38e618.pdf" rel="noreferrer" target="_blank">public bank sale notice</a>.
-        </p>
-      </section>
-      <section aria-labelledby="plans-title" className="border-t border-charcoal/10 py-14" id="plans">
-        <div className="max-w-3xl">
-          <Badge tone="warning">Predictable &amp; Transparent</Badge>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl" id="plans-title">
-            Transparent membership plans
-          </h2>
-          <p className="mt-3 leading-7 text-charcoal/75">
-            Choose the level of intelligence and coordination that matches your investment journey. No hidden commissions, cancel anytime with zero exit penalties.
-          </p>
-        </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          <div className="flex flex-col justify-between rounded-xl border border-charcoal/15 bg-white p-6 shadow-sm">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-charcoal/60">Free Tier</span>
-              <h3 className="mt-2 font-display text-2xl font-bold text-navy">Visitor</h3>
-              <p className="mt-1 text-xs text-charcoal/65">For education, simulator practice, and basic research</p>
-              <div className="mt-4 border-b border-charcoal/10 pb-4">
-                <span className="font-display text-4xl font-bold text-navy">₹0</span>
-                <span className="text-xs text-charcoal/60"> / forever free</span>
+      {/* 2. TRUST METRICS & FEATURED BANKS STRIP */}
+      <section className="border-y border-charcoal/10 bg-white py-7 shadow-xs">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="grid gap-6 md:grid-cols-[1.25fr_1fr] md:items-center">
+            {/* 4 Trust Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
+              <div>
+                <span className="font-display text-2xl font-black text-navy sm:text-3xl tracking-tight">5,000+</span>
+                <p className="text-[11px] font-semibold text-charcoal/60 uppercase tracking-wider mt-0.5">Verified Filings</p>
               </div>
-              <ul className="mt-5 space-y-2.5 text-xs text-charcoal/75">
-                <li className="flex items-center gap-2">✓ Unlimited Virtual Auction Simulator</li>
-                <li className="flex items-center gap-2">✓ All Learning Academy articles &amp; checklists</li>
-                <li className="flex items-center gap-2">✓ Public property teaser summaries</li>
-                <li className="flex items-center gap-2">✓ Basic acquisition cost calculator</li>
-                <li className="flex items-center gap-2 text-charcoal/45">✗ Unlocked exact premises details</li>
-                <li className="flex items-center gap-2 text-charcoal/45">✗ Physical inspection coordination</li>
-                <li className="flex items-center gap-2 text-charcoal/45">✗ Advocate legal review coordination</li>
-              </ul>
+              <div>
+                <span className="font-display text-2xl font-black text-navy sm:text-3xl tracking-tight">25+</span>
+                <p className="text-[11px] font-semibold text-charcoal/60 uppercase tracking-wider mt-0.5">Scheduled Banks</p>
+              </div>
+              <div>
+                <span className="font-display text-2xl font-black text-navy sm:text-3xl tracking-tight">₹1,000 Cr+</span>
+                <p className="text-[11px] font-semibold text-charcoal/60 uppercase tracking-wider mt-0.5">Asset Book Value</p>
+              </div>
+              <div>
+                <span className="font-display text-2xl font-black text-navy sm:text-3xl tracking-tight">3,200+</span>
+                <p className="text-[11px] font-semibold text-charcoal/60 uppercase tracking-wider mt-0.5">Active Investors</p>
+              </div>
             </div>
-            <div className="mt-6 pt-4 border-t border-charcoal/10">
-              <Link
-                className="inline-flex w-full min-h-11 items-center justify-center rounded-md border border-navy px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-navy/5"
-                href="/auth/signup"
-              >
-                Start Free
-              </Link>
-            </div>
-          </div>
 
-          <div className="relative flex flex-col justify-between rounded-xl border-2 border-gold bg-white p-6 shadow-lg">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-3 py-0.5 text-[11px] font-bold text-charcoal uppercase tracking-wider">
-              Most Popular
-            </div>
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-warning">Active Investors</span>
-              <h3 className="mt-2 font-display text-2xl font-bold text-navy">Essential</h3>
-              <p className="mt-1 text-xs text-charcoal/65">For serious property seekers evaluating live bank auctions</p>
-              <div className="mt-4 border-b border-charcoal/10 pb-4">
-                <span className="font-display text-4xl font-bold text-navy">₹850</span>
-                <span className="text-xs text-charcoal/60"> / month + GST</span>
+            {/* Featured Banks strip */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t md:border-t-0 md:border-l border-charcoal/10 pt-4 md:pt-0 md:pl-8 text-xs">
+              <span className="font-bold text-charcoal/60 uppercase text-[10px] tracking-wider">
+                Partner Portals &amp; Banks:
+              </span>
+              <div className="flex flex-wrap items-center gap-2 font-semibold text-navy">
+                <span className="rounded-md border border-charcoal/10 bg-navy/5 px-2.5 py-1">SBI</span>
+                <span className="rounded-md border border-charcoal/10 bg-navy/5 px-2.5 py-1">HDFC Bank</span>
+                <span className="rounded-md border border-charcoal/10 bg-navy/5 px-2.5 py-1">ICICI Bank</span>
+                <span className="rounded-md border border-charcoal/10 bg-navy/5 px-2.5 py-1">Bank of Baroda</span>
+                <span className="rounded-md border border-charcoal/10 bg-navy/5 px-2.5 py-1">Union Bank</span>
               </div>
-              <ul className="mt-5 space-y-2.5 text-xs text-charcoal/80">
-                <li className="flex items-center gap-2 font-medium text-navy">✓ Everything in Visitor, plus:</li>
-                <li className="flex items-center gap-2">✓ <strong>Unlocked exact location previews</strong></li>
-                <li className="flex items-center gap-2">✓ <strong>Verified bank notice source links</strong></li>
-                <li className="flex items-center gap-2">✓ <strong>5 physical property inspection requests / mo</strong></li>
-                <li className="flex items-center gap-2">✓ Full Investor Community discussion forum</li>
-                <li className="flex items-center gap-2">✓ Standard EMD deadlines &amp; date alerts</li>
-                <li className="flex items-center gap-2">✓ Acquisition cost calculator (standard mode)</li>
-              </ul>
-            </div>
-            <div className="mt-6 pt-4 border-t border-charcoal/10">
-              <Link
-                className="inline-flex w-full min-h-11 items-center justify-center rounded-md bg-navy px-4 py-2 text-sm font-semibold text-white shadow transition-colors hover:bg-navy/90"
-                href="/auth/signup"
-              >
-                Choose Essential
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-xl border border-charcoal/15 bg-white p-6 shadow-sm">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-charcoal/60">HNIs &amp; Family Offices</span>
-              <h3 className="mt-2 font-display text-2xl font-bold text-navy">Premium</h3>
-              <p className="mt-1 text-xs text-charcoal/65">For high-conviction bidders needing deep legal coordination</p>
-              <div className="mt-4 border-b border-charcoal/10 pb-4">
-                <span className="font-display text-4xl font-bold text-navy">₹1,250</span>
-                <span className="text-xs text-charcoal/60"> / month + GST</span>
-              </div>
-              <ul className="mt-5 space-y-2.5 text-xs text-charcoal/80">
-                <li className="flex items-center gap-2 font-medium text-navy">✓ Everything in Essential, plus:</li>
-                <li className="flex items-center gap-2">✓ <strong>Unlimited fair-use inspection requests</strong></li>
-                <li className="flex items-center gap-2">✓ <strong>Advocate coordination enquiry workflow</strong></li>
-                <li className="flex items-center gap-2">✓ Maximum-Bid Planner with yield &amp; return models</li>
-                <li className="flex items-center gap-2">✓ DRT case tracking &amp; litigation alerts</li>
-                <li className="flex items-center gap-2">✓ Priority auction notice updates</li>
-                <li className="flex items-center gap-2">✓ Dedicated member concierge assistance</li>
-              </ul>
-            </div>
-            <div className="mt-6 pt-4 border-t border-charcoal/10">
-              <Link
-                className="inline-flex w-full min-h-11 items-center justify-center rounded-md border border-navy px-4 py-2 text-sm font-semibold text-navy transition-colors hover:bg-navy/5"
-                href="/auth/signup"
-              >
-                Choose Premium
+              <Link className="inline-flex items-center gap-1 font-bold text-[#C5A059] transition-colors duration-200 hover:text-[#b08e4c]" href="/explore">
+                <span>View All Banks</span>
+                <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
           </div>
         </div>
-
-        <div className="mt-6 rounded-lg bg-[#f1f5f9] p-4 text-xs leading-5 text-charcoal/70">
-          <p>
-            <strong>Subscription &amp; fee disclosures:</strong> Subscriptions are managed on a month-to-month basis via Razorpay auto-renewal with no annual lock-in. Advocate legal reviews are conducted by independent empanelled advocates whose fee schedules are disclosed transparently before any request is placed.
-          </p>
-        </div>
       </section>
 
-      <section aria-labelledby="about-title" className="border-t border-charcoal/10 py-14" id="about">
-        <div className="max-w-3xl">
-          <Badge tone="warning">Our Mission</Badge>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl" id="about-title">
-            About AuctionIQ
+      {/* 3. THREE FEATURE/AUDIENCE SHOWCASE CARDS: Depth, subtle shadows, authoritative copy */}
+      <section className="py-16 mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#C5A059]">
+            BESPOKE INVESTOR SOLUTIONS
+          </span>
+          <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-navy">
+            Engineered for Retail Bidders and Family Offices Alike
           </h2>
-          <p className="mt-3 text-lg leading-8 text-charcoal/80">
-            AuctionIQ is being developed as a specialised property intelligence platform focused exclusively on bank auctions in South Mumbai and Navi Mumbai.
+          <p className="mt-2 text-sm text-charcoal/70">
+            Select your investment profile to access tailored due diligence reports, physical inspections, and capital structures.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-charcoal/10 bg-white p-5 shadow-sm">
-            <span aria-hidden="true" className="font-display text-xl font-bold text-gold">01</span>
-            <h3 className="mt-2 font-display text-lg font-bold text-navy">Radical Independence</h3>
-            <p className="mt-2 text-sm leading-6 text-charcoal/70">
-              We never take broker commissions, buyer finder fees, or developer listing charges. Our objective is singular: giving you the unvarnished facts to protect your capital.
-            </p>
-          </div>
-          <div className="rounded-xl border border-charcoal/10 bg-white p-5 shadow-sm">
-            <span aria-hidden="true" className="font-display text-xl font-bold text-gold">02</span>
-            <h3 className="mt-2 font-display text-lg font-bold text-navy">Dual-Corridor Focus</h3>
-            <p className="mt-2 text-sm leading-6 text-charcoal/70">
-              We focus on South Mumbai&apos;s heritage island city assets and Navi Mumbai&apos;s planned coastal growth corridors—two distinct markets requiring specialized diligence.
-            </p>
-          </div>
-          <div className="rounded-xl border border-charcoal/10 bg-white p-5 shadow-sm">
-            <span aria-hidden="true" className="font-display text-xl font-bold text-gold">03</span>
-            <h3 className="mt-2 font-display text-lg font-bold text-navy">Education Before Capital</h3>
-            <p className="mt-2 text-sm leading-6 text-charcoal/70">
-              We believe every investor should practise in a simulator and understand SARFAESI legal nuances before committing earnest money to any real auction.
-            </p>
-          </div>
-        </div>
+        <div className="grid gap-7 lg:grid-cols-3">
+          {/* Card 1: For Individual Buyers */}
+          <div className="flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-[0_20px_35px_-5px_rgba(15,23,42,0.12)] hover:-translate-y-1">
+            <div>
+              <span className="inline-block rounded-full bg-navy/10 px-3 py-1 text-xs font-bold text-navy">
+                Retail &amp; First-Time Bidders
+              </span>
+              <h3 className="mt-4 font-display text-xl font-bold text-navy">Individual Buyer Desk</h3>
+              <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
+                Access curated bank-auction homes, compare reserve pricing against sub-registrar deeds, and navigate statutory legal steps with zero confusion.
+              </p>
 
-        <div className="mt-6 rounded-lg border border-charcoal/15 bg-white p-5 text-xs leading-6 text-charcoal/70">
-          <strong className="text-navy">Operational &amp; Regulatory Statement:</strong> AuctionIQ is an independent information and software platform. We are not an auction house, bank, recovery agent, or legal counsel. We do not accept bids or process property payments. All property notices featured are drawn from public statutory sources.
+              <div className="my-6 rounded-xl border border-charcoal/10 bg-[#f8fafc] p-4 text-xs grid grid-cols-2 gap-2.5">
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-navy shrink-0" /> Verified Notices
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-navy shrink-0" /> Market Spreads
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-navy shrink-0" /> All-In Cost Audit
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-navy shrink-0" /> SmartDoor Visits
+                </span>
+              </div>
+            </div>
+
+            <Link
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-[#C5A059] px-4 text-xs font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#b08e4c] hover:shadow-md active:scale-[0.98]"
+              href="/explore?type=Residential"
+            >
+              <span>Explore Residential Auctions</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          {/* Card 2: For Investors & HNIs */}
+          <div className="flex flex-col justify-between rounded-2xl border border-charcoal/10 bg-white p-7 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-[#C5A059] hover:shadow-[0_20px_35px_-5px_rgba(15,23,42,0.12)] hover:-translate-y-1">
+            <div>
+              <span className="inline-block rounded-full bg-gold/20 px-3 py-1 text-xs font-bold text-navy">
+                Family Offices &amp; HNIs
+              </span>
+              <h3 className="mt-4 font-display text-xl font-bold text-navy">Private Wealth &amp; HNI Desk</h3>
+              <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
+                Curated high-value distress situations, commercial yielding real estate, and DRT special situations with dedicated transaction mandates.
+              </p>
+
+              <div className="my-6 rounded-xl border border-charcoal/10 bg-[#f8fafc] p-4 text-xs grid grid-cols-2 gap-2.5">
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#C5A059] shrink-0" /> Curated Deal Flow
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#C5A059] shrink-0" /> Title &amp; DRT Audits
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#C5A059] shrink-0" /> Off-Market Portfolios
+                </span>
+                <span className="flex items-center gap-1.5 text-charcoal/80 font-medium">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#C5A059] shrink-0" /> Mandate Execution
+                </span>
+              </div>
+            </div>
+
+            <Link
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl bg-navy px-4 text-xs font-bold text-white shadow-sm transition-all duration-200 hover:bg-navy/90 hover:shadow-md active:scale-[0.98]"
+              href="/hni"
+            >
+              <span>Explore HNI Advisory Desk</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          {/* Card 3: Market Intelligence Graphic Card */}
+          <div className="flex flex-col justify-between rounded-2xl border-2 border-[#C5A059]/80 bg-gradient-to-br from-white via-white to-gold/10 p-7 shadow-[0_8px_25px_-5px_rgba(197,160,89,0.2)] transition-all duration-200 hover:shadow-[0_20px_35px_-5px_rgba(197,160,89,0.3)] hover:-translate-y-1">
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
+                  <TrendingUp className="h-3.5 w-3.5 text-emerald-700" />
+                  <span>Market Valuation Engine</span>
+                </span>
+                <span className="text-xs font-extrabold text-emerald-700">23% Discount Spread</span>
+              </div>
+
+              <h3 className="mt-4 font-display text-xl font-bold text-navy">Empirical Pricing Spread</h3>
+              <p className="mt-2 text-xs leading-relaxed text-charcoal/70">
+                Contrast auction reserve limits directly with IGR Maharashtra Ready Reckoner circle rates and secondary transaction registries.
+              </p>
+
+              {/* Live Metric Box with Depth */}
+              <div className="my-6 rounded-xl border border-charcoal/15 bg-white p-4 shadow-sm text-xs space-y-2.5">
+                <div className="flex justify-between items-center text-charcoal/65">
+                  <span className="font-medium">Prevailing Market Valuation:</span>
+                  <span className="font-mono text-sm font-semibold text-charcoal/50 line-through">₹1.95 Cr</span>
+                </div>
+                <div className="flex justify-between items-center font-bold text-navy">
+                  <span>Auction Reserve Benchmark:</span>
+                  <span className="font-mono text-base font-extrabold text-navy">₹1.50 Cr</span>
+                </div>
+                <div className="flex justify-between items-center text-[11px] border-t border-charcoal/10 pt-2 text-emerald-700 font-semibold">
+                  <span className="flex items-center gap-1">
+                    <Percent className="h-3 w-3" />
+                    <span>Calculated Acquisition Spread:</span>
+                  </span>
+                  <span>-23% (₹45 Lakhs Under Market)</span>
+                </div>
+              </div>
+            </div>
+
+            <Link
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-navy/30 bg-white px-4 text-xs font-bold text-navy shadow-xs transition-all duration-200 hover:bg-navy/5 active:scale-[0.98]"
+              href="/how-it-works"
+            >
+              <span>Examine Valuation Methodology</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
-      <section aria-labelledby="faq-title" className="border-t border-charcoal/10 py-12" id="faq">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-warning">Frequently asked questions</p>
-          <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-navy" id="faq-title">A few useful basics</h2>
-        </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {[
-            ["What is AuctionIQ?", "AuctionIQ is being developed to make bank-auction property research clearer and more structured."],
-            ["Which areas will it focus on?", "The initial focus is South Mumbai and Navi Mumbai."],
-            ["Are listings or member tools available now?", "No. Property listings and member tools are not live yet; the platform is still in foundations setup."],
-            ["Does AuctionIQ conduct auctions or accept bids?", "No. AuctionIQ is an information platform. It does not conduct auctions or handle bids, deposits, or property transactions."],
-          ].map(([question, answer]) => (
-            <details className="group rounded-lg border border-charcoal/10 bg-white p-4 open:border-gold/40" key={question}>
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold [&::-webkit-details-marker]:hidden">
-                {question}
-                <span aria-hidden="true" className="shrink-0 text-xl font-normal text-warning transition-transform group-open:rotate-45">+</span>
-              </summary>
-              <p className="pt-2 pr-6 text-sm leading-6 text-charcoal/75">{answer}</p>
-            </details>
-          ))}
+
+      {/* 4. FEATURED BANK AUCTION PROPERTIES (Interactive Explore Section) */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <ExplorePropertiesSection />
+      </div>
+
+      {/* 5. VIRTUAL SIMULATOR BANNER */}
+      <section className="border-t border-charcoal/10 bg-gradient-to-b from-[#f8fafc] to-[#edf2f7] py-16">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-navy/10 px-3.5 py-1 text-xs font-bold text-navy">
+            <Shield className="h-3.5 w-3.5 text-navy" />
+            <span>Zero Financial Risk Sandbox</span>
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-bold text-navy sm:text-4xl tracking-tight">
+            Simulate Live Bidding Before Entering Bank Auctions
+          </h2>
+          <p className="mt-3 text-sm text-charcoal/75 max-w-2xl mx-auto leading-relaxed">
+            Experience realistic bid increment timers, counter-bid pressure, and reserve price dynamics in our algorithmic auction simulator before participating in statutory e-auctions.
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3.5">
+            <Link
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-navy px-6 text-xs font-bold text-white shadow-md transition-all duration-200 hover:bg-navy/90 hover:shadow-lg active:scale-[0.98]"
+              href="/simulator"
+            >
+              <span>Launch Auction Simulator</span>
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-navy/30 bg-white px-6 text-xs font-bold text-navy shadow-xs transition-all duration-200 hover:bg-navy/5 active:scale-[0.98]"
+              href="/how-it-works"
+            >
+              <span>Review the 6-Step Acquisition Protocol</span>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

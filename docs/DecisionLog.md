@@ -44,6 +44,7 @@
 | A23 | Public property views | APPROVED | `public_properties` and `public_property_photos` views are out of M1 scope and may be reconsidered at M7 for defense-in-depth. | User approval, 2026-10-21. |
 | A25 | §6.1 table classes and DB outcomes | APPROVED | Add classes R/P/S/U/A/X with explicit per-role PostgreSQL semantics; distinguish `deny_perm` (42501 permission denied) from `empty_result` (00000, zero rows). | User approval, pasted instruction, 2026-10-21. |
 | A26 | M1-T9 RLS probe matrix scope | APPROVED | Require 155 SELECT cells (31 tables × 5 roles), client write probes only for the 15 tables with client write policies, plus six service-role grant probes. | User approval, pasted instruction, 2026-10-21. |
+| D17 | SmartDoor Digital Access & Visitor eKYC | APPROVED | Subscribed members (Essential 5/mo, Premium Fair-use) have access to physical property inspection arrangements. For SmartDoor-equipped properties, access is automated via SmartDoor API and gated by mandatory DigiLocker/Aadhaar visitor eKYC before digital access pass issuance. | User instruction: "For individuals who log in and have subsrcription they will have access to inspection arrangment like for any specific property i will be collaborating with a third party company smartdoor so that i can arrange an access,via ekyc of the individual visiting", 2026-10-27. |
 
 ## Pending decisions and inputs
 
